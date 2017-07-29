@@ -1,0 +1,12 @@
+.idea
+*.log
+/vendor
+/thinkphp
+/composer.json
+/composer.lock
+/runtime
+/think
+/__materials/yth_blog.sql
+/__materials/Data_format_specification.md
+/sensitive_config.ini
+/public/sitemap.xml

@@ -1,0 +1,33 @@
+<IfModule mod_rewrite.c>
+  Options +FollowSymlinks -Multiviews
+  RewriteEngine On
+
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
+
+  #To prevent other website to use our picd
+    RewriteCond %{HTTP_REFERER} !123\.206\.211\.133 [NC]
+    RewriteCond %{HTTP_REFERER} !^$ [NC]
+    RewriteCond %{HTTP_REFERER} !csdn\.net [NC]
+    RewriteCond %{HTTP_REFERER} !sogou\.com [NC]
+    RewriteCond %{HTTP_REFERER} !baidu\.com [NC]
+    RewriteCond %{HTTP_REFERER} !so.com [NC]
+    RewriteCond %{HTTP_REFERER} !360.cn [NC]
+    RewriteCond %{HTTP_REFERER} !bing.com [NC]
+    RewriteCond %{HTTP_REFERER} !yahoo.com [NC]
+    RewriteCond %{HTTP_REFERER} !hlzblog\.top [NC]
+    RewriteCond %{HTTP_REFERER} !blog\.com [NC]
+    RewriteRule \.(jpg|jpeg|png|gif)$ http://p1.bqimg.com/567571/99196fe7ed5412c0.gif [R=301,L,NC]
+
+  ## Set Cache
+  <FilesMatch "\.(jpg|jpeg|png|gif|swf|ico)$">
+    Header set Cache-Control "max-age=2592000"
+  </FilesMatch>
+  ## Set static source lives
+  <FilesMatch "\.(js|css)$">
+    Header set Cache-Control "max-age=3600"
+  </FilesMatch>
+
+
+</IfModule>

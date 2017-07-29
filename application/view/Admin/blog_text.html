@@ -1,0 +1,293 @@
+<style>
+  .yth_img{
+    width:200px;
+    height: 200px;
+    float: left;
+    margin-right: 70px;
+    margin-bottom: 20px;
+  }
+  .yth_img:hover{ 
+    box-shadow: 5px 5px 5px 5px #FFBBFF;
+  }
+</style>
+<script src="/static/Admin/js/blog_text.js"></script>
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+  <ul class="layui-tab-title">
+    <li class="layui-this" onclick="get_article_list()">一览</li>
+    <li>添加</li>
+    <li>搜索</li>
+    <li>图床</li>
+  </ul>
+  <div class="layui-tab-content">
+    <!--一览-->
+    <div class="layui-tab-item layui-show">
+      <div id="pagenation_html"></div>
+      <div id="yth_page"></div>
+    </div>
+
+    <!--添加-->
+    <div class="layui-tab-item">
+      <!--这里用于存放两个步骤变化出的div -->
+      <div id="blog_text_add"></div>
+    </div>
+
+    <!--搜索-->
+    <div class="layui-tab-item">
+      <blockquote class="layui-elem-quote" style="font-size:15px">模糊搜素文章时，每次最多显示 5 篇哟</blockquote>
+      <div class="goods_search">
+        <div class="search-nav-inner">
+          <div class="search">
+            <div class="search-clr"></div>
+            <div class="search-bottom">
+              <form>
+                <input type="text" name="name" id="search_title" placeholder="请输入文章名">
+                <input type="button" value="搜索" onclick="blog_text_search()"></form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="search-clr"></div>
+      
+      <div id="yth_search_html"></div>
+    </div>
+
+    <!--图床-->
+    <div class="layui-tab-item" style="width:1000px;;">
+
+      <div yth-title="这里只是为了好看...(进度条区域)">
+        <div class="layui-progress">
+        <div class="layui-progress-bar layui-bg-red" lay-percent="20%"></div>
+        </div><br>
+        <div class="layui-progress">
+          <div class="layui-progress-bar layui-bg-orange" lay-percent="30%"></div>
+        </div> <br>
+        <div class="layui-progress">
+          <div class="layui-progress-bar layui-bg-green" lay-percent="40%"></div>
+        </div><br>
+        <div class="layui-progress">
+          <div class="layui-progress-bar layui-bg-blue" lay-percent="50%"></div>
+        </div><br>
+        <div class="layui-progress">
+          <div class="layui-progress-bar layui-bg-cyan" lay-percent="60%"></div>
+        </div>
+      </div>
+
+      <div style="margin-top:10px;margin-bottom:10px;">
+        <blockquote class="layui-elem-quote layui-quote-nm" style="text-align:center;">
+          <a href="http://jiantuku.com/#/" target="_blank" style="margin-right:20px;color:828282;">极简图床</a>
+          <a href="https://sm.ms/" target="_blank" style="margin-right:20px;color:4B0082;">sm.sm</a>
+        </blockquote>
+      </div>
+        
+
+    </div>
+
+    <!--测试，开始-->
+    <!--测试，结束-->
+  </div>
+</div>
+
+
+
+<!-- 页面模板，显示添加 -->
+<script type="text/yth_tpl" id="blog_text_add_tpl" >  
+  <blockquote class="layui-elem-quote" style="font-size:15px">MD为Markdown，Editor为富文本。封面宽高比，建议16比9</blockquote>
+  <form class="layui-form ">
+    <div class="layui-form-item">
+      <label class="layui-form-label">标题</label>
+      <div class="layui-input-block" style="width:800px">
+        <input type="text" autocomplete="off" id="blog_text_title" placeholder="请输入文章名..." class="layui-input"></div>
+    </div>
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">文本类型</label>
+      <div class="layui-input-inline">
+        {{yth_check_box_html(0,"blog_text_type",".MD|Editor","blog_text_editor")}}
+      </div>
+      <label class="layui-form-label">置顶操作</label>
+      <div class="layui-input-inline">
+        {{yth_check_box_html(0,"blog_text_sticky","OFF|ON")}}
+      </div>
+      <label class="layui-form-label">作品来源</label>
+      <div class="layui-input-inline">
+        {{yth_check_box_html(0,"blog_text_original","原创|转载")}}
+      </div>
+    </div>
+
+
+
+    <div class="layui-form-item layui-form-text" id="Editor_0">
+      <label class="layui-form-label">Markdown</label>
+      <div class="layui-input-block" >
+        <textarea placeholder="这里写文章..." class="layui-textarea"  id="markdown" style="width:800px;height:500px;"></textarea>
+      </div>
+    </div>
+
+    <div class="layui-form-item" id="Editor_1" style="display:none">
+      <label class="layui-form-label">Editor</label>
+      <div class="layui-input-block" style="width:800px;">
+        <div id="yth_editor" yth-name="descript" style="height:400px;width:800px;"></div>
+      </div>
+    </div>
+
+
+    <div class="layui-form-item layui-form-text">
+      <label class="layui-form-label">内容简述</label>
+      <div class="layui-input-block" >
+        <textarea placeholder="请在这里填写概述..." class="layui-textarea"  id="blog_text_descript" style="width:800px"></textarea>
+      </div>
+    </div>
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">封面图片</label>
+      <div class="layui-input-block" style="width:800px">
+        <input type="text" autocomplete="off" id="blog_text_cover_url" placeholder="请输入封面图片地址..." class="layui-input"></div>
+    </div>
+
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">所属分类</label>
+      <div class="layui-input-block">
+        <input type="hidden"  id="blog_text_cate_id" placeholder="这里是分类">
+        <!-- 所属分类-->
+          <div id="blog_text_category_html" style="width:800px;"></div>
+      </div>
+    </div>
+
+    <div class="layui-form-item">
+      <label class="layui-form-label">背景图片</label>
+      <div class="layui-input-block">
+        <input type="hidden"  id="blog_text_bg_id" placeholder="这里是背景图" value="0">
+          <!-- 图片展示区-->
+          <div id="blog_text_bg_html" style="width:800px;"></div>
+          <!-- 分页条-->
+          <div id="blog_text_bg_html_pagenation" style="width:800px;margin-top:30px;"></div>
+      </div>
+    </div>
+
+    
+
+    <div>
+      <button style="
+      font-family:微软雅黑;  font-weight: 700;  color: rgb(84,126,86); 
+      cursor: pointer; outline: none;  padding: 10px 10px; 
+      width: 800px; font-size: 17px;  border: none; margin-left:110px;
+      background: rgb(220,250,200);margin-top:20px;" 
+      onclick="blog_text_add()" 
+      type="button">提交</button>
+    </div>
+  </form>
+</script>
+
+<!-- 页面模板，显示所有分类 -->
+<script type="text/yth_tpl" id="blog_text_category_tpl" >
+  {{# for(var i=0; i<d.length; i++){ }}
+    <div class="layui-unselect layui-form-radio" 
+       yth-id="{{d[i].id}}" onclick="yth_radio_logic(this,'blog_text_cate_id')">
+        <i class="layui-anim layui-icon"></i>
+        <span>{{d[i].title}}</span>
+    </div>
+  {{# }  }}
+</script>
+
+
+<!-- 页面模板，显示所有分类 -->
+<script type="text/yth_tpl" id="blog_text_bg_tpl" >
+  {{# for(var i=0; i<d.length; i++){ }}
+    <div class="layui-unselect layui-form-radio" 
+       yth-id="{{d[i].id}}" onclick="yth_radio_logic(this,'blog_text_bg_id')">
+        <i class="layui-anim layui-icon"></i>
+        <img src="{{d[i].url}}" width="190px" height="100px" alt="背景图">
+    </div>
+  {{# }  }}
+</script>
+
+
+<!-- 页面模板，显示文章列表 -->
+<script type="text/yth_tpl" id="blog_text_tpl" >
+  <div class="layui-form">
+    <table class="layui-table" lay-even="" lay-skin="nob">
+      <colgroup>
+        <col width="200">
+        <col width="150">
+        <col width="150">
+        <col width="300">
+        <col width="80">
+        <col width="80">
+        <col >
+      </colgroup>
+      <thead>
+        <tr>
+          <th>封面</th>
+          <th>类别</th>
+          <th>名称</th>
+          <th>概要</th>
+          <th style="padding-left:25px">查看</th>
+          <th style="padding-left:25px">修改</th>
+          <th style="padding-left:25px">删除</th>
+        </tr> 
+      </thead>
+      <tbody>
+       {{# for(var i=0;i< d.length;i++){ }}
+        <tr class="tr_{{d[i].id}}">
+          <td>
+            <img src="{{d[i].cover_url}}" alt="文章封面" width="160" height="90">
+          </td>
+          <td  style="color: #8B2323;"   >
+            {{d[i].cate_name}}
+          </td>
+          <td style="color: #e0e;">
+            {{d[i].title}}
+          </td>
+          <td style="color: #C67171;" title="{{d[i].descript}}">
+            {{cut_name(d[i].descript,60)}}
+          </td>
+          <td>
+            <a href="/Article?id={{d[i].id}}" target="_blank" class="layui-btn" title="查看"><i class="layui-icon">&#xe609;</i></a>
+          </td>
+          <td>
+             <a href="/Admin/blog_text_edit?id={{d[i].id}}" target="_blank" class="layui-btn layui-btn-normal"  title="修改"><i class="layui-icon">&#xe639;</i></a>
+          </td>
+          <td>
+            <button class="layui-btn layui-btn-warm" yth-id="{{d[i].id}}" 
+                onclick="blog_text_del(this)"  title="删除"
+             ><i class="layui-icon">&#xe640;</i></button>
+          </td>
+        </tr>
+        {{#  } }}
+      </tbody>
+    </table>
+  </div>
+</script>
+
+
+  <script type="text/javascript" src="/Umeditor/umeditor.config.js"></script>
+<!-- JS运行脚本 -->
+<script>
+loadjs([
+  "/Umeditor/themes/default/css/umeditor.min.css",
+  "/Umeditor/umeditor.min.js",
+  "/static/Admin/css/search.css"
+], { success: function() {
+    layui.use(['layer', 'form'], function() {
+      // 选中当前所在模块
+      $("#blog_text").addClass("layui-this");
+      // 初始化，添加界面
+      blog_text_add_init();
+      // 初始，文章列表
+      get_article_list();
+      // 初始化，添加界面 => 分类
+      blog_text_category();
+      // 初始化，添加界面 => 背景列表
+      yth_pageination({
+          "api" : api("Admin_basic","background_list_info"),
+          "render_tpl"  : "blog_text_bg_tpl",
+          "render_html" : "blog_text_bg_html",
+          "pageination_id": "blog_text_bg_html_pagenation"
+      });
+      // 搜索商品
+      
+    });
+  }
+});
+</script>

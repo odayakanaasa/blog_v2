@@ -1,0 +1,69 @@
+  </div>
+</div>
+<div class="clr"></div>
+
+
+<!--  友情链接 -->
+<div id="friend_link_html"></div>
+<div class="clr"></div>
+
+<!-- 容器，结束 -->
+
+<!-- Footer -->
+
+
+<div class="Footer"><!-- 页脚 -->
+       <div class="container">
+       		<p>
+       			<a href="/Board"  target="_blank" >联系天河</a><span>|</span>
+       			<a href="/Info/law.html"  target="_blank" >法律声明</a><span>|</span>
+       			<a href="/sitemap.xml"  target="_blank" >网站地图</a>
+       		</p>
+       		<p>
+       			如有急事，请联系邮箱  hlzblog@vip.qq.com
+       		</p>
+       		<p>
+       			Copyright&nbsp;&copy;&nbsp;Department of network engineering , Qingdao Technological University Class 1 , Grade 2014 HaleyLeoZhang All Rights Reserved
+       		</p>
+       		<p>
+       			版权所有&copy; HaleyLeoZhang <a style="color:#437373;" target="_blank" rel="nofollow" href="http://www.miitbeian.gov.cn/">鲁ICP备16014994号</a>
+       		</p>
+        </div>
+</div><!-- 页脚结束 -->
+
+
+
+<!-- Run js-->
+<script>
+loadjs(["{:link_plugins('referrer_killer','referrer-killer.js')}",
+  // Baidu Statistic
+  "https://hm.baidu.com/hm.js?a3e8bb5c7eef342491aa58e9a8539127"], {
+  success: function() {
+    // noferrer Load  referrer-killer.js ,first;
+    // It is to load images without http_referrer that using this lib
+    // In this way, you will preload all of images in this page
+    var arr = $(".lazy_pic"),
+      arr_len = arr.length;
+    temp_src = '';
+    for (var i = 0; i < arr_len; i++) {
+      temp_src = arr[i].getAttribute("originalsrc");
+      ReferrerKiller.imageHtml(temp_src);
+      arr[i].innerHTML = ReferrerKiller.imageHtml(temp_src);
+    }
+    
+    // Achieve lazy load
+    $(".lazy_pic").lazyload({
+      effect: "fadeIn",
+      threshold: 200,
+      failurelimit: 10,
+      placeholder: "/static/img/default/pre_pic.png"
+    });
+
+    // Get visiter footmark in this website
+    footmark();
+  }
+});
+</script>
+
+	</body>
+</html>

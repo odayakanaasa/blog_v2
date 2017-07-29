@@ -1,0 +1,41 @@
+[Your domain]
+host=
+
+[Debug]
+app_debug=
+app_trace=
+
+[Tencent_COS]
+cos_setRegion=
+cos_bucketName=
+cos_source_url=
+cos_APPID=
+cos_SECRET_ID=
+cos_SECRET_KEY=
+
+[OAuth2.0]
+; qq
+qq_config_appid=
+qq_config_appkey=
+qq_config_callback=
+qq_config_scope=
+; sina
+sina_config_WB_AKEY=
+sina_config_WB_SKEY=
+sina_config_WB_CALLBACK_URL=
+
+[Redis]
+; master
+redis_m_host_1=
+redis_m_prot_1=
+redis_m_auth_1=
+; slave
+redis_s_host_1=
+redis_s_prot_1=
+redis_s_auth_1=
+
+[Mysql]
+mysql_hostname=
+mysql_database=
+mysql_username=
+mysql_password=

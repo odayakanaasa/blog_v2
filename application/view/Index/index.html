@@ -1,0 +1,143 @@
+<div class="left" >
+	{foreach $info.article_list.info as $v }
+	<div class="article_list article_animated fadeInUp" add-class=" article_animated fadeInUp">
+		<div class="article_title">
+			<h1><a href="/Article.html?id={$v.id}" target="_blank">{$v.title}{if condition="$v.sticky eq '1'"}<img src="/static/img/default/sticky.gif" alt="" style="padding-left:5px;">{/if}</a></h1>
+		</div>
+		<div class="article_field">
+			<div class="left_pic">
+				<img src="{$v.cover_url}" alt="封面图片" />
+			</div>
+			<div class="right_inner">
+				<div class="others" yth-descript="[都要带图标的]发布时间、阅读量、评论数、所属分类">
+					<span title="发布时间">
+						<i class="fa fa-clock-o" aria-hidden="true"></i>
+						{$v.time}
+						<font></font>
+					</span>
+					<span title="所属分类">
+						<i class="fa fa-folder-open-o"></i>
+						<a href="/?cate_id={$v.cate_id}">{$v.cate_name}</a>
+						<font></font>
+					</span>
+					<span title="浏览量">
+						<i class="fa fa-eye" aria-hidden="true"></i>
+						{$v.statistic}
+					</span>
+					<div class="clr"></div>
+				</div>
+				<div class="descript">
+					<p>{$v.descript}
+						<a href="/Article.html?id={$v.id}" target="_blank">
+							More
+						</a>
+					</p>
+				</div>
+			</div>
+			<div class="clr"></div>
+		</div>
+		
+	</div>
+	{/foreach}
+	<div style="padding-left:15px;">
+		{$info.article_list.render}
+	</div>
+
+	
+</div>
+<div class="right">
+	<div class="search_article">
+		<form action="/" method="get">
+			<input type="text" name="search" placeholder="博文搜索">
+			<button type="submit" title="立即搜索" onclick="">
+				<i class="fa fa-paper-plane  fa-lg" style="margin-right:10px;"></i>
+			</button>
+		</form>
+		<div class="clr"></div>
+	</div>
+	<div class="categories">
+		<div class="right_bar_title">
+			<h2><span>归档分类</span></h2>
+		</div>
+		<div class="clr"></div>
+		{foreach $info.cate_list as $v}
+		<a href="/?cate_id={$v.id}">
+			<div class="one_category">
+				<i class="fa fa-tag" aria-hidden="true"></i>
+				{$v.title}（{$v.total}）
+			</div>
+		</a>
+		{/foreach}
+	</div>
+	<div class="recommands">
+		<div class="right_bar_title">
+			<h2><span>顶置文章</span></h2>
+		</div>
+		{foreach $info.sticky_list as $v}
+		<div class="one_recommand">
+			<a href="/Article?id={$v.id}" target="_blank" title="{$v.title}">
+				{$v.title}
+			</a>
+			<div class="clr"></div>
+		</div>
+		{/foreach}
+	</div>
+	<div class="assignments">
+		<div class="right_bar_title">
+			<h2><span>最新评论</span></h2>
+		</div>
+		{foreach $info.reply_list as $v}
+		<a href="/Article?id={$v.article_id}#nav" target="_blank">
+			<div class="one_assignment" title="查看对应文章">
+				<img src="{$v.pic}" alt="">
+				<div class="say">
+					<span>@{$v.name}</span>
+					<font>说：</font>
+					<p title="{$v.content}">
+						{$v.content}
+					</p>
+				</div>
+				<div class="clr"></div>
+			</div>
+		</a>
+		{/foreach}
+	</div>
+</div>
+
+<div class="clr"></div>
+
+<div style="background:#eee;width:100%;height:30px;"></div>
+
+<!--  友情链接 -->
+<div id="friend_link_html">
+	<div class="Link_to_others">
+		<div class="container">
+			<div class="friend_link">
+				<div class="title">友情链接</div>
+				<div class="link_list">
+					<p>
+						{foreach $info.friend_link as $v}
+						<em>
+							<a href="{$v.url}" target="_blank">{$v.title}</a>
+							<font>|</font>
+						</em>
+						{/foreach}
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="clr"></div>
+
+
+
+<script type="text/javascript">
+	loadjs([
+		"{:link_src('modules.js')}"
+	], {
+		success: function() {
+			blog_text.show_banner();
+		}
+	});
+</script>

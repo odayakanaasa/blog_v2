@@ -1,0 +1,98 @@
+<link rel="stylesheet" href="{:link_src('board.css')}">
+<div class="board_container" >
+        <div class="reply">
+            <div class="message_board" onclick="board.reply_floor()" title="点此留言"><img src="/static/img/default/leave_message.png" alt="留言图标"></div>
+            <div class="clr"></div>
+        </div>
+		<ul class="message_list" id="message_list" yth_to_page="1" yth_page_count="{$page.page_count}" yth_total="{$page.total}">
+        {volist name="page.info" id="v"}
+            <li>
+                <!-- Right user_pic -->
+                <div class="right_box">
+                    <img src="{$v.pic}" alt="头像">
+                </div>
+                <div class="arrow_box">
+                    <!--triangle-->
+                    <div class="ti"></div>
+                    <div class="textinfo">
+                        {$v.content}
+                    </div>
+                    <ul class="details">
+                        <li class="icon-time" title="昵称">
+                            {if condition="$v.type == 0"}<img class="login_method_icon" src="/static/img/default/icon_v_yellow.png" title="博主">
+                            {elseif condition="$v.type == 1"}<i class="fa fa-weibo" title="Sina 用户"></i>
+                            {elseif condition="$v.type == 2"}<i class="fa fa-qq" title="QQ 用户"></i>
+                            {/if}
+                            {$v.name}
+                        </li>
+                        <li class="comments" title="留言时间">
+                          <i class="fa fa-clock-o"></i> {$v.time}
+                        </li>
+                        <li style="list-style: none; display: inline">
+                            <div class="clr"></div>
+                        </li>
+                    </ul>
+                </div><!--arrow_box end-->
+            </li>
+        {/volist}
+        </ul>
+  <div class="clr"></div>
+</div>
+
+
+<script type="text/yth_tpl" id="message_list_tpl">
+    {{#  for( var i in d ){   }}
+            <li>
+                <div class="right_box">
+                    <img src="{{d[i].pic}}" alt="头像">
+                </div>
+                <div class="arrow_box">
+                    <div class="ti"></div>
+                    <div class="textinfo">
+                        {{d[i].content}}
+                    </div>
+                    <ul class="details">
+                        <li class="icon-time" title="昵称">
+                            {{# if( d[i].type == "0" ){  }}<img class="login_method_icon" src="/static/img/default/icon_v_yellow.png" title="博主">
+                            {{# }else if(d[i].type == "1" ){ }}<i class="fa fa-weibo" title="Sina 用户"></i>
+                            {{# }else if(d[i].type == "2" ){ }}<i class="fa fa-qq" title="QQ 用户"></i>
+                            {{# } }}
+                            {{d[i].name}}
+                        </li>
+                        <li class="comments" title="留言时间">
+                          <i class="fa fa-clock-o"></i> {{d[i].time}}
+                        </li>
+                        <li style="list-style: none; display: inline">
+                            <div class="clr"></div>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+    {{#  }  }}
+</script>
+
+
+<script src="http://cdn.bootcss.com/layer/3.0.1/layer.min.js"></script>
+<script type="text/javascript">
+	loadjs([
+		"/static/js/modules.js",
+        "/static/plugins/hlz_components/js/alert.js"
+	], {
+		success: function() {
+			$("#hide_box img").attr({"src":""});
+            $(".global_container").attr({"style":"background:none"});
+			article.change_bg("http://oqx3r2n98.bkt.clouddn.com/17-6-29/38918642.jpg");
+            // Event: if  it scrolled down on the bottom of the browser
+            $(window).scroll(function(){
+                var scroll = parseInt(  document.documentElement.scrollTop || document.body.scrollTop  )
+                    ,tag_position = document.getElementsByClassName("Footer")[0].offsetTop + 
+                                    document.getElementsByClassName("Footer")[0].scrollHeight
+                    ,now = scroll + document.documentElement.clientHeight;
+                if(  now == tag_position ){
+                    board.message_list_add();
+                }
+            });
+		}
+	});
+
+</script>

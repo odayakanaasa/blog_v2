@@ -1,0 +1,184 @@
+<style>
+  .comment_content{
+    font-size:14px;
+    font-family: 宋体,微软雅黑;
+    color:#585757;
+    line-height:20px;
+  }
+</style>
+
+<link rel="stylesheet" href="/static/Admin/css/comment.css">
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+  <ul class="layui-tab-title">
+    <li class="layui-this" onclick="get_main_list()">主楼</li>
+    <li  onclick="get_inner_list()">楼中楼</li>
+  </ul>
+  <div class="layui-tab-content">
+    <!--分类一览-->
+    <div class="layui-tab-item layui-show">
+      <div>
+        <div id="comment_list_html"  style="padding-bottom:100px;"></div>
+        <div style="clear:both;"></div>
+      </div>
+      <div id="comment_list_pagenation" style="padding:10px 30px 50px 10px;"></div>
+    </div>
+
+     <!--分类一览-->
+    <div class="layui-tab-item ">
+      <div>
+        <div id="comment_inner_list_html"  style="padding-bottom:100px;"></div>
+        <div style="clear:both;"></div>
+      </div>
+      <div id="comment_inner_list_pagenation" style="padding:30px 30px 50px 10px;"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 页面模板，显示无限极分类 -->
+<script type="text/yth_tpl" id="comment_list_tpl" >
+  <div class="layui-form">
+    <table class="layui-table" lay-even="" lay-skin="nob">
+      <colgroup>
+        <col width="200">
+        <col width="80">
+        <col width="120">
+        <col width="340">
+        <col width="180">
+        <col >
+      </colgroup>
+      <thead>
+        <tr>
+          <th>文章名</th>
+          <th style="padding-left:25px;">头像</th>
+          <th>昵称</th>
+          <th>评论内容</th>
+          <th>时间</th>
+          <th>操作</th>
+        </tr> 
+      </thead>
+      <tbody>
+       {{# for(var i=0;i< d.length;i++){ }}
+        <tr class="tr_{{d[i].id}}">
+          <td >
+            <a href="/Article?id={{d[i].article_id}}" target="_blank"  style="font-weight: 600;color: #009688;">
+              {{# if(d[i].title==null){  }}
+                <font color="#71C671">留言板</font>
+              {{# }else{ }}
+                {{d[i].title}}
+              {{# } }}
+            </a>
+          </td>
+          <td style="font-weight: 600;color: #111;">
+            <img style="width:50px;height:50px;cursor:pointer;" src="{{d[i].pic}}" alt="评论人的头像"></td>
+          <td style="font-weight: 600;color: #EE7AE9;">
+            {{d[i].name}}
+          </td>
+          <td>
+            <pre class="comment_content">{{d[i].content}}</pre>
+          </td>
+          <td>{{d[i].time}}</td>
+          <td>
+
+            <a href="javascript:;" onclick="reply_common(this)" yth-id="{{d[i].id}}">
+              <p style="margin-bottom: 5px; color: #7a378b; font-size: 14px;">
+                回复
+              </p>
+            </a>
+
+            <a href="javascript:;" onclick="yth_del( api('Admin_article', 'comment_del'),this );" yth-id="{{d[i].id}}" >
+              <p style="margin-bottom: 5px; color: #7a378b; font-size: 14px;">
+                删除
+              </p>
+            </a>
+          </td>
+
+        </tr>
+        {{#  } }}
+      </tbody>
+    </table>
+  </div>
+</script>
+
+<script type="text/yth_tpl" id="comment_inner_list_tpl" >
+  <div class="layui-form">
+    <table class="layui-table" lay-even="" lay-skin="nob">
+      <colgroup>
+        <col width="200">
+        <col width="80">
+        <col width="120">
+        <col width="340">
+        <col width="180">
+        <col >
+      </colgroup>
+      <thead>
+        <tr>
+          <th>文章名</th>
+          <th style="padding-left:25px;">头像</th>
+          <th>昵称</th>
+          <th>评论内容</th>
+          <th>时间</th>
+          <th>操作</th>
+        </tr> 
+      </thead>
+      <tbody>
+       {{# for(var i=0;i< d.length;i++){ }}
+        <tr class="tr2_{{d[i].id}}">
+          <td >
+            <a href="/Article?id={{d[i].article_id}}" target="_blank"  style="font-weight: 600;color: #009688;">
+              {{# if(d[i].title==null){  }}
+                <font color="#71C671">留言板</font>
+              {{# }else{ }}
+                {{d[i].title}}
+              {{# } }}
+            </a>
+          </td>
+          <td style="font-weight: 600;color: #111;">
+            <img style="width:50px;height:50px;cursor:pointer;" src="{{d[i].pic}}" alt="评论人的头像"></td>
+          <td style="font-weight: 600;color: #EE7AE9;">
+            {{d[i].name}}
+          </td>
+          <td>
+            <pre class="comment_content">{{d[i].content}}</pre>
+          </td>
+          <td>{{d[i].time}}</td>
+          <td>
+
+            <a href="javascript:;" onclick="reply_common(this)" yth-id="{{d[i].floor_id}}">
+              <p style="margin-bottom: 5px; color: #7a378b; font-size: 14px;">
+                回复
+              </p>
+            </a>
+
+            <a href="javascript:;" onclick="yth_del( api('Admin_article', 'reply_del'), this, '.tr2_');" yth-id="{{d[i].id}}" >
+              <p style="margin-bottom: 5px; color: #7a378b; font-size: 14px;">
+                删除
+              </p>
+            </a>
+          </td>
+
+        </tr>
+        {{#  } }}
+      </tbody>
+    </table>
+  </div>
+</script>
+
+
+<!-- JS运行脚本 -->
+<script>
+loadjs(["/static/Admin/js/comment.js"], {
+  success: function() {
+    layui.use(['layer'], function() {
+      // 选中当前所在模块
+      $("#comment").addClass("layui-this");
+      // 获取主楼列表
+      get_main_list();
+      // 获取楼中楼列表
+      get_inner_list();
+    });
+  }
+});
+
+
+</script>

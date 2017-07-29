@@ -1,0 +1,76 @@
+<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+  <ul class="layui-tab-title">
+    <li class="layui-this" id="remove_search_content">访问日志</li>
+  </ul>
+  <div class="layui-tab-content">
+    <!--显示商品列表1-->
+    <div class="layui-tab-item layui-show">
+      <div class="layui-form">
+        <table class="layui-table" lay-even="" lay-skin="nob">
+          <colgroup>
+            <col width="250">
+            <col width="150">
+            <col width="300">
+            <col >
+          </colgroup>
+          <thead>
+            <tr>
+              <th>参考地点</th>
+              <th>IP</th>
+              <th>链接</th>
+              <th>时间</th>
+            </tr> 
+          </thead>
+          <tbody id="yth_logs">
+          </tbody>
+        </table>
+      </div>
+        <!-- 翻页开始 -->
+      <div id="yth_page"></div>
+      <div class='clr'></div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- 分页数据模板 -->
+<script type="text/yth_tpl" id="yth_logs_tpl">
+  {{#  for(var i in d ) {  }}
+    <tr>
+      <td>{{show_location(d[i].location)}}</td>
+      <td>{{d[i].ip}}</td>
+      <td><a href="{{d[i].url}}" target="_blank">{{cut_name(d[i].url,40)}}</a></td>
+      <td>{{d[i].time}}</td>
+    </tr>
+  {{#  }  }}
+</script>
+
+
+<!-- JS运行脚本 -->
+<script>
+  layui.use(['layer'], function() {
+      // 选中当前所在模块
+      $("#user_behaviour").addClass("layui-this");
+      // 初始化页面
+      yth_pageination({
+        "api": api("Admin_behaviour", "user_behaviour_info"),
+        "render_tpl": "yth_logs_tpl",
+        "render_html": "yth_logs",
+        "pageination_id": "yth_page"
+      });
+
+    });
+
+// 显示实际地址
+function show_location(str){
+  if(''==str){
+    return '-';
+  }else{
+    return str;
+  }
+}
+
+// 获取分页列表
+
+</script>

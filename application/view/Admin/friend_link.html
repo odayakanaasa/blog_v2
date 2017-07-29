@@ -1,0 +1,107 @@
+<div class="layui-tab layui-tab-brief">
+  <ul class="layui-tab-title">
+    <li class="layui-this"  id="refresh_list">添加友联</li>
+    <li >添加友联</li></ul>
+  <div class="layui-tab-content">
+    <!--显示所有友联-->
+    <div class="layui-tab-item layui-show">
+      <blockquote class="layui-elem-quote">退出修改页面的方法：点击空白处，即可退出</blockquote>
+      <div id="get_friend_link"></div>
+    </div>
+    <!--添加友联-->
+    <div class="layui-tab-item">
+      <blockquote class="layui-elem-quote">请您友联网站请加上通信协议，如 http 或者 https 开头</blockquote>
+      <form class="layui-form layui-form-pane" id="form_1">
+      	<!-- 字段开始-->
+        <div class="layui-form-item">
+          <label class="layui-form-label">站点名称</label>
+          <div class="layui-input-block">
+            <input type="text" name="title" autocomplete="off" placeholder="如，云天河Blog" class="layui-input"></div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">网址</label>
+          <div class="layui-input-block">
+            <input type="text" name="url" autocomplete="off" placeholder="如，http://www.hlzblog.top/" class="layui-input"></div>
+        </div>
+        
+      </form>
+      <div>
+          <button id="yth_mail_edit_button" style="
+          font-family:微软雅黑;  font-weight: 700;  color: rgb(84,126,86); 
+          cursor: pointer; outline: none;  padding: 10px 10px; 
+          width: 100%; font-size: 17px;  border: none; 
+          background: rgb(220,250,200);margin-top:20px;margin-bottom:20px" type="button">确认添加</button>
+      </div>
+    </div>
+    <!--这里是配置区域，结束--></div>
+</div>
+
+
+
+<!-- 页面模板，友联列表 -->
+<script type="text/yth_tpl" id="yth_t1">
+  <div class="layui-form">
+    <table class="layui-table" lay-even="" lay-skin="nob">
+      <colgroup>
+        <col width="200">
+        <col width="400">
+        <col width="80">
+        <col width="80">
+        <col >
+      </colgroup>
+      <thead>
+        <tr>
+          <th>站点名称</th>
+          <th>网址</th>
+          <th style="padding-left:28px">查看</th>
+          <th style="padding-left:28px">修改</th>
+          <th style="padding-left:28px">删除</th>
+        </tr> 
+      </thead>
+      <tbody>
+       {{# for(var i=0;i< d.length;i++){ }}
+        <tr class="tr_{{d[i].id}}">
+          <td id="yth_title_{{d[i].id}}" style="font-weight: 600;color: #009688;">{{d[i].title}}</td>
+          <td id="yth_url_{{d[i].id}}" style="font-weight: 600;color: #111;">{{d[i].url}}</td>
+          <td>
+            <a href="{{d[i].url}}" target="_blank" class="layui-btn layui-btn-normal act_href" title="查看"><i class="layui-icon">&#xe609;</i></a>
+          </td>
+          <td>
+            <button class="layui-btn layui-btn-warm act_edit" yth-data-id="{{d[i].id}}" title="修改"><i class="layui-icon">&#xe642;</i></button>
+          </td>
+          <td>
+            <button class="layui-btn layui-btn-danger" yth-id="{{d[i].id}}" 
+            onclick="yth_del(  api('Admin_basic', 'friend_link_del'), this);"
+             title="删除"><i class="layui-icon">&#xe640;</i></button>
+          </td>
+        </tr>
+        {{#  } }}
+      </tbody>
+    </table>
+  </div>
+</script>
+
+
+
+<!-- JS运行脚本 -->
+<script>
+loadjs(["/static/Admin/script.js",
+  "/static/Admin/js/friend_link.js"], {
+	success: function() {
+		layui.use(['layer'], function() {
+			// 选中当前所在模块
+			$("#friend_link").addClass("layui-this");
+      // 读取列表
+      get_link();
+      // 监听列表变化
+      $("#refresh_list").on("click",function(){
+        get_link();
+      });
+			// 监听添加按钮
+			add_link();
+	});
+  }
+});
+//
+
+</script>

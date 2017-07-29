@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>后台管理系统 | 云天河Blog</title>
+	<meta charset="UTF-8"  />
+	<meta name="keywords" content="Mall - v2.0" />
+	<meta name="description" content="Mall - v2.0 博客后台登录系统" />
+	<meta name="author" content="业务QQ1290336562" />
+	<link href="//cdn.bootcss.com/bootstrap/4.0.0-alpha.4/css/bootstrap.min.css" rel="stylesheet">
+<style>
+	body{
+		min-width: 500px;
+		/*background: url("http://i1.piimg.com/567571/623496da96b9d178.jpg");*/
+		background: url("http://i4.buimg.com/567571/d45a0fd089255762.jpg");
+		background-attachment: fixed;
+		background-size: 100% 100%;
+		background-repeat: no-repeat;
+	}
+	.signin {
+		width:477px;
+		height:479px;
+		margin:0 auto;
+		position:absolute;
+		top:50%;
+		left:50%;
+		margin-top:-239px;
+		margin-left:-238px;
+		z-index: 2;
+	}
+	.signin-head {
+		margin:0 auto;
+		padding-top:30px;
+		width:120px;
+		margin-top: -50px;
+	}
+	.form-signin {
+	  max-width: 330px;
+	  padding: 43px 15px 15px 15px;
+	  margin: 0 auto;
+	}
+	.form-signin .checkbox {
+	  margin-bottom: 10px;
+	}
+	.form-signin .checkbox {
+	  font-weight: normal;
+	}
+	.form-signin .form-control {
+	  position: relative;
+	  font-size: 16px;
+	  height: auto;
+	  padding: 10px;
+	  -webkit-box-sizing: border-box;
+	     -moz-box-sizing: border-box;
+	          box-sizing: border-box;
+	}
+	.form-signin .form-control:focus {
+	  z-index: 2;
+	}
+	.form-signin input[type="text"] {
+	  margin-bottom: 14px;
+	  border-radius: 0;
+	  background: url(/static/Admin/login_user.png) 0 0 #bdbdbd no-repeat;
+	  padding-left:60px;
+	  color:#FFFFFF;
+	}
+	.form-signin input[type="password"] {
+	  margin-bottom: 10px;
+	  border-radius: 0;
+	  background: url(/static/Admin/login_pas.png) 0 0 #bdbdbd no-repeat;
+	  padding-left:60px;
+	  color:#FFFFFF;
+	}
+	.form-signin button {
+	  border-radius: 0;
+	}
+	.footer{
+		font-family:Microsoft Yahei;
+		font-weight: 400;
+		color: #fff;
+		font-size: 13px;
+		text-align:center
+	}
+</style>
+</head>
+
+<body>
+<div class="signin">
+	<div class="signin-head">
+		<img src="/static/Admin/author.jpg" alt="头像" width="120px" height="120px" id="now_staff_pic" class="img-circle">
+	</div>
+	<form class="form-signin" id="form_check"  role="form">
+		<input type="text" 	   class="form-control" name='name' placeholder="用户名"  />
+		<input type="password" class="form-control" name='pwd'  placeholder="密码"   />
+		<div id="yth_captchar"></div>
+		<!-- <button class="btn btn-lg btn-warning btn-block" type="button" id="get_checkcode">登录</button> -->
+	</form>
+	<div class="footer">Copyright © Nework of Qtech Class 1,Grade 2014,HLZ,All Rights Reserved</div>
+</div>
+
+<!-- JS -->
+	<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript" src="http://cdn.bootcss.com/layer/3.0.1/layer.min.js"></script>
+	<script type="text/javascript" src="/static/js/global.js"></script>
+	<script type="text/javascript" src="/static/js/hlz_rsa.js"></script>
+	<script type="text/javascript">
+		// 加载验证码
+	loadjs(['{:link_plugins("verify","min_drag.js")}'], {
+		success: function() {
+			$.ajax({
+                "url": api("Slide_Verify", "init"), // 获取初始的验证码 `css + 验证码图片` 的地址
+                "success": function(html) {
+                    $("#yth_captchar").html(html);
+                    $(this).yth_drag({
+                        "verify_url": api("Slide_Verify", "check"),
+						"source_url": api("Slide_Verify", "captchar"),
+						"auto_submit": true,
+						"submit_url": api("Admin_common", "login"),
+						"form_id": "form_check",
+						"crypt_func": "rsa_encode"
+                    });
+                }
+            });
+			// 适应当前样式
+			$("#yth_captchar").css({
+				"margin-left": "10px",
+				"width": "280px",
+				"margin-top": "20px"
+			});
+		}
+	});
+	// 是否以前登陆过
+	if (window.localStorage) {
+		var pic = localStorage.getItem("staff_pic");
+		if (pic) {
+			$("#now_staff_pic").attr({
+				"src": pic
+			});
+		}
+	}
+	</script>
+</body>
+</html>
