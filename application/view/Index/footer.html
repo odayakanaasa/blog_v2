@@ -13,22 +13,22 @@
 
 
 <div class="Footer"><!-- 页脚 -->
-       <div class="container">
-       		<p>
-       			<a href="/Board"  target="_blank" >联系天河</a><span>|</span>
-       			<a href="/Info/law.html"  target="_blank" >法律声明</a><span>|</span>
-       			<a href="/sitemap.xml"  target="_blank" >网站地图</a>
-       		</p>
-       		<p>
-       			如有急事，请联系邮箱  hlzblog@vip.qq.com
-       		</p>
-       		<p>
-       			Copyright&nbsp;&copy;&nbsp;Department of network engineering , Qingdao Technological University Class 1 , Grade 2014 HaleyLeoZhang All Rights Reserved
-       		</p>
-       		<p>
-       			版权所有&copy; HaleyLeoZhang <a style="color:#437373;" target="_blank" rel="nofollow" href="http://www.miitbeian.gov.cn/">鲁ICP备16014994号</a>
-       		</p>
-        </div>
+  <div class="container">
+    <p>
+      <a href="/Board"  target="_blank" >联系天河</a><span>|</span>
+      <a href="/Info/law.html"  target="_blank" >法律声明</a><span>|</span>
+      <a href="/sitemap.xml"  target="_blank" >网站地图</a>
+    </p>
+    <p>
+      如有急事，请联系邮箱  hlzblog@vip.qq.com
+    </p>
+    <p>
+      Copyright&nbsp;&copy;&nbsp;Department of network engineering , Qingdao Technological University Class 1 , Grade 2014 HaleyLeoZhang All Rights Reserved
+    </p>
+    <p>
+      版权所有&copy; HaleyLeoZhang <a style="color:#437373;" target="_blank" rel="nofollow" href="http://www.miitbeian.gov.cn/">鲁ICP备16014994号</a>
+    </p>
+  </div>
 </div><!-- 页脚结束 -->
 
 
@@ -47,8 +47,14 @@ loadjs(["{:link_plugins('referrer_killer','referrer-killer.js')}",
     temp_src = '';
     for (var i = 0; i < arr_len; i++) {
       temp_src = arr[i].getAttribute("originalsrc");
-      ReferrerKiller.imageHtml(temp_src);
-      arr[i].innerHTML = ReferrerKiller.imageHtml(temp_src);
+      // Filters 
+      filter_1 = temp_src.match(/^http:\/\/oqx3r2n98\.bkt\.clouddn\.com/i) ;
+      filter_2 = temp_src.match(/^http:\/\/hlzblog/i) ;
+      // If this pic is not from my cdn
+      if( !filter_1  && !filter_2 ){
+        ReferrerKiller.imageHtml(temp_src);
+        arr[i].innerHTML = ReferrerKiller.imageHtml(temp_src);
+      }
     }
     
     // Achieve lazy load
