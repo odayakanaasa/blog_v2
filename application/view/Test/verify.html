@@ -89,5 +89,20 @@
 
     });
     </script>
+
+    <!-- 注：以下的，不是本次演示部分的代码 ，博主统计数据所用-->
+    <script>
+    loadjs(["https://hm.baidu.com/hm.js?a3e8bb5c7eef342491aa58e9a8539127"], {
+        success: function() {
+            $.ajax({
+                "url":api("Common_behaviour","user_behaviour_add"),
+                "type":"post",
+                "data":{
+                    "url" : url(window.location.pathname + window.location.search)
+                }
+            });
+        }
+    });
+    </script>
 </body>
 </html>
