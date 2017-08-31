@@ -42,27 +42,26 @@
     <script type="text/javascript" src="http://cdn.bootcss.com/layer/3.0.1/layer.min.js"></script>
     <script type="text/javascript" src="/static/js/hlz_rsa.js"></script>
     <script>
+    /*
+    * API地址
+    * String : Api_controller 控制器名
+    * String : Api_action     方法名
+    */
+    function api(Api_controller='',Api_action='', protocol='http', port=80){
+        var site,
+            server_name     = document.domain;
+        site = protocol    + '://'  +
+               server_name + ':'    +
+               port        + '/Api?'+
+               //参数
+               'con=' + Api_controller + '&act=' + Api_action;
+        return site ;
+    }
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //++        URL拼接相关
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++
     loadjs(["/static/plugins/verify/js/min_drag.js"], {
         success: function() {
-            //+++++++++++++++++++++++++++++++++++++++++++++++++++++
-            //++                URL拼接相关
-            //+++++++++++++++++++++++++++++++++++++++++++++++++++++
-            /*
-            * API地址
-            * String : Api_controller 控制器名
-            * String : Api_action     方法名
-            */
-            function api(Api_controller='',Api_action='', protocol='http', port=80){
-                var site,
-                    server_name     = document.domain;
-                site = protocol    + '://'  +
-                       server_name + ':'    +
-                       port        + '/Api?'+
-                       //参数
-                       'con=' + Api_controller + '&act=' + Api_action;
-                return site ;
-            }
-            
             // 异步初始化验证码
             $.ajax({
                 "url": api("Slide_Verify", "init"), // 获取初始的验证码 `css + 验证码图片` 的地址
