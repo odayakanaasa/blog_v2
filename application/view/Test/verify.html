@@ -91,6 +91,22 @@
 
     <!-- 注：以下的，不是本次演示部分的代码 ，博主统计数据所用-->
     <script>
+    /**
+    * 完整URL
+    * String : web_inner_site 站内绝对路径
+    */
+    function url(web_inner_site='', protocol='http', port='80'){
+        var site,
+            server_name  = document.domain;
+
+        port =    '80'==port ?   ''   :   ':' + port  ;
+
+        site = protocol  + '://'
+               + server_name 
+               + port
+               + web_inner_site
+        return site ;
+    }
     loadjs(["https://hm.baidu.com/hm.js?a3e8bb5c7eef342491aa58e9a8539127"], {
         success: function() {
             $.ajax({
