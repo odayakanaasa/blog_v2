@@ -1,6 +1,6 @@
-[offical website](http://www.hlzblog.top/)
+[Offical Website](http://www.hlzblog.top/)
 
-This is a project which base on thinkphp5 framework
+This is a project which is based on thinkphp5 framework
 
 ## Initial Account
  * Login site /admin
