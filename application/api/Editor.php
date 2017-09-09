@@ -13,8 +13,8 @@ Class Editor{
 	* @echo String : 输出相关信息
 	*/
     public function pic(){
-        $up = new \Mine\Editor();
-		$up->ser = ROOT_PATH.'/public';
-		$up->run();
+      $up = new \Mine\Editor();
+  		$up->ser = ROOT_PATH.'/public';
+  		$up->run();
     }
 }
