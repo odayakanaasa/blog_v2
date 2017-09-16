@@ -56,7 +56,7 @@ class cli_sitemap{
         // 生成 robots
         $write_path = $site_path. '/robots.txt';
         $text  = 'User-agent: *'.PHP_EOL;
-        $text .= 'Disallow: '.PHP_EOL;
+        // $text .= 'Disallow: '.PHP_EOL; // 禁止访问的目录，若违规将负法律责任
         // $text .= 'Sitemap: '.$this->host.'/sitemap.xml';
         $this->write($write_path, $text);
     }
