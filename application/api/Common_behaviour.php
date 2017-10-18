@@ -31,7 +31,7 @@ class Common_behaviour{
 		$p['ip'] = \Mine\Location::get_ip();
 		$p['location'] = \Mine\Location::ip_location($p['ip']);
 		Db::table('user_behaviour')->insert($p);
-		if(  preg_match('/Article\.html\?id=(\d+)/i', $p['url'], $match)  ){
+		if(  preg_match('/Article(.*)\?id=(\d+)/i', $p['url'], $match)  ){
 			$this->article_statistic($match[1]);
 		}
 		if_modify(1);
