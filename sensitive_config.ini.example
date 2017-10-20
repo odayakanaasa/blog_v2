@@ -10,6 +10,14 @@ log_colored_switch=
 log_colored_level=
 log_colored_time_zone=
 
+[Smtp]
+smtp_Host=
+smtp_FromName=
+smtp_From=
+smtp_Username=
+smtp_Password=
+
+
 [Tencent_COS]
 cos_setRegion=
 cos_bucketName=
