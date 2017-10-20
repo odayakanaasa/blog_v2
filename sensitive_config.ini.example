@@ -5,6 +5,11 @@ host=
 app_debug=
 app_trace=
 
+[log_colored]
+log_colored_switch=
+log_colored_level=
+log_colored_time_zone=
+
 [Tencent_COS]
 cos_setRegion=
 cos_bucketName=

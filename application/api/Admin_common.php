@@ -8,6 +8,8 @@ use think\Request;
 use think\Db;
 use Mine\Filter;
 use Mine\Slide;
+use Mine\Log;
+use Mine\Location;
 class Admin_common {
 
 	/**
@@ -22,6 +24,12 @@ class Admin_common {
 	* @echo String : 状态
 	*/
 	public function login(){
+		// 写入文本日志
+		$ip   = Location::get_ip();
+		$addr = Location::ip_location($ip);
+		Log::out('Admin_common -> login',   3);
+		Log::out('Login IP   '. $ip,   3);
+		Log::out('Login Addr '. $addr, 3);
 		// // 验证码验证
 		Slide::instance(3); 
 		// // 数据过滤
@@ -31,7 +39,7 @@ class Admin_common {
 			$p['pwd']
 		]);
 		// 解密数据
-		$name = Admin::crypt($p['name'],false);
+		$name = Admin::crypt($p['name'], false);
 		$pwd  = Admin::crypt($p['pwd']);
 		// 验证
 		$_res = Db::query('
@@ -53,7 +61,8 @@ class Admin_common {
 		$_SESSION['user']['id']  = -1;
 		$_SESSION['user']['pic'] = $_r[0]['pic'];
 		$_SESSION['user']['name']= $_r[0]['name'];
-        // 输出结果
-        if_modify( 1,'/Admin/hall' );
+		Log::out('登录成功 '. $addr, 2);
+    // 输出结果
+    if_modify( 1,'/Admin/hall' );
 	}
 }

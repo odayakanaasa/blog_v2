@@ -1,16 +1,15 @@
 <?php
+/**
+* 配置目录
+*/
+
 // +----------------------------------------------------------------------
-// | ThinkPHP [ WE CAN DO IT JUST THINK ]
+// | 配置目录     $env 为敏感配置，防止git自动上传
 // +----------------------------------------------------------------------
-// | Copyright (c) 2006~2016 http://thinkphp.cn All rights reserved.
-// +----------------------------------------------------------------------
-// | Licensed ( http://www.apache.org/licenses/LICENSE-2.0 )
-// +----------------------------------------------------------------------
-// | Author: liu21st <liu21st@gmail.com>
+$env = parse_ini_file(  ROOT_PATH.'sensitive_config.ini'  );
 // +----------------------------------------------------------------------
 
-// 读取敏感配置，防止git自动上传
-$env = parse_ini_file(  ROOT_PATH.'sensitive_config.ini'  );
+
 return [
     // 当前站点域名
     'now_host'               => $env['host'],
@@ -177,6 +176,14 @@ return [
         'path'  => LOG_PATH,
         // 日志记录级别
         'level' => [],
+    ],
+
+    // 彩色日志
+    'log_colored'            => [
+        'switch' => $env['log_colored_switch'], // Boolean  关 => false 开 => true
+        'level' => $env['log_colored_level'],     // 该日志等级及以上，可以写入日志中
+        'time_zone' => $env['log_colored_time_zone'], // 时区
+        'path' => ROOT_PATH.'log_colored', // 日志存放路径
     ],
 
     // +----------------------------------------------------------------------
