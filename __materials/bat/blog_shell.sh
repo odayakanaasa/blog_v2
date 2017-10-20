@@ -16,3 +16,5 @@ mysql_dump_path="/data/www/blog/__materials/sql_baks"
 mysqldump --sock=/tmp/mysql.sock -u用户 -p密码 yth_blog > yth_blog.sql 
 tar -zcvf ${mysql_dump_path}/${last_day}.tar.gz yth_blog.sql 
 rm -rf ${mysql_dump_path}/yth_blog.sql 
+#   ->  send to mail
+php /data/www/blog/public/index.php Cli/bak_sql_to_email

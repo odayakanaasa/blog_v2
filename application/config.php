@@ -186,6 +186,15 @@ return [
         'path' => ROOT_PATH.'log_colored', // 日志存放路径
     ],
 
+    // 邮箱配置
+    'smtp'                  => [
+        'Host'     => $env['smtp_Host'],      // 链接qq域名邮箱的服务器地址，  示例 smtp.163.com
+        'FromName' => $env['smtp_FromName'],  // 你的昵称
+        'From'     => $env['smtp_From'],      // smtp邮箱全称
+        'Username' => $env['smtp_Username'],  // smtp邮箱帐号，如果是qq邮箱则是qq号，如果是163邮箱：除去@163.com的部分
+        'Password' => $env['smtp_Password'],  // smtp邮箱 授权码 cddbstebcoxgbhjc
+    ],
+
     // +----------------------------------------------------------------------
     // | Trace设置 开启 app_trace 后 有效
     // +----------------------------------------------------------------------

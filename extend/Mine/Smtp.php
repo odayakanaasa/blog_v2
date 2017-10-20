@@ -16,12 +16,12 @@ class Smtp{
 	// 从数据库中，读取并返回配置信息
 	public static function get_conf(){
 		if( !self::$_config ){
-			$r = \think\Db::query('
-				Select *
-				From `hlz_mail` 
-				Order By Host
-				Limit 1
-			');
+			// $r = \think\Db::query('
+			// 	Select *
+			// 	From `hlz_mail` 
+			// 	Order By Host
+			// 	Limit 1
+			// ');
 			$tpl = [
 				//必填
 				'Host'     => '', 	// 链接qq域名邮箱的服务器地址，	示例 smtp.163.com
@@ -32,8 +32,9 @@ class Smtp{
 				//选填 默认填上localhost
 				'Hostname' => 'localhost'
 			];
-			self::$_config = array_merge( $tpl, $r[0] );
-			self::$_config['Password'] = \Crypt\yth_crypt::decrypt( self::$_config['Password'] );
+			self::$_config = array_merge( $tpl, config('smtp') );
+			// self::$_config = array_merge( $tpl, $r[0] );
+			// self::$_config['Password'] = \Crypt\yth_crypt::decrypt( self::$_config['Password'] );
 			return self::$_config;
 		}
 	}
@@ -52,9 +53,11 @@ class Smtp{
 	* @param String : to  接收者 
 	* @param String : title  标题 
 	* @param html   : content  邮件内容
+	* @param String : path  附件-> 一般用于发送数据库备份文件  '' 表示不发送
+	* @param String : set_file_name  给附件名  '' 表示不发送
 	* @return Boolean: true发送成功 | false发送失败
 	*/
-	public static function send($to,$title,$content){
+	public static function send($to, $title, $content, $path='', $set_file_name=''){
 		//引入自动加载函数
 	    require_once realpath( dirname(__FILE__) .'/../Smtp/PHPMailerAutoload.php' );
 	    //实例化PHPMailer核心类
@@ -95,12 +98,14 @@ class Smtp{
 	    //添加邮件正文 上方将isHTML设置成了true，则可以是完整的html字符串 如：使用file_get_contents函数读取本地的html文件
 	    $mail->Body = $content;
 	    //为该邮件添加附件 该方法也有两个参数 第一个参数为附件存放的目录（相对目录、或绝对目录均可） 第二参数为在邮件附件中该附件的名称
-	    // $mail->addAttachment('./d.jpg','mm.jpg');
+	    if( $path != '' &&  $set_file_name != ''){
+	    	$mail->addAttachment($path, $set_file_name);
+	    }
 	    //同样该方法可以多次调用 上传多个附件
 	    // $mail->addAttachment('./Jlib-1.1.0.js','Jlib.js');
 	    $status = $mail->send();
 	    //简单的判断与提示信息
 		return $status;
 	}
-	
+
 }

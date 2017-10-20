@@ -6,6 +6,8 @@
 namespace app\controller;
 use think\View;
 use think\Request;
+use Mine\Smtp;
+use Mine\Log;
 
 class Cli{
 	// ~~~~~~~test~~~~~~~
@@ -35,16 +37,43 @@ class Cli{
 	}
 	// 析构函数
 	public function __destruct(){
-        print(PHP_EOL."Time: ".date("Y/m/d H:m:s").PHP_EOL );
+    print(PHP_EOL."Time: ".date("Y/m/d H:m:s").PHP_EOL );
 	}
 
-    // [每天凌晨0点] 生成sitemap.xml
-    public function sitemap(){
-        $Sitemap = new \app\logic\cli_sitemap();
-        $Sitemap->run();
-        print("Sitemap created." );
+  // [每天凌晨0点] 生成sitemap.xml
+  public function sitemap(){
+    $Sitemap = new \app\logic\cli_sitemap();
+    $Sitemap->run();
+    print("Sitemap created." );
+  }
+
+
+  // [每天凌晨0点] 发送压缩好的备份数据库到邮箱，并删除30天前的
+  public function bak_sql_to_email(){
+    $last_day = date("Ymd", strtotime("-1 day") );
+    $to = 'myboyli4@163.com';
+    $title = 'blog v2.0 - 数据备份';
+    $content = '<h2>资源日期:</h2>'. $last_day;
+    $set_file_name = $last_day. '.tar.gz';
+    $file_path =  ROOT_PATH. '__materials/sql_baks/'. $set_file_name  ;
+    $path = realpath( $file_path );
+    if( is_file($path) ){
+      $status = Smtp::send($to, $title, $content, $path, $set_file_name);
+      if( $status ){
+        Log::out('Send sql_bak file to the email success', 1);
+      }else{
+        Log::out('Send sql_bak file to the email failed', 1);
+      }
+      $before_30_day = date("Ymd", strtotime("-30 day") );
+      $set_file_name = $before_30_day. '.tar.gz';
+      $file_path =  ROOT_PATH. '__materials/sql_baks/'. $set_file_name  ; ;
+      $path = realpath( $file_path );
+      @unlink($path);
+    }else{
+      Log::out('No such a sql_bak file', 1);
     }
 
+  }
 
 
 }

@@ -2,7 +2,7 @@
 	{foreach $info.article_list.info as $v }
 	<div class="article_list article_animated fadeInUp" add-class=" article_animated fadeInUp">
 		<div class="article_title">
-			<h1><a href="/Article.html?id={$v.id}" target="_blank">{$v.title}{if condition="$v.sticky eq '1'"}<img src="/static/img/default/sticky.gif" alt="" style="padding-left:5px;">{/if}</a></h1>
+			<h1><a href="/Article?id={$v.id}" target="_blank">{$v.title}{if condition="$v.sticky eq '1'"}<img src="/static/img/default/sticky.gif" alt="" style="padding-left:5px;">{/if}</a></h1>
 		</div>
 		<div class="article_field">
 			<div class="left_pic">
@@ -28,7 +28,7 @@
 				</div>
 				<div class="descript">
 					<p>{$v.descript}
-						<a href="/Article.html?id={$v.id}" target="_blank">
+						<a href="/Article?id={$v.id}" target="_blank">
 							More
 						</a>
 					</p>
