@@ -31,20 +31,7 @@ class Common_behaviour{
 		$p['ip'] = \Mine\Location::get_ip();
 		$p['location'] = \Mine\Location::ip_location($p['ip']);
 		Db::table('user_behaviour')->insert($p);
-		if(  preg_match('/Article(.*)\?id=(\d+)/i', $p['url'], $match)  ){
-			$this->article_statistic($match[1]);
-		}
 		if_modify(1);
-	}
-
-	// 如果url是文章的url，则文章阅读量增1
-
-	private function article_statistic($article_id){
-		Db::execute('
-			Update `blog_text`
-			Set `statistic` = `statistic`+1
-			Where `id`=?
-		',[ $article_id ]);
 	}
 
 }

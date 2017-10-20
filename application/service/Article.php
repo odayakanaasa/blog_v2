@@ -2,10 +2,14 @@
 namespace app\service;
 use think\Db;
 class Article{
+
 	public function index ($g){
 		if(!isset($g['id'])){
 			header('Location:/404.html');
+			exit();
 		}
+		// [阅读量] + 1
+		$this->article_statistic($g['id']);
 		// [侧边] 所有分类以及数量
 		$cate_list = Db::query('
 			Select  a.*, count(b.id) as total
@@ -89,6 +93,16 @@ class Article{
 			'count_commit'	=> &$commit_statistic[0]['total']
 		];
 	}
+
+	// 如果url是文章的url，则文章阅读量增1
+	private function article_statistic($article_id){
+		Db::execute('
+			Update `blog_text`
+			Set `statistic` = `statistic`+1
+			Where `id`=?
+		',[ $article_id ]);
+	}
+
 
 	// 关于...
 	public function about(){
