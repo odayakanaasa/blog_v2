@@ -1,8 +1,7 @@
 .idea
 *.log
-*.gz
 /runtime
-/__materials/yth_blog.sql
+/__materials/sql_baks/*
 /__materials/Data_format_specification.md
 /sensitive_config.ini
 /public/sitemap.xml
