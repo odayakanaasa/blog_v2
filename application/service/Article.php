@@ -96,6 +96,10 @@ class Article{
 
 	// 如果url是文章的url，则文章阅读量增1
 	private function article_statistic($article_id){
+		// 如果是博主，不继续进行
+		if(  isset($_SESSION['user']['id'])  &&  -1 == $_SESSION['user']['id']  ){
+			return;
+		}
 		Db::execute('
 			Update `blog_text`
 			Set `statistic` = `statistic`+1
