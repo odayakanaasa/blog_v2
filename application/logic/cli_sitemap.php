@@ -44,7 +44,7 @@ class cli_sitemap{
     		Select `id`
     		From `blog_text`
     	');
-    	$this->sitemap_list( $blog_text,'/','/Article.html',10 );
+    	$this->sitemap_list( $blog_text,'/','/Article',10 );
 
 
     	$this->sitemap_xml .= '</urlset>';
