@@ -1,14 +1,34 @@
 <?php
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++
-//++            Smtp服务器
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++
-/** 示例:
-$to='229270575@qq.com';
-$title='来自云天河Blog的邮件';
-$content= '<h2>云天河，你好棒啊！</h2>';
-$status = \Mine\Smtp::send($to,$title,$content);
-*/
 namespace Mine;
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++
+//++  发送邮件 			 Link: http://www.hlzblog.top/
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++
+/** 示例发送备份数据库文件 到 对应邮箱:
+
+    $last_day = date("Ymd", strtotime("-1 day") );
+    $to = 'hlzblog@vip.qq.com';
+    $title = 'blog v2.0 - 数据备份';
+    $content = '<h2>资源日期:</h2>'. $last_day;
+    $set_file_name = $last_day. '.tar.gz';
+    $file_path =  ROOT_PATH. '__materials/sql_baks/'. $set_file_name  ;
+    $path = realpath( $file_path );
+    if( is_file($path) ){
+      $status = Smtp::send($to, $title, $content, $path, $set_file_name);
+      if( $status ){
+        echo 'Send sql_bak file to the email success';
+      }else{
+        echo 'Send sql_bak file to the email failed';
+      }
+      $before_30_day = date("Ymd", strtotime("-30 day") );
+      $set_file_name = $before_30_day. '.tar.gz';
+      $file_path =  ROOT_PATH. '__materials/sql_baks/'. $set_file_name  ; ;
+      $path = realpath( $file_path );
+      @unlink($path);
+    }else{
+      echo 'No such a sql_bak file';
+    }
+
+*/
 class Smtp{
 	private function __contruct(){} // 单例模式
 	private static $_config ; 	// 配置信息
@@ -32,7 +52,7 @@ class Smtp{
 				//选填 默认填上localhost
 				'Hostname' => 'localhost'
 			];
-			self::$_config = array_merge( $tpl, config('smtp') );
+			self::$_config = array_merge( $tpl, config('smtp') ); // 合并配置项
 			// self::$_config = array_merge( $tpl, $r[0] );
 			// self::$_config['Password'] = \Crypt\yth_crypt::decrypt( self::$_config['Password'] );
 			return self::$_config;

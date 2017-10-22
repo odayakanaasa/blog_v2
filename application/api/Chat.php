@@ -1,4 +1,7 @@
 <?php
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//   Nall v2.0客服聊天    Link: http://www.hlzblog.top/
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 /**
 * Chat Module
 */
@@ -7,6 +10,8 @@ namespace app\yth\api;
 use think\Request;
 use think\Db;
 use Mine\Filter;
+use \Mine\Redis;
+
 Class Chat{
 	private $expire    = 1440 	; // one second per unit , set default as default-session-expire-time
 	private $select_db = 2  	; // Redis database , set default as 2
@@ -28,7 +33,7 @@ Class Chat{
 		$role  = &$p['role'];
 		$c_id  = &$p['c_id'];
 		$s_id  = &$p['s_id'];
-		$r = \Mine\yth_Redis::instance($this->select_db);
+		$r = Redis::instance($this->select_db);
 		// Event?
 			// role?
 		switch ($event) {
@@ -76,7 +81,7 @@ Class Chat{
 			Where `staff_id`=?
 		',[ $s_id ]);
 		$info =  base64_encode(  json_encode($_res[0])  )  ;
-		$r = \Mine\yth_Redis::instance($this->select_db);
+		$r = Redis::instance($this->select_db);
 		// Get old data And then flush them out
 		$r->pipeline()
 			->Delete('chat_staff:fd:'.$fd)
@@ -110,7 +115,7 @@ Class Chat{
 		]);
 		$fd   = &$p['fd'];
 		$c_id = &$p['c_id'];
-		$r = \Mine\yth_Redis::instance($this->select_db);
+		$r = Redis::instance($this->select_db);
 		// Set new expire data
 		$r->pipeline()
 			->Set(	 'chat_customer:c_id:'.$c_id, $fd )
@@ -127,7 +132,7 @@ Class Chat{
 	*/
 	public function get_chat_staff_list(){
 		// Chat Staff
-		$r = \Mine\yth_Redis::instance($this->select_db);
+		$r = Redis::instance($this->select_db);
 		$list_s_id = $r->keys('chat_staff:fd:s_id:*');
 		foreach ($list_s_id as $k => $v) {
 			$s_id = explode('chat_staff:fd:s_id:', $v)[1];
@@ -153,7 +158,7 @@ Class Chat{
 		]);
 		$fd   = &$p['fd'];
 		// Remove this person From list 
-		$r = \Mine\yth_Redis::instance($this->select_db);
+		$r = Redis::instance($this->select_db);
 		// Staff?
 		if( $r->Exists('chat_staff:fd:'.$fd) ){
 			$s_id = $r->Get( 'chat_staff:fd:'.$fd );

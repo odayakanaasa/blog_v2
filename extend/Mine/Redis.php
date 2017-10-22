@@ -1,14 +1,15 @@
 <?php
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++
-//++            Redis驱动，支持主从集群
+//            Redis驱动，支持主从集群
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++
 /*
+* 使用前，请安装PHP redis扩展
 * 数据库 1 => 热数据
 * 数据库 2 => 各种 token 
 * 数据库 3 => 各种 缓数数据
 */
 namespace Mine;
-class yth_Redis{
+class Redis{
 	/**
 	* 析构函数，单例模式
 	*/
@@ -46,7 +47,7 @@ class yth_Redis{
 	* @param Array : 服务器配置信息
 	* @return Json : 配置信息 
 	*/
-	public static function get_obj( $_config ){
+	private static function get_obj( $_config ){
 		$num   = count( $_config );
 		$which = mt_rand( 1, $num ) -1 ; // 随机选中一台
 		return $_config[ $which ] ;

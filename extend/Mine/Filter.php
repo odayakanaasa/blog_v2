@@ -1,6 +1,6 @@
 <?php
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++
-//++   		各种数据过滤操作
+//  各种数据过滤操作  Link: http://www.hlzblog.top/
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++
 namespace Mine;
 class Filter{
@@ -12,8 +12,8 @@ class Filter{
 	public static function is_set(Array $param){
 		$msg['Err'] = 1004 ; 
 		foreach($param as $k ){
-            true === isset($k) ? true : trans_json($msg);
-        }
+    	true === isset($k) ? true : trans_json($msg);
+    }
 	}
 
 	/**

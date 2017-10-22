@@ -1,11 +1,11 @@
 <?php
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++
-//++        权限管理，此文为后太管理员的权限管理
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//   权限管理，此文为后台管理员的权限管理  Link: http://www.hlzblog.top/
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // 使用案例，见文末
 namespace Mine;
 use think\Db;
-class yth_Auth{
+class Auth{
 
     //默认配置
     protected $_config = array(
@@ -242,7 +242,7 @@ CREATE TABLE `hlz_auth_group_access` (
 * @param String  : relation 默认值为‘or’,表示有一条规则满足条件即可,‘and’表示所有规则都得满足
 * @return String : 对应true或者false情况,输出的值
 *
-function auth_check($rule,$uid,$true,$false='',$relation='or'){
+function auth_check($rule, $uid, $true, $false='', $relation='or'){
     // 如果是超级管理员,默认通过验证
     if( isset($_SESSION['super_admin']) ){
         return $true;
@@ -252,14 +252,13 @@ function auth_check($rule,$uid,$true,$false='',$relation='or'){
     }
 }
 
-  管理员块，节点访问权限控制
+* 管理员块，节点访问权限控制
 * @return Void : 没有权限,则退出程序
 function node_check(){
     // 是否为管理员
-    isset( $_SESSION['staff_id'] )  ? true : trans_json(["Err"=>1002]);
+    isset( $_SESSION['staff_id'] )  ? true : exit('{"Err":"您没有对应页面访问权限"}');
     // 如果是超级管理员,默认通过验证
-    if( !isset($_SESSION['super_admin']) )
-    {
+    if( !isset($_SESSION['super_admin']) ){
         $uid = $_SESSION['staff_id']; 
         // 要验证的规则名称,“控制器名/方法”
         $mvc = \think\Request::instance();
@@ -267,7 +266,7 @@ function node_check(){
         // Auth 验证
         $auth = new \Mine\Auth();
         $msg['Err']  = 1002;
-        $auth->check($rule, $uid) ? true : trans_json( $msg ) ;
+        $auth->check($rule, $uid) ? true : exit('{"Err":"您没有对应页面访问权限"}') ;
     }
 }
 */

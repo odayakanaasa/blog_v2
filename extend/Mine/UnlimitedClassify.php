@@ -1,11 +1,11 @@
 <?php
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++
-//++            无限极分类
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//++   无限极分类 -> 示例，商品多级分类      Link: http://www.hlzblog.top/
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // 使用案例，见文末
 namespace Mine;
 use think\Db;
-class Unlimited_classify{
+class UnlimitedClassify{
 	private $temp_data;	//  未排序前的数组
 	private $info ;		//  排序后的数组
 	private $_config = [ 	// 待扩展
@@ -21,10 +21,10 @@ class Unlimited_classify{
 		}
 	}
 	/**
-	* 析构函数
+	* 构造函数
 	* Array : config 各种配置
 	*/
-	function __construct( $config=null ){
+	public function __construct( $config=null ){
 		$this->init( $config ); 
 		$this->temp_data = $this->set_data();
 		$this->info = $this->get_tree( $this->temp_data );
@@ -96,6 +96,8 @@ create table If Not Exists `hlz_goods_categroy` (
 	title varchar(50) not null comment '标题',
 	primary key (id)
 )Engine=Myisam Charset=utf8;
+
+
 truncate `hlz_goods_categroy`;   #如果存在表=>清空表作测试
 Insert into `hlz_goods_categroy` (id,fid,title)Values(1,0,'食品');
 Insert into `hlz_goods_categroy` (id,fid,title)Values(2,1,'饼干');
@@ -106,6 +108,6 @@ Insert into `hlz_goods_categroy` (id,fid,title)Values(6,5,'手机');
 Insert into `hlz_goods_categroy` (id,fid,title)Values(7,3,'可乐');
 //用法介绍：
 		$ini['table'] = 'hlz_news_categroy';
-        $uc = new \Mine\Unlimited_classify($ini);
+        $uc = new \Mine\UnlimitedClassify($ini);
         echo $uc -> get_result() ;
 */

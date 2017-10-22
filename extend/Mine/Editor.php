@@ -1,6 +1,7 @@
 <?php
 // 输出样式见文末
 namespace Mine;
+use Mine\Token;
 class Editor{
 	// 配置信息
 	public $file_name  = 'upfile'; // 上传文件的name字段名
@@ -36,7 +37,7 @@ class Editor{
 				exit( json_encode($data) );
 		}
 		// 从临时区，搬到站内
-		$path   = $this->dir.date("Ymd").'_'.$this->acc_token(5).$suffix; // 绝对路径
+		$path   = $this->dir.date("Ymd").'_'.Token::rand_str(5).$suffix; // 绝对路径
 		$t_path = $this->ser.$path; 			// [相对服务器路径] 临时存放位置
 		move_uploaded_file(  $_FILES[$this->file_name]["tmp_name"], $t_path  );
 		// 为了方便管理Cdn图片，在数据进入了数据库后，方能正式存入Cdn
@@ -50,24 +51,6 @@ class Editor{
 			"original"	=> "-"
 		);
 		exit( json_encode($data) );
-	}
-
-
-	/**
-	  获取acc_token
-	* @param String  : len 返回长度默认,八位token值
-	* @param Int     : type 返回类型[1=>字母+数字,2=>纯数字,3=>纯字母]
-	* @return String acc_token值
-	*/
-	public function acc_token( $len = 8 ,$type = 1){
-	    switch ($type) {
-	        case 1:
-	            return substr( str_shuffle("0123456789qwertyuiopasdfghjklzxcvbnm") , 0 , $len  );
-	        case 2:
-	            return substr( str_shuffle("0123456789") , 0 , $len  );
-	        default:
-	            return substr( str_shuffle("qwertyuiopasdfghjklzxcvbnm") , 0 , $len  );
-	    }   
 	}
 
 }
