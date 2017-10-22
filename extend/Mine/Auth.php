@@ -23,7 +23,7 @@ class Auth{
     public function __construct() {
         if (config('AUTH_CONFIG')) {
             //可设置配置项 AUTH_CONFIG, 此配置项为数组。
-            $this->_config = array_merge($this->_config, config('auth')); // 请新扩展auth配置文件
+            $this->_config = array_merge($this->_config, config('AUTH_CONFIG')); // 合并配置文件
         }
     }
 
@@ -234,39 +234,50 @@ CREATE TABLE `hlz_auth_group_access` (
 */
 
 /*
-  满足条件,则输出相应结果
+* 满足条件,则输出相应结果
 * @param String  : rule 要验证的规则名称,一般是“模块名/控制器名/方法”
-* @param Int     : uid  用户的id,来自登陆时,记录的职员的session
 * @param any     : true 符合规则后,执行的代码
 * @param String  : false 不符合规则的,执行代码,默认为抛出字符串‘’
 * @param String  : relation 默认值为‘or’,表示有一条规则满足条件即可,‘and’表示所有规则都得满足
 * @return String : 对应true或者false情况,输出的值
-*
-function auth_check($rule, $uid, $true, $false='', $relation='or'){
+function auth_check($rule, $true, $false='',  $relation='or'){
     // 如果是超级管理员,默认通过验证
-    if( isset($_SESSION['super_admin']) ){
+    if( isset($_SESSION['staff']['super']) ){
         return $true;
     }else{
-        $auth = new \Mine\Auth();
+        $uid = 0 ;   // 用户的id,来自登陆时,记录的职员的session，如果没有则默认为0
+        $auth = new \Mine\yth_Auth();
+        if(  isset($_SESSION['staff']['id'])  ){
+             $uid = $_SESSION['staff']['id'];
+        }
         return $auth->check($rule, $uid, 1, 'url', $relation) ? $true : $false ;
     }
 }
 
+
 * 管理员块，节点访问权限控制
-* @return Void : 没有权限,则退出程序
-function node_check(){
-    // 是否为管理员
-    isset( $_SESSION['staff_id'] )  ? true : exit('{"Err":"您没有对应页面访问权限"}');
-    // 如果是超级管理员,默认通过验证
-    if( !isset($_SESSION['super_admin']) ){
-        $uid = $_SESSION['staff_id']; 
-        // 要验证的规则名称,“控制器名/方法”
-        $mvc = \think\Request::instance();
-        $rule=  $mvc->controller().'/'.$mvc->action();
-        // Auth 验证
-        $auth = new \Mine\Auth();
-        $msg['Err']  = 1002;
-        $auth->check($rule, $uid) ? true : exit('{"Err":"您没有对应页面访问权限"}') ;
+* @param String  : rule 要验证的规则名称,一般是“模块名(这里三位缩写)/控制器名/方法”[英文全小写] ，示例 con/Admin/hall
+* @return Void   没有权限,则退出程序
+function node_check( $rule){
+    $msg['Err']  = 1002;
+    $rule = strtolower($rule);
+    // 如果不是管理员
+    if( !isset( $_SESSION['staff']['id'] ) ){
+        if( preg_match('/^con/i', $rule) ){  // 管理员登陆超时，用这个
+            header('Location:/Admin');  exit();
+        }
+        exit( json_encode($msg) );
+    }
+    $uid = $_SESSION['staff']['id'] ;
+    $auth= new \Mine\yth_Auth();
+    // 如果既没有普通权限，又不是超级管理员
+    if(  !$auth->check($rule, $uid)  &&  !isset($_SESSION['staff']['super'])  ){
+        // 如果是controller，则重定向
+        if( preg_match('/^con/i', $rule) ){  
+            header('Location:/Admin');  exit();
+        }else{
+            exit( json_encode($msg) );
+        }
     }
 }
 */
