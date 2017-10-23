@@ -1,9 +1,10 @@
 <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
   <ul class="layui-tab-title">
     <li class="layui-this" id="remove_search_content">访问日志</li>
+    <li >IP查询</li>
   </ul>
   <div class="layui-tab-content">
-    <!--显示商品列表1-->
+    <!--显示列表1-->
     <div class="layui-tab-item layui-show">
       <div class="layui-form">
         <table class="layui-table" lay-even="" lay-skin="nob">
@@ -28,6 +29,35 @@
         <!-- 翻页开始 -->
       <div id="yth_page"></div>
       <div class='clr'></div>
+    </div>
+    <!--显示列表2-->
+    <!--图床-->
+    <div class="layui-tab-item" style="width:1000px;;">
+
+      <div yth-title="这里只是为了好看...(进度条区域)">
+        <div class="layui-progress">
+          <div class="layui-progress-bar layui-bg-cyan" lay-percent="60%"></div>
+        </div><br>
+        <div class="layui-progress">
+          <div class="layui-progress-bar layui-bg-blue" lay-percent="50%"></div>
+        </div><br>
+        <div class="layui-progress">
+          <div class="layui-progress-bar layui-bg-green" lay-percent="40%"></div>
+        </div><br>
+        <div class="layui-progress">
+          <div class="layui-progress-bar layui-bg-orange" lay-percent="30%"></div>
+        </div><br>
+        <div class="layui-progress">
+        <div class="layui-progress-bar layui-bg-red" lay-percent="20%"></div>
+        </div>
+      </div>
+      <div style="margin-top:10px;margin-bottom:10px;">
+        <blockquote class="layui-elem-quote layui-quote-nm" style="text-align:center;">
+          <a href="http://www.chaipip.com/ip.php" target="_blank" style="margin-right:20px;color:828282;">高精度IP地址查询</a>
+        </blockquote>
+      </div>
+        
+
     </div>
 
   </div>
