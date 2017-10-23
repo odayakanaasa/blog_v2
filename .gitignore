@@ -1,7 +1,6 @@
 .idea
 *.log
 /runtime
-# /__materials/sql_baks/*.tar.gz
 /__materials/Data_format_specification.md
 /sensitive_config.ini
 /public/sitemap.xml
