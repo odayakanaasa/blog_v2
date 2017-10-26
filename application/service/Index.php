@@ -62,7 +62,9 @@ class Index{
 			$_r4 = $pagenation->get_result();
 
 		// 友情链接
-		$_r5 = Db::table('friend_link')->select();
+		$_r5 = Db::table('friend_link')
+			->order('title')
+			->select();
 		return [
 			"reply_list" 	=> &$_r1,
 			"cate_list" 	=> &$_r2,
