@@ -70,7 +70,7 @@ Class Log{
     // 写入目录存在？
     $dir_path = self::$_ini['path'];
     if( !is_dir($dir_path) ){
-      mkdir($dir_path);
+      mkdir($dir_path, 0777 , true);
     }
     // 追加写入文件
     $file_path  = $dir_path . '/' . date('Y-m-d') . '.log';
