@@ -74,7 +74,7 @@ Class Log{
     }
     // 追加写入文件
     $file_path  = $dir_path . '/' . date('Y-m-d') . '.log';
-    $fp = fopen($ , 'a+');
+    $fp = fopen($file_path , 'a+');
     fwrite($fp, $str);
     fclose($fp);
   }
