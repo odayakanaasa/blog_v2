@@ -2,23 +2,39 @@
 <head>
 	<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="this.css">
+	<link rel="stylesheet" href="../common.css">
 </head>
-<body  >
-	<h5 id="just_look"></h5>
-	<div id="skip">
-		<input type="text" placeholder="请输入页码" id="get_page">
-		<input type="button" id="show" value="跳转">
-	</div>
-	<div id="container"></div>	
-	<button class="next">下一页</button>
-	<span id="top">
-		顶部
-	</span>
-</body>
+<body></body>
+	<script>
+	var title_en_us = 'dragon1',
+	  	title_zh_cn = '龙族Ⅰ';
+
+	// 拉取对应页面数据
+	function to_page() {
+    if (page == 0) { page = 1; }
+		var pic_src_prefix, // 图片资源 前半段
+			  pic_src_suffix; // 图片资源 后半段
+	  // 配置项
+	  pic_src_suffix = '.jpg-mht.middle'; 
+	  // ~~~~~~~~~~~~~~~~~~~~~~~~~~每一段区域的解析规则如下~~~~~~~~~~~~~~~~~~~~~~~~~
+
+	  // 1~ 44
+	  pic_src_prefix = 'http://mhpic.zymkcdn.com/comic/L/龙族Ⅰ/' + give_zero(page) + '话/';
+	  
+	  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	  page_common(pic_src_prefix, pic_src_suffix);
+	}
+	</script>
 	<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script src="this.js"></script>
+	<script src="../common_lazy.js"></script>
+	<script src="../common.js"></script>
 </html>
+
+
+
+
+
+
 
 
 
