@@ -3,23 +3,25 @@
 */
 
 // 初始页面
-$("body").html(`
-  <h5 id="just_look"></h5>
-  <div id="skip">
-    <input type="text" placeholder="请输入页码" id="get_page">
-    <input type="button" id="show" value="跳转">
-  </div>
-  <div id="container"></div>  
-  <button class="next">下一页</button>
-  <span id="top">
-    顶部
-  </span>
-`);
+$("body").html('  <h5 id="just_look"></h5>  <div id="skip">    <input type="text" placeholder="请输入页码" id="get_page">    <input type="button" id="show" value="跳转">  </div>  <div id="container"></div>    <button class="next">下一页</button>  <span id="top">    顶部  </span>');
+// $("body").html(`
+//   <h5 id="just_look"></h5>
+//   <div id="skip">
+//     <input type="text" placeholder="请输入页码" id="get_page">
+//     <input type="button" id="show" value="跳转">
+//   </div>
+//   <div id="container"></div>  
+//   <button class="next">下一页</button>
+//   <span id="top">
+//     顶部
+//   </span>
+// `);
 
 
 
 var page = localStorage.getItem(title_en_us) || parseInt( $("#get_page").val() ),
-    page_not_preload = 5, // 表示前多少张，不需要等待，直接加载 
+    page_not_preload = 5, // 前多少张，不需要等待，直接加载 
+    pictures_fetch_counter = 0 , // 图片抓取失败数量，注：懒加载模式无效
     page_count = 50; // 默认，图片的最大尝试呈现数量;
 
 
@@ -117,6 +119,11 @@ function pic_status_handle() {
     // 不存在就移除DOM
     $(".lazy").on("error", function() {
         $(this).remove();
+        pictures_fetch_counter++;
+        // 如果一张都没拉取成功
+        if( pictures_fetch_counter == page_count ){
+          $('#container').html('<h5>页面解析失败!</h5>');
+        }
     });
 
 }
