@@ -19,7 +19,7 @@ $("body").html('  <h5 id="just_look"></h5>  <div id="skip">    <input type="text
 
 
 
-var page = localStorage.getItem(title_en_us) || parseInt( $("#get_page").val() ),
+var page = localStorage.getItem(title_en_us) || $("#get_page").val(),
     page_not_preload = 5, // 前多少张，不需要等待，直接加载 
     pictures_fetch_counter = 0 , // 图片抓取失败数量，注：懒加载模式无效
     page_count = 50; // 默认，图片的最大尝试呈现数量;
@@ -93,6 +93,20 @@ function page_common(pic_src_prefix, pic_src_suffix){
   // 如果可以本地存储
   $("#get_page").val(page);
 }
+
+
+// 页码判断
+function set_page_num(){
+  page = parseInt( page );
+  if( isNaN(page) ){
+    page = 0;
+  }
+  else if (page == 0){
+    page = 1;
+  }
+  
+} 
+
 
 // 记录用户上次访看过的页面
 function footer_log() {

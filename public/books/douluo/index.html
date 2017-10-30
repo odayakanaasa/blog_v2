@@ -11,7 +11,8 @@
 
 	// 拉取对应页面数据
 	function to_page() {
-    if (page == 0) { page = 1; }
+		set_page_num();
+
 		var pic_src_prefix, // 图片资源 前半段
 			  pic_src_suffix; // 图片资源 后半段
 	  // 配置项
