@@ -99,12 +99,12 @@ function page_common(pic_src_prefix, pic_src_suffix){
 function set_page_num(){
   page = parseInt( page );
   if( isNaN(page) ){
-    page = 0;
+    page = 1;
   }
   else if (page == 0){
     page = 1;
   }
-  
+
 } 
 
 
