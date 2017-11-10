@@ -149,8 +149,6 @@ function pic_status_handle() {
         $(this).remove();
         pictures_fetch_counter++;
         // 如果一张都没拉取成功
-        console.log('pictures_fetch_counter '+pictures_fetch_counter);
-        console.log('page_count '+ page_count);
         if( pictures_fetch_counter == page_count ){
           $('#container').html('<h5 class="no_pic">页面解析失败!</h5>');
         }
