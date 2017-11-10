@@ -10,7 +10,7 @@ class Editor{
 	public $dir = '/Uploads/editor/'; 		// 绝对路径的目录
 
 	/**
-	* 活动图片上传[单个上传]
+	* 单个上传
 	*/
 	public function run(){
 		// 大小限制

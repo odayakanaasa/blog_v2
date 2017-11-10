@@ -1,11 +1,11 @@
 <?php
+namespace Mine;
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++
 //++  快递查询       Link: http://www.hlzblog.top/
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++
 // 使用案例，见文末
-namespace Mine;
-use Mine\CurlRequest;
-// 需要引入 云天河写的对应类
+use Mine\CurlRequest; // 需要引入 云天河写的对应类
+
 Class ExpressDelivery{
     /**
     * @param String : api_href      快递所属物流公司

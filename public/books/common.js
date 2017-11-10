@@ -72,19 +72,25 @@ function page_common(pic_src_prefix, pic_src_suffix){
     // 输出图片
     $("#container").html(''); // 加载前，初始化
 
-    // 前5张，直接加载资源
-    for (var i = 1; i < page_not_preload; i++) {
+    // // 前5张，直接加载资源
+    // for (var i = 1; i < page_not_preload; i++) {
+    //     pic_href = pic_src_prefix + i + pic_src_suffix;
+    //     pic_div = '<img class="lazy"  src="' + pic_href + '" />';
+    //     $("#container").append(pic_div);
+    // }
+    // // 后面的需要等待加载
+    // for (var i = page_not_preload; i < page_count + 1; i++) {
+    //     pic_href = pic_src_prefix + i + pic_src_suffix;
+    //     pic_div = '<img class="lazy"  originalSrc="' + pic_href + '" />';
+    //     $("#container").append(pic_div);
+    // }
+
+    // 最多连续加载五张
+    for (var i = 1; i < page_count + 1; i++) {
         pic_href = pic_src_prefix + i + pic_src_suffix;
         pic_div = '<img class="lazy"  src="' + pic_href + '" />';
         $("#container").append(pic_div);
     }
-    // 后面的需要等待加载
-    for (var i = page_not_preload; i < page_count + 1; i++) {
-        pic_href = pic_src_prefix + i + pic_src_suffix;
-        pic_div = '<img class="lazy"  originalSrc="' + pic_href + '" />';
-        $("#container").append(pic_div);
-    }
-
 
   // 依据配置 运行
   document.title = title_zh_cn +"/第" + page + "话";
@@ -118,25 +124,35 @@ function footer_log() {
   }
 }
 
+
+
 // 判断图片资源相关
 function pic_status_handle() {
+
+    //　延迟渲染，不能监听资源是否加载成功，而且目前图片资源来源于同一站，应该不会让浏览器并发下载
     
-    // 延迟渲染图片
-    $(".lazy").lazyload({
-        effect: "fadeIn",
-        threshold: 500,
-        failurelimit: page_not_preload,
-        // placeholder: "../common_loading.gif",
-        placeholder: "https://i.loli.net/2017/10/29/59f5ec6c5e015.gif", // 暂用 cdn
-    });
+    // // 延迟渲染图片
+    // $("img.lazy").lazyload({
+    //     effect: "fadeIn",
+    //     threshold: 500,
+    //     failurelimit: page_not_preload,
+    //     // placeholder: "../common_loading.gif",
+    //     placeholder: "https://i.loli.net/2017/10/29/59f5ec6c5e015.gif", // 暂用 cdn
+    // });
+    // console.log(  $(".lazy") );
+    // $("img.lazy").on('error',function(e){
+    //   console.log('错了');
+    // });
 
     // 不存在就移除DOM
     $(".lazy").on("error", function() {
         $(this).remove();
         pictures_fetch_counter++;
         // 如果一张都没拉取成功
+        console.log('pictures_fetch_counter '+pictures_fetch_counter);
+        console.log('page_count '+ page_count);
         if( pictures_fetch_counter == page_count ){
-          $('#container').html('<h5>页面解析失败!</h5>');
+          $('#container').html('<h5 class="no_pic">页面解析失败!</h5>');
         }
     });
 
