@@ -1,7 +1,8 @@
 <?php
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-// [中|英]云天河——滑动验证码 Link: http://www.hlzblog.top/
-//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//++++++++++++++++++++++++++++++++++++++++++++++++++
+// [中|英] 云天河——滑动验证码 
+// Link: http://www.hlzblog.top/
+//++++++++++++++++++++++++++++++++++++++++++++++++++
 /** 示例
 \Mine\Slide::instance(1); // String 获取验证码的html
 \Mine\Slide::instance(2); // JsonString  验证失败|成功   => {["Err"=>"状态码","out"=>"对应的错误信息"]}
@@ -126,12 +127,9 @@ class Slide{
         $out_div .= '<div style="top: '.$y_point.'px;left: 0px;display: none;border: 1px solid white;box-shadow: 5px 3px black;" id="xy_img" class="xy_img_bord"></div></div><div id="drag" style="width: 260px;"><div class="drag_bg"></div><div class="drag_text" id ="" onselectstart="return false;" unselectable="on">'.self::get_lan_pack()['slide_info'].'</div><div class="handler handler_bg"></div></div></div>';
         return $out_div;
     }
-
-
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    //              分割线，若只是使用，则下面的不用管
+    //                       分割线，下面的不用管
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
     /**
     * 构造函数
     * @return void
@@ -471,18 +469,22 @@ class Slide{
     * @return Array : 结果集
     */
     private static function if_success($session){
+        // 超时？
+        if( time() - $session['timer'] > self::$timer ){
+            $session['success'] = false;
+            $_SESSION[self::$session_data] = json_encode($session);
+        }
+        // 已通过？
         if( $session['success'] ){
-            // 是否超时
-            if( time() - $session['timer'] > self::$timer ){
-                $session['success'] = false;
-                $_SESSION[self::$session_data] = json_encode($session);
-            }
+            // 重置验证码
+            $session['success'] = false; // 置为之前的状态
+            $_SESSION[self::$session_name]= mt_rand(1,100); // 设置临时验证码，防止验证码重复提交
+            $_SESSION[self::$session_data] = json_encode($session);
             return [
                 "status"=> false,// 是否需要换验证图片
                 "Err"   => 2000, // 编码值，值为2000表示验证成功
                 "out"   => self::get_lan_pack()['code']['c_2000'] // 输出错误信息
             ];
-            // 初始化状态
         }else{
             // 获取信息的资源
             return [
