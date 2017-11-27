@@ -32,7 +32,7 @@
 /*时间轴的颜色控制*/
 
 .arrow_box {
-  background: rgb(144, 255, 216);
+  background: #d7fcef;
   width: 630px;
   color: #b9b9b9;
   border-radius: 6px;
@@ -90,7 +90,7 @@
 }
 
 .details {
-  background: rgb(62, 255, 216);
+  background: #e1ebe9;
   border-radius: 0 0 6px 6px;
   padding: 0 10px;
   li {
@@ -111,7 +111,7 @@
 .icon-time {
   padding: 0 0 0 10px;
   .fa-qq{
-    color: rgb(186, 130, 228);
+    color: #8acef7;
     font-size: 17px;
   }
   .fa-weibo{
@@ -121,12 +121,19 @@
   .login_method_icon{
     width: 17px;
     height: 17px;
+    margin-bottom: -4px;
+  }
+  .fa-qq, .fa-weibo, .login_method_icon{
+    margin-right: 10px;
   }
 }
 
 .comments {
   float: right;
   padding: 0 10px 0 0;
+  .fa-clock-o {
+    font-size: 14px;
+  }
 }
 
 .aside {
