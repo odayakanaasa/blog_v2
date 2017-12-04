@@ -8,6 +8,7 @@ use think\View;
 use think\Request;
 use Mine\Smtp;
 use Mine\Log;
+use app\logic\cli_sitemap;
 
 class Cli{
 	// ~~~~~~~test~~~~~~~
@@ -28,13 +29,13 @@ class Cli{
 	}
 
 	// 构造函数
-	// public function __construct(){
-	// 	// Clis模式才能运行
-	// 	if(  !preg_match('/cli/i', php_sapi_name() )  ){
-	// 		header("Location: /404.html");
-	// 		exit();
-	// 	}
-	// }
+	public function __construct(){
+		// Clis模式才能运行
+		if(  !preg_match('/cli/i', php_sapi_name() )  ){
+			header("Location: /404.html");
+			exit();
+		}
+	}
 	// 析构函数
 	public function __destruct(){
     echo PHP_EOL.'Time: '.date("Y/m/d H:m:s").PHP_EOL ;
@@ -42,7 +43,7 @@ class Cli{
 
   // [每天凌晨0点] 生成sitemap.xml
   public function sitemap(){
-    $Sitemap = new \app\logic\cli_sitemap();
+    $Sitemap = new cli_sitemap();
     $Sitemap->run();
     echo 'Sitemap created.' ;
   }
@@ -77,7 +78,6 @@ class Cli{
     }else{
       // Log::out('No such a sql_bak file', 1);
     }
-
   }
 
 

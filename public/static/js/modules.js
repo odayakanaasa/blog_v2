@@ -75,7 +75,7 @@ var login_method_icon_src = function(this_type) {
 	var container_id = "markdown_container";
 	// Render comments  in async  
 	var get_comments_main = function(){
-		var article_id = location.search.match(/\id=(\d+)/i),
+		var article_id = $("#markdown_container").attr("yth-article_id"),
 			// Inner comments 
 			callback_func = function(d){
 				var data = d.info,
@@ -94,7 +94,7 @@ var login_method_icon_src = function(this_type) {
 		// Main comments 
 		yth_pageination({
 		    "api": api("Common_reply", "comment_info"),		// API的url
-		    "send_other_data": {"article_id":article_id[1]},// 发送其他 Get 数据
+		    "send_other_data": {"article_id":article_id},// 发送其他 Get 数据
 		    "render_tpl"  : "article_comment_tpl",			// 渲染前的html模板id
 		    "render_html" : "article_comment",				// 目标渲染位置
 		    "pageination_id": "article_comment_pagenation", // 分页条的id

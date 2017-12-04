@@ -64,15 +64,13 @@ $container_width :1120px;
 					font-weight: bold;
 					margin-bottom: 10px;
 					a{
-						color:black;
-						border-bottom: 0px solid #fff;
+						color: black;
 						padding-bottom: 2px;
-					}
-					a:hover{
-						color:black;
-						border-bottom: 3px solid #EE8262;
-						transition: border .2s linear-gradient(to left,blue,red,blue);
+						transition: color .2s linear;
+						&:hover{
+							color: #B2E896;
 
+						}
 					}
 				}
 			}
@@ -84,6 +82,12 @@ $container_width :1120px;
 						width: 260px;
 						height:146px;
 						cursor: default;
+						transition: box-shadow 0.2s linear;
+						box-shadow: 10px 10px 10px #fff;
+						&:hover{
+							cursor: pointer;
+							box-shadow: 10px 10px 10px #D6C0C0;
+						}
 					}
 				}
 				.right_inner{

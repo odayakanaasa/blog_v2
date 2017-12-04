@@ -36,10 +36,10 @@
 			<span class="login_icons">
 
 			{if condition="!isset($_SESSION['user']['id'])"}
-				<a href="/Userentrance/to_qq" rel="nofollow">
+				<a href="/Userentrance/redirect?gateway=qq" rel="nofollow">
 					<img src="/static/img/third/qq_50.png" alt="QQ" title="QQ登陆" />
 				</a>
-				<a href="/Userentrance/to_sina" rel="nofollow">
+				<a href="/Userentrance/redirect?gateway=sina" rel="nofollow">
 					<img src="/static/img/third/sina_50.png" alt="Sina" title="微博登陆" />
 				</a>
 			{else}

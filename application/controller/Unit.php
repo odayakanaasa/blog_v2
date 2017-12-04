@@ -16,16 +16,16 @@ class Unit{
 		"__construct", "__destruct", "index", "encode", "url",
 		// 已测试过的，注释即可全部跑一遍
 		"pwd_edit", "basic_edit", "basic_info",
-			// Admin_basic
+		// Admin_basic
 		"friend_link_add","friend_link_info","friend_link_edit","friend_link_del",
 		"background_list_add","background_list_info","background_list_edit","background_list_del",
-			// Admin_article
+		// Admin_article
 		"blog_category_list_add","blog_category_list_info","blog_category_list_edit","blog_category_list_del",
 		// "blog_text_add",
 		"blog_text_add","blog_text_info","blog_text_search","blog_text_find","blog_text_edit","blog_text_del",
-			// 留言与评论
+		// 留言与评论
 		"comment_add","comment_info","reply_add","reply_info","comment_del","reply_del",
-		// 	// 访客行为
+		// 访客行为
 		"user_behaviour_add","user_behaviour_info","user_deny_ip_info","user_info"
 	];
 	
@@ -77,7 +77,6 @@ class Unit{
 		return curl_request($url,$d);
 	}
 	// 测试登陆
-	//
 	public function basic_edit(){
 		$d['info_pic'] = 'http://ww1.sinaimg.cn/large/006HJ39wgy1fg166thfzbj305k05k746.jpg';
 		$d['reply_pic']= 'http://tva1.sinaimg.cn/crop.0.0.640.640.180/65c897f9jw8faclt19le1j20hs0hsdgl.jpg';

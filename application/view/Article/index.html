@@ -34,7 +34,7 @@
 			</div>
 			<div class="clr"></div>
 			
-			<div class="real_html" id="markdown_container" yth-article_type="{$v.type}" yth-bg_url="{$v.bg_url}">
+			<div class="real_html" id="markdown_container" yth-article_id="{$v.id}" yth-article_type="{$v.type}" yth-bg_url="{$v.bg_url}">
 				{$v.content}
 			</div>
 			<div class="clr"></div>
@@ -103,7 +103,7 @@
 		</div>
 		{foreach $info.recommands as $v}
 		<div class="one_recommand">
-			<a href="/Article?id={$v.id}" target="_blank" title="{$v.title}">
+			<a href="/Article/{$v.id}.html" target="_blank" title="{$v.title}">
 				{$v.title}
 			</a>
 			<div class="clr"></div>

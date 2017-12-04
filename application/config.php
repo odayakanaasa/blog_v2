@@ -97,7 +97,7 @@ return [
     // URL参数方式 0 按名称成对解析 1 按顺序解析
     'url_param_type'         => 0,
     // 是否开启路由
-    'url_route_on'           => false,
+    'url_route_on'           => true,
     // 路由使用完整匹配
     'route_complete_match'   => false,
     // 路由配置文件（支持配置多个）
@@ -159,7 +159,7 @@ return [
     'exception_handle'       => '',
 
     // 关闭调试模式后生效
-    'http_exception_template'    =>  [
+    'http_exception_template'=>  [
         // 定义404错误的重定向页面地址
         404 =>  ROOT_PATH.'/public/404.html'
         // 还可以定义其它的HTTP status
@@ -302,7 +302,7 @@ return [
             // [
             //     "host" => "127.0.0.1",
             //     "port" =>  6379,
-            //     "auth" => "zhangli"
+            //     "auth" => "hlzblog"
             // ],
             [
                 "host" => $env['redis_m_host_1'],
@@ -314,7 +314,7 @@ return [
             // [
             //     "host" => "127.0.0.1",
             //     "port" =>  6379,
-            //     "auth" => "zhangli"
+            //     "auth" => "hlzblog"
             // ],
             [
                 "host" => $env['redis_s_host_1'],

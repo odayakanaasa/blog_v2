@@ -9,5 +9,4 @@
 // | Author: liu21st <liu21st@gmail.com>
 // +----------------------------------------------------------------------
 use think\Route;
-return [
-];
+Route::get('Article/:id','Article/index');

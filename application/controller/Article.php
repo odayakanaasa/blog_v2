@@ -38,9 +38,12 @@ class Article{
         echo $this->v->fetch('Index/footer');
     }
     
-    // 文章渲染
-    public function index(){
-        $g = Request::instance()->get();
+    /**
+    * 文章渲染
+    * @param refs_value 路由获取到的值
+    */
+    public function index($id){
+        $g['id'] = $id;
         $this->render_html( __FUNCTION__, $g);
     }
 

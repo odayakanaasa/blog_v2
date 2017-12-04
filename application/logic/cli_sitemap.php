@@ -28,25 +28,27 @@ class cli_sitemap{
     	';
     	$this->sitemap_xml = '<?xml version="1.0" encoding="UTF-8"  ?>
     	<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
     	// 首页
     	$this->sitemap_render('/', 1);
         // 大事记
         $this->sitemap_render('/Flexible/memorabilia.html', 0.9);
     	// 关于我
-    	$this->sitemap_render('/About', 0.9);
+    	$this->sitemap_render('/About.html', 0.9);
     	// 留言
-    	$this->sitemap_render('/Board', 0.9);
+    	$this->sitemap_render('/Board.html', 0.9);
         // 法律声明
         $this->sitemap_render('/Info/law.html', 0.9);
-        
+
     	// 文章 List
-    	$blog_text = \think\Db::query('
+    	$blog_text = Db::query('
     		Select `id`
     		From `blog_text`
     	');
     	$this->sitemap_list( $blog_text,'/','/Article',10 );
 
-
+        // +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     	$this->sitemap_xml .= '</urlset>';
         // XML结束，并生成 XML
         $write_path = $site_path. '/sitemap.xml';
@@ -56,8 +58,8 @@ class cli_sitemap{
         // 生成 robots
         $write_path = $site_path. '/robots.txt';
         $text  = 'User-agent: *'.PHP_EOL;
-        // $text .= 'Disallow: '.PHP_EOL; // 禁止访问的目录，若违规将负法律责任
-        // $text .= 'Sitemap: '.$this->host.'/sitemap.xml';
+        $text .= 'Disallow: /Admin'.PHP_EOL; // 禁止访问的目录，若违规将负法律责任
+        $text .= 'Sitemap: '.$this->host.'/sitemap.xml';
         $this->write($write_path, $text);
     }
 
@@ -79,7 +81,7 @@ class cli_sitemap{
     	}
     		// 资讯详情页面
     	foreach ($list as $k => $v) {
-    		$url = $url_show. '?' .$field. '=' .$v['id'];
+    		$url = $url_show. '/' .$v['id']. '.html'; // SEO用
             $this->sitemap_render($url,'0.8');
     	}
     }

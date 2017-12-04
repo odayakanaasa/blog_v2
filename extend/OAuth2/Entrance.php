@@ -11,7 +11,7 @@ Class Entrance{
 	public static function run($source='qq', $func=1){
 		// 资源地址
 		$require_path =  dirname(__FILE__)."/".$source.'/core.php';
-		if(  !realpath($require_path)  ){
+		if(  !is_file($require_path)  ){
 			exit('{"Err"=>1010}');
 		}
 		require_once $require_path;
@@ -21,7 +21,7 @@ Class Entrance{
 			case 1:
 				return $ins->to_url();		// String 返回验证链接
 			case 2:
-				return @$ins->get_info(); 	// Array 获取 登陆信息
+				return @$ins->get_info(); // Array 获取 登陆信息
 			default:
 				exit('{"out"=>"当前未定义该功能"}');
 		}

@@ -10,7 +10,7 @@ namespace app\yth\api;
 use think\Request;
 use think\Db;
 use Mine\Filter;
-use \Mine\Redis;
+use Mine\Redis;
 
 Class Chat{
 	private $expire    = 1440 	; // one second per unit , set default as default-session-expire-time
