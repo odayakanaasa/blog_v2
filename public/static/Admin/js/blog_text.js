@@ -54,7 +54,9 @@ function blog_text_search(){
         "callback_data":true,
         "callback":function(d){
             if( d.info.length===0 ){
-                layer.msg("暂无相关内容");
+                layui.use(['layer'], function() {
+                    layer.msg("暂无相关内容");
+                });
             }
         }
     });
