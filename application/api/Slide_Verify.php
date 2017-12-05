@@ -9,7 +9,7 @@ use Mine\Slide;
 class Slide_Verify {
   
   /**
-   * @api {get} /Api?con=Slide_Verify&act=init 初始获取 验证码
+   * @api {get} /Api?con=Slide_Verify&act=init 初始验证码页面
    * @apiName init
    * @apiGroup Slide_Verify
    *
@@ -17,7 +17,7 @@ class Slide_Verify {
    * @apiSuccessExample Success-Response:
    * HTTP/1.1 200 OK
    *
-   * 验证码的html字符串
+   * 初始验证码页面的html
    *
    */
   public function init(){
@@ -25,7 +25,7 @@ class Slide_Verify {
   }
 
   /**
-   * @api {get} /Api?con=Slide_Verify&act=captchar 获取验证码的html
+   * @api {get} /Api?con=Slide_Verify&act=captchar 获取动态加载的验证码图片
    * @apiName captchar
    * @apiGroup Slide_Verify
    *
@@ -60,7 +60,7 @@ class Slide_Verify {
     // 参数过滤
     Slide::instance(2);
   }
-  
+
 
   // 示例验证 [RSA版]，示例：
   public function demo_rsa(){

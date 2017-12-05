@@ -1541,7 +1541,7 @@
   {
     "type": "get",
     "url": "/Api?con=Slide_Verify&act=captchar",
-    "title": "获取验证码的html",
+    "title": "获取动态加载的验证码图片",
     "name": "captchar",
     "group": "Slide_Verify",
     "description": "<p>该html里面有待验证的base64数据的图片</p>",
@@ -1580,7 +1580,7 @@
   {
     "type": "get",
     "url": "/Api?con=Slide_Verify&act=init",
-    "title": "初始获取 验证码",
+    "title": "初始验证码页面",
     "name": "init",
     "group": "Slide_Verify",
     "version": "2.0.0",
@@ -1588,7 +1588,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n\n验证码的html字符串",
+          "content": "HTTP/1.1 200 OK\n\n初始验证码页面的html",
           "type": "json"
         }
       ]
