@@ -51,8 +51,8 @@ function blog_text_search(){
         "render_tpl": "blog_text_tpl",
         "render_html": "yth_search_html",
         "pageination_id": "yth_page",
-        "callback":function(info){
-            if( info.length===0 ){
+        "callback":function(d){
+            if( d.info.length===0 ){
                 layer.msg("暂无相关内容");
             }
         }
