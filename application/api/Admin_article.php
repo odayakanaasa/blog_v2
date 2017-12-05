@@ -403,13 +403,24 @@ class Admin_article extends Admin{
    * @apiSuccessExample Success-Response:
    * HTTP/1.1 200 OK
    * {
-   *   "info": {
-   *     "title": "",
-   *     "cate_name": "",
-   *     "url": "",
+   *   "info": [{
+   *     "bg_id": "",
    *     "bg_url": "",
-   *     ...
-   *   }
+   *     "cate_id": "",
+   *     "cate_name": "",
+   *     "content": "",
+   *     "cover_url": "",
+   *     "descript": "",
+   *     "id": "",
+   *     "last_time": "",
+   *     "original": "",
+   *     "raw_content": "",
+   *     "statistic": "",
+   *     "sticky": "",
+   *     "time": "",
+   *     "title": "",
+   *     "type": ""
+   *   }]
    * }
    */
   public function blog_text_find(){

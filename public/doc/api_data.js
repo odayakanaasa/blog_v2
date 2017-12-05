@@ -368,7 +368,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"info\": {\n    \"title\": \"\",\n    \"cate_name\": \"\",\n    \"url\": \"\",\n    \"bg_url\": \"\",\n    ...\n  }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"info\": [{\n    \"bg_id\": \"\",\n    \"bg_url\": \"\",\n    \"cate_id\": \"\",\n    \"cate_name\": \"\",\n    \"content\": \"\",\n    \"cover_url\": \"\",\n    \"descript\": \"\",\n    \"id\": \"\",\n    \"last_time\": \"\",\n    \"original\": \"\",\n    \"raw_content\": \"\",\n    \"statistic\": \"\",\n    \"sticky\": \"\",\n    \"time\": \"\",\n    \"title\": \"\",\n    \"type\": \"\"\n  }]\n}",
           "type": "json"
         }
       ]
