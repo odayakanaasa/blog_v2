@@ -19,7 +19,11 @@ class Common_basic{
 	 * @apiSuccessExample Success-Response:
 	 * HTTP/1.1 200 OK
 	 * {
-	 *      "info": [{..},...],
+	 *      "info": [{
+	 *          "id": "",
+	 *          "title": "",
+	 *          "url": ""
+	 *       },...],
 	 *  }
 	 */
 	public function friend_link_info(){
