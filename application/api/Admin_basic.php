@@ -68,9 +68,51 @@ Class Admin_basic extends Admin{
 		trans_json($msg);
 	}
 
+	/**
+	 * @api {post} /Api?con=Admin_basic&act=pwd_edit 个人信息：修改
+	 * @apiName pwd_edit
+	 * @apiGroup Admin_basic
+	 *
+	 * @apiParam {string} name 新的帐号名
+	 * @apiParam {string} new_pwd 新密码
+	 * @apiParam {string} re_pwd 再次输入新密码，格式不作要求
+	 *
+	 * @apiDescription  修改头像、个人简介
+	 *
+	 * @apiVersion 2.0.0
+	 * @apiSuccessExample Success-Response:
+	 * HTTP/1.1 200 OK
+	 * {
+	 *	 	 "status": true
+	 *  }
+	 */
+	public function basic_edit(){
+		$p = Request::instance()->post();
+		@Filter::is_set([
+			$p['info_pic'],
+			$p['reply_pic'],
+			$p['descript']
+		]);
+		$info_pic  = &$p['info_pic']; 	// 展示头像地址 200x200
+		$reply_pic = &$p['reply_pic'];	// 回复头像地址 100x100
+		$descript  = &$p['descript'];	// 个人简介 Editor内容
+		Filter::is_empty($info_pic,'请输入展示头像地址');
+		Filter::is_empty($reply_pic,'请输入回复头像地址');
+		Filter::is_empty($descript,'请输入个人简介');
+		Db::execute('
+			Update `admin_basic`
+			Set `pic`=?, `descript`=?
+		',[ $info_pic, $descript ]);
+		Db::execute('
+			Update `user`
+			Set `pic`=?
+			Where `id`= ?
+		',[ $reply_pic, '-1' ]);
+		if_modify(1);
+	}
 
 	/**
-	 * @api {post} /Api?con=Admin_basic&act=pwd_edit 修改：帐号以及密码
+	 * @api {post} /Api?con=Admin_basic&act=pwd_edit 帐号以及密码:修改
 	 * @apiName pwd_edit
 	 * @apiGroup Admin_basic
 	 *
@@ -113,50 +155,6 @@ Class Admin_basic extends Admin{
 		// 需要重新登陆
 		$this->logout();
 	}
-
-	/**
-	 * @api {post} /Api?con=Admin_basic&act=pwd_edit 修改：个人信息
-	 * @apiName pwd_edit
-	 * @apiGroup Admin_basic
-	 *
-	 * @apiParam {string} name 新的帐号名
-	 * @apiParam {string} new_pwd 新密码
-	 * @apiParam {string} re_pwd 再次输入新密码，格式不作要求
-	 *
-	 * @apiDescription  修改头像、个人简介
-	 *
-	 * @apiVersion 2.0.0
-	 * @apiSuccessExample Success-Response:
-	 * HTTP/1.1 200 OK
-	 * {
-	 *	 	 "status": true
-	 *  }
-	 */
-	public function basic_edit(){
-		$p = Request::instance()->post();
-		@Filter::is_set([
-			$p['info_pic'],
-			$p['reply_pic'],
-			$p['descript']
-		]);
-		$info_pic  = &$p['info_pic']; 	// 展示头像地址 200x200
-		$reply_pic = &$p['reply_pic'];	// 回复头像地址 100x100
-		$descript  = &$p['descript'];	// 个人简介 Editor内容
-		Filter::is_empty($info_pic,'请输入展示头像地址');
-		Filter::is_empty($reply_pic,'请输入回复头像地址');
-		Filter::is_empty($descript,'请输入个人简介');
-		Db::execute('
-			Update `admin_basic`
-			Set `pic`=?, `descript`=?
-		',[ $info_pic, $descript ]);
-		Db::execute('
-			Update `user`
-			Set `pic`=?
-			Where `id`= ?
-		',[ $reply_pic, '-1' ]);
-		if_modify(1);
-	}
-
 	
 
 	/**

@@ -863,54 +863,7 @@ define({ "api": [
   {
     "type": "post",
     "url": "/Api?con=Admin_basic&act=pwd_edit",
-    "title": "修改：个人信息",
-    "name": "pwd_edit",
-    "group": "Admin_basic",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "name",
-            "description": "<p>新的帐号名</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "new_pwd",
-            "description": "<p>新密码</p>"
-          },
-          {
-            "group": "Parameter",
-            "type": "string",
-            "optional": false,
-            "field": "re_pwd",
-            "description": "<p>再次输入新密码，格式不作要求</p>"
-          }
-        ]
-      }
-    },
-    "description": "<p>修改头像、个人简介</p>",
-    "version": "2.0.0",
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n\t \t \"status\": true\n }",
-          "type": "json"
-        }
-      ]
-    },
-    "filename": "application/api/Admin_basic.php",
-    "groupTitle": "Admin_basic"
-  },
-  {
-    "type": "post",
-    "url": "/Api?con=Admin_basic&act=pwd_edit",
-    "title": "修改：帐号以及密码",
+    "title": "帐号以及密码:修改",
     "name": "pwd_edit",
     "group": "Admin_basic",
     "parameter": {
@@ -941,6 +894,53 @@ define({ "api": [
       }
     },
     "description": "<p>修改帐号以及密码，操作成功后需要重新登陆</p>",
+    "version": "2.0.0",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n\t \t \"status\": true\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "application/api/Admin_basic.php",
+    "groupTitle": "Admin_basic"
+  },
+  {
+    "type": "post",
+    "url": "/Api?con=Admin_basic&act=pwd_edit",
+    "title": "个人信息：修改",
+    "name": "pwd_edit",
+    "group": "Admin_basic",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "name",
+            "description": "<p>新的帐号名</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "new_pwd",
+            "description": "<p>新密码</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "re_pwd",
+            "description": "<p>再次输入新密码，格式不作要求</p>"
+          }
+        ]
+      }
+    },
+    "description": "<p>修改头像、个人简介</p>",
     "version": "2.0.0",
     "success": {
       "examples": [
