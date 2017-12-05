@@ -22,10 +22,10 @@ Class Editor{
    * @apiSuccessExample Success-Response:
    * HTTP/1.1 200 OK
    * {
-   *   "state"    => "",
-   *   "url"      => "",
-   *   "title"    => "",
-   *   "original" => ""
+   *   "state"    : "",
+   *   "url"      : "",
+   *   "title"    : "",
+   *   "original" : ""
    * }
    */
   public function pic(){
