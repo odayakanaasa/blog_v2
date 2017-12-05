@@ -14,7 +14,7 @@ This is a project which is based on thinkphp5 framework
 [Click here](http://www.hlzblog.top/Board)
 
 ## API
-API document of this blog is Based on [apidoc](http://apidocjs.com/)  
+API document of this blog is based on [apidoc](http://apidocjs.com/)  
 
     apidoc -i application/api/ -o public/doc
 
