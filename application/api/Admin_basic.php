@@ -11,7 +11,7 @@ use Mine\Slide;
 Class Admin_basic extends Admin{
 	/**
 	++++++++++++++++++++++++++++++++++++++++++++++++++++
-	+                  帐号信息相关
+	+	 	 	 	 	 	 帐号信息相关
 	++++++++++++++++++++++++++++++++++++++++++++++++++++
 	*/
 
@@ -26,7 +26,7 @@ Class Admin_basic extends Admin{
 	 * @apiSuccessExample Success-Response:
 	 * HTTP/1.1 200 OK
 	 * {
-	 *      "status": true
+	 *	 	 "status": true
 	 *  }
 	 */
 	public function logout(){
@@ -45,11 +45,11 @@ Class Admin_basic extends Admin{
 	 * @apiSuccessExample Success-Response:
 	 * HTTP/1.1 200 OK
 	 * {
-	 *   "info_pic": "",
+	 *	 "info_pic": "",
 	 *	 "reply_pic": "",
 	 *	 "descript": "",
 	 *	 "name": "",
-	 *  }
+	 * }
 	 */
 	public function basic_info(){
 		$_r1 = Db::query('
@@ -84,7 +84,7 @@ Class Admin_basic extends Admin{
 	 * @apiSuccessExample Success-Response:
 	 * HTTP/1.1 200 OK
 	 * {
-	 *      "status": true
+	 *	 	 "status": true
 	 *  }
 	 */
 	public function pwd_edit(){
@@ -97,7 +97,7 @@ Class Admin_basic extends Admin{
 			$p['re_pwd'],
 			$p['name']
 		]);
-		$name    = urldecode (  \Crypt\Rsa::decrypt($p['name'])  );
+		$name	  = urldecode (  \Crypt\Rsa::decrypt($p['name'])  );
 		$new_pwd = self::crypt($p['new_pwd']); 
 		$re_pwd  = self::crypt($p['re_pwd']);
 		// 过滤
@@ -129,7 +129,7 @@ Class Admin_basic extends Admin{
 	 * @apiSuccessExample Success-Response:
 	 * HTTP/1.1 200 OK
 	 * {
-	 *      "status": true
+	 *	 	 "status": true
 	 *  }
 	 */
 	public function basic_edit(){
@@ -161,7 +161,7 @@ Class Admin_basic extends Admin{
 
 	/**
 	++++++++++++++++++++++++++++++++++++++++++++++++++++
-	+                   友情链接
+	+	 	 	 	 	 	  友情链接
 	++++++++++++++++++++++++++++++++++++++++++++++++++++
 	*/
 
@@ -179,7 +179,7 @@ Class Admin_basic extends Admin{
 	 * @apiSuccessExample Success-Response:
 	 * HTTP/1.1 200 OK
 	 * {
-	 *      "status": true
+	 *	 	 "status": true
 	 *  }
 	 */
 	public function friend_link_add(){
@@ -203,11 +203,11 @@ Class Admin_basic extends Admin{
 	 * @apiSuccessExample Success-Response:
 	 * HTTP/1.1 200 OK
 	 * {
-	 *   "info": [{
-	 *     "id": "",
-	 *     "title": "",
-	 *     "url": "",
-	 *   }, ...]
+	 *	 "info": [{
+	 *	   "id": "",
+	 *	   "title": "",
+	 *	   "url": "",
+	 *	 }, ...]
 	 * }
 	 */
 	public function friend_link_info(){
@@ -230,7 +230,7 @@ Class Admin_basic extends Admin{
 	 * @apiSuccessExample Success-Response:
 	 * HTTP/1.1 200 OK
 	 * {
-	 *      "status": true
+	 *	 	 "status": true
 	 *  }
 	 */
 	public function friend_link_edit(){
@@ -257,7 +257,7 @@ Class Admin_basic extends Admin{
 	 * @apiSuccessExample Success-Response:
 	 * HTTP/1.1 200 OK
 	 * {
-	 *      "status": true
+	 *	 	 "status": true
 	 *  }
 	 */
 	public function friend_link_del(){
@@ -271,7 +271,7 @@ Class Admin_basic extends Admin{
 
 	/**
 	++++++++++++++++++++++++++++++++++++++++++++++++++++
-	+                   背景主题
+	+	 	 	 	 	 	  背景主题
 	++++++++++++++++++++++++++++++++++++++++++++++++++++
 	*/
 
@@ -288,7 +288,7 @@ Class Admin_basic extends Admin{
 	 * @apiSuccessExample Success-Response:
 	 * HTTP/1.1 200 OK
 	 * {
-	 *      "status": true
+	 *	 	 "status": true
 	 *  }
 	 */
 	public function background_list_add(){
@@ -313,12 +313,12 @@ Class Admin_basic extends Admin{
 	 * @apiSuccessExample Success-Response:
 	 * HTTP/1.1 200 OK
 	 * {
-	 *   "info": [{
-	 *     "id": "",
-	 *     "url": "",
-	 *   }, ...],
-	 *   "page_count": "",
-	 *   "total": ""
+	 *	 "info": [{
+	 *	   "id": "",
+	 *	   "url": "",
+	 *	 }, ...],
+	 *	 "page_count": "",
+	 *	 "total": ""
 	 * }
 	 */
 	public function background_list_info(){
@@ -330,7 +330,7 @@ Class Admin_basic extends Admin{
 		',[]);
 		$p->page_size = 9;
 		$p->is_render = false;
-	    $d = $p->get_result();
+		  $d = $p->get_result();
 		trans_json($d);
 	}
 
@@ -348,7 +348,7 @@ Class Admin_basic extends Admin{
 	 * @apiSuccessExample Success-Response:
 	 * HTTP/1.1 200 OK
 	 * {
-	 *      "status": true
+	 *	 	 "status": true
 	 *  }
 	 */
 	public function background_list_edit(){
@@ -374,7 +374,7 @@ Class Admin_basic extends Admin{
 	 * @apiSuccessExample Success-Response:
 	 * HTTP/1.1 200 OK
 	 * {
-	 *      "status": true
+	 *	 	 "status": true
 	 *  }
 	 */
 	public function background_list_del(){
