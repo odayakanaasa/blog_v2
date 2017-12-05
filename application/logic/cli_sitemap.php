@@ -59,6 +59,8 @@ class cli_sitemap{
         $write_path = $site_path. '/robots.txt';
         $text  = 'User-agent: *'.PHP_EOL;
         $text .= 'Disallow: /Admin'.PHP_EOL; // 禁止访问的目录，若违规将负法律责任
+        $text .= 'Disallow: /doc'.PHP_EOL; // 禁止访问的目录，若违规将负法律责任
+        $text .= 'Disallow: /err'.PHP_EOL; // 禁止访问的目录，若违规将负法律责任
         $text .= 'Sitemap: '.$this->host.'/sitemap.xml';
         $this->write($write_path, $text);
     }
