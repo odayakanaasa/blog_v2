@@ -50,7 +50,12 @@ function blog_text_search(){
         "api": api("Admin_article", "blog_text_search") + "&title="+title ,
         "render_tpl": "blog_text_tpl",
         "render_html": "yth_search_html",
-        "pageination_id": "yth_page"
+        "pageination_id": "yth_page",
+        "callback":function(info){
+            if( info.length===0 ){
+                layer.msg("暂无相关内容");
+            }
+        }
     });
 }
 
