@@ -54,9 +54,14 @@ function blog_text_search(){
         "callback_data":true,
         "callback":function(d){
             if( d.info.length===0 ){
+                console.log('d.info.length===0');
                 layui.use(['layer'], function() {
                     layer.msg("暂无相关内容");
+                    console.log('layer');
+                    console.log(layer);
                 });
+            }else{
+                console.log(d);
             }
         }
     });
