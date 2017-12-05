@@ -7,28 +7,40 @@ use think\Request;
 use think\Db;
 use Mine\Filter;
 Class Media{
-	/**
-	* 酷狗音乐接口
-	* @param POST  : fileHash
-	* @echo String : 输出相关信息
-	*/
-    public function kugou_music(){
-    	// 对应音乐的fileHash
-    	$fileHash = '1BA52AFC430A1D0EBF9C7271BD71E6B9';
-    	$url = 'http://www.kugou.com/yy/index.php?r=play/getdata&hash='.$fileHash;
-  		$header = [
-  			"Accept:application/json, text/javascript, */*; q=0.01",
-  			"Connection:keep-alive",
-  			"Host:www.kugou.com",
-  			"Referer:http://www.kugou.com/song/",
-  			"User-Agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.221 Safari/537.36 SE 2.X MetaSr 1.0",
-  			"X-Requested-With:XMLHttpRequest"
-  		];
-      $d = curl_request($url,null,$header);
-      $d = json_decode($d,true);
-      $msg['url'] = $d['data']['play_url'];
-      trans_json($msg);
-    }
+
+  /**
+   * @api {post} /Api?con=Media&act=kugou_music 酷狗音乐接口
+   * @apiName kugou_music
+   * @apiGroup Media
+   *
+   * @apiParam {string} fileHash 对应音乐的文件哈希
+   *
+   * @apiDescription  获取酷狗对应音乐的播放地址
+   *
+   * @apiVersion 2.0.0
+   * @apiSuccessExample Success-Response:
+   * HTTP/1.1 200 OK
+   * {
+   *      "url": ""
+   *  }
+   */
+  public function kugou_music(){
+    // 对应音乐的fileHash
+    $fileHash = '1BA52AFC430A1D0EBF9C7271BD71E6B9';
+    $url = 'http://www.kugou.com/yy/index.php?r=play/getdata&hash='.$fileHash;
+    $header = [
+      "Accept:application/json, text/javascript, */*; q=0.01",
+      "Connection:keep-alive",
+      "Host:www.kugou.com",
+      "Referer:http://www.kugou.com/song/",
+      "User-Agent:Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.221 Safari/537.36 SE 2.X MetaSr 1.0",
+      "X-Requested-With:XMLHttpRequest"
+    ];
+    $d = curl_request($url, null, $header);
+    $d = json_decode($d, true);
+    $msg['url'] = $d['data']['play_url'];
+    trans_json($msg);
+  }
 }
 
 /*

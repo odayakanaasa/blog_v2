@@ -12,3 +12,10 @@ This is a project which is based on thinkphp5 framework
 
 ## Ask me
 [Click here](http://www.hlzblog.top/Board)
+
+## API
+API document of this blog which is Based on [apidoc](http://apidocjs.com/)  
+
+    apidoc -i application/api/ -o public/doc
+
+[Click here](http://www.hlzblog.top/doc)  

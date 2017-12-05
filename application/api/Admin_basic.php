@@ -16,18 +16,41 @@ Class Admin_basic extends Admin{
 	*/
 
 	/**
-	* 注销
-	* @param Get
-	*/
+	 * @api {get} /Api?con=Admin_basic&act=logout 注销
+	 * @apiName logout
+	 * @apiGroup Admin_basic
+	 *
+	 * @apiDescription  管理员注销
+	 *
+	 * @apiVersion 2.0.0
+	 * @apiSuccessExample Success-Response:
+	 * HTTP/1.1 200 OK
+	 * {
+	 *      "status": true
+	 *  }
+	 */
 	public function logout(){
 		session_destroy();
 		if_modify(1);
 	}
 
 	/**
-	* [查看] [个人简介 与 回复头像]
-	* @param Get
-	*/
+	 * @api {get} /Api?con=Admin_basic&act=basic_info 个人信息：查看
+	 * @apiName basic_info
+	 * @apiGroup Admin_basic
+	 *
+	 * @apiDescription  查看已设置的：个人简介、回复头像...
+	 *
+	 * @apiVersion 2.0.0
+	 * @apiSuccessExample Success-Response:
+	 * HTTP/1.1 200 OK
+	 * {
+	 *   "info_pic": "",
+	 *	 "reply_pic": "",
+	 *	 "descript": "",
+	 *	 "name": "",
+	 *  }
+	 */
 	public function basic_info(){
 		$_r1 = Db::query('
 			Select `descript`,`pic`,`name`
@@ -45,10 +68,25 @@ Class Admin_basic extends Admin{
 		trans_json($msg);
 	}
 
+
 	/**
-	* [修改] [帐号以及密码]  操作成功后需要重新登陆
-	* @param POST  : name,new_pwd,re_pwd
-	*/
+	 * @api {post} /Api?con=Admin_basic&act=pwd_edit 修改：帐号以及密码
+	 * @apiName pwd_edit
+	 * @apiGroup Admin_basic
+	 *
+	 * @apiParam {string} name 新的帐号名
+	 * @apiParam {string} new_pwd 新密码
+	 * @apiParam {string} re_pwd 再次输入新密码，格式不作要求
+	 *
+	 * @apiDescription  修改帐号以及密码，操作成功后需要重新登陆
+	 *
+	 * @apiVersion 2.0.0
+	 * @apiSuccessExample Success-Response:
+	 * HTTP/1.1 200 OK
+	 * {
+	 *      "status": true
+	 *  }
+	 */
 	public function pwd_edit(){
 		// 验证码验证
 		Slide::instance(3); 
@@ -60,8 +98,8 @@ Class Admin_basic extends Admin{
 			$p['name']
 		]);
 		$name    = urldecode (  \Crypt\Rsa::decrypt($p['name'])  );
-		$new_pwd = self::crypt($p['new_pwd']);  // 新密码
-		$re_pwd  = self::crypt($p['re_pwd']); 	// 再次输入新密码，格式不作要求
+		$new_pwd = self::crypt($p['new_pwd']); 
+		$re_pwd  = self::crypt($p['re_pwd']);
 		// 过滤
 		if(  $new_pwd != $re_pwd  ){
 			$msg['status'] = false;
@@ -77,9 +115,23 @@ Class Admin_basic extends Admin{
 	}
 
 	/**
-	* [修改] [头像、个人简介]
-	* @param POST  : info_pic,reply_pic,descript
-	*/
+	 * @api {post} /Api?con=Admin_basic&act=pwd_edit 修改：个人信息
+	 * @apiName pwd_edit
+	 * @apiGroup Admin_basic
+	 *
+	 * @apiParam {string} name 新的帐号名
+	 * @apiParam {string} new_pwd 新密码
+	 * @apiParam {string} re_pwd 再次输入新密码，格式不作要求
+	 *
+	 * @apiDescription  修改头像、个人简介
+	 *
+	 * @apiVersion 2.0.0
+	 * @apiSuccessExample Success-Response:
+	 * HTTP/1.1 200 OK
+	 * {
+	 *      "status": true
+	 *  }
+	 */
 	public function basic_edit(){
 		$p = Request::instance()->post();
 		@Filter::is_set([
@@ -112,48 +164,102 @@ Class Admin_basic extends Admin{
 	+                   友情链接
 	++++++++++++++++++++++++++++++++++++++++++++++++++++
 	*/
+
 	/**
-	* [添加] 
-	* @param POST  : title,url
-	*/
+	 * @api {post} /Api?con=Admin_basic&act=friend_link_add 友情链接：添加
+	 * @apiName friend_link_add
+	 * @apiGroup Admin_basic
+	 *
+	 * @apiParam {string} title 站点名称
+	 * @apiParam {string} url 站点地址
+	 *
+	 * @apiDescription  添加友情链接
+	 *
+	 * @apiVersion 2.0.0
+	 * @apiSuccessExample Success-Response:
+	 * HTTP/1.1 200 OK
+	 * {
+	 *      "status": true
+	 *  }
+	 */
 	public function friend_link_add(){
 		$p = Request::instance()->post();
 		@Filter::is_set([
-			$p['title'],	// 站点名
-			$p['url']		// 链接
+			$p['title'],
+			$p['url']	
 		]);
 		Db::table('friend_link')->insert($p);
 		if_modify(1);
 	}
 
 	/**
-	* [查看] 一次查看所有
-	* @param Get
-	*/
+	 * @api {get} /Api?con=Admin_basic&act=friend_link_info 友情链接：查看
+	 * @apiName friend_link_info
+	 * @apiGroup Admin_basic
+	 *
+	 * @apiDescription  一次查看所有友情链接地址
+	 *
+	 * @apiVersion 2.0.0
+	 * @apiSuccessExample Success-Response:
+	 * HTTP/1.1 200 OK
+	 * {
+	 *   "info": [{
+	 *     "id": "",
+	 *     "title": "",
+	 *     "url": "",
+	 *   }, ...]
+	 * }
+	 */
 	public function friend_link_info(){
 		$_res['info'] = Db::table('friend_link')->select();
 		trans_json($_res);
 	}
 
 	/**
-	* [修改] 
-	* @param POST  : id,title,url
-	*/
+	 * @api {post} /Api?con=Admin_basic&act=friend_link_edit 友情链接：修改
+	 * @apiName friend_link_edit
+	 * @apiGroup Admin_basic
+	 *
+	 * @apiParam {string} id 主键
+	 * @apiParam {string} title 站点名
+	 * @apiParam {string} url 链接
+	 *
+	 * @apiDescription  友情链接相关信息修改
+	 *
+	 * @apiVersion 2.0.0
+	 * @apiSuccessExample Success-Response:
+	 * HTTP/1.1 200 OK
+	 * {
+	 *      "status": true
+	 *  }
+	 */
 	public function friend_link_edit(){
 		$p = Request::instance()->post();
 		@Filter::is_set([
-			$p['id'],		// 主键
-			$p['title'],	// 站点名
-			$p['url']		// 链接
+			$p['id'],	
+			$p['title'],	
+			$p['url']	
 		]);
 		Db::table('friend_link')->update($p);
 		if_modify(1);
 	}
 
 	/**
-	* [删除]
-	* @param POST  : id
-	*/
+	 * @api {post} /Api?con=Admin_basic&act=friend_link_del 友情链接：删除
+	 * @apiName friend_link_del
+	 * @apiGroup Admin_basic
+	 *
+	 * @apiParam {string} id 主键
+	 *
+	 * @apiDescription  删除某个友情链接
+	 *
+	 * @apiVersion 2.0.0
+	 * @apiSuccessExample Success-Response:
+	 * HTTP/1.1 200 OK
+	 * {
+	 *      "status": true
+	 *  }
+	 */
 	public function friend_link_del(){
 		$p = Request::instance()->post();
 		@Filter::is_set([
@@ -168,10 +274,23 @@ Class Admin_basic extends Admin{
 	+                   背景主题
 	++++++++++++++++++++++++++++++++++++++++++++++++++++
 	*/
+
 	/**
-	* [添加] 
-	* @param POST  : url
-	*/
+	 * @api {post} /Api?con=Admin_basic&act=background_list_add 背景主题：添加
+	 * @apiName background_list_add
+	 * @apiGroup Admin_basic
+	 *
+	 * @apiParam {string} url 图片地址
+	 *
+	 * @apiDescription  添加背景主题
+	 *
+	 * @apiVersion 2.0.0
+	 * @apiSuccessExample Success-Response:
+	 * HTTP/1.1 200 OK
+	 * {
+	 *      "status": true
+	 *  }
+	 */
 	public function background_list_add(){
 		$p = Request::instance()->post();
 		@Filter::is_set([
@@ -182,9 +301,26 @@ Class Admin_basic extends Admin{
 	}
 
 	/**
-	* [查看] 分页查看
-	* @param Get : to_page
-	*/
+	 * @api {get} /Api?con=Admin_basic&act=background_list_info 背景主题：分页查看
+	 * @apiName background_list_info
+	 * @apiGroup Admin_basic
+	 *
+	 * @apiParam {string} to_page 页码，默认值为1
+	 *
+	 * @apiDescription  获取背景主题数据
+	 *
+	 * @apiVersion 2.0.0
+	 * @apiSuccessExample Success-Response:
+	 * HTTP/1.1 200 OK
+	 * {
+	 *   "info": [{
+	 *     "id": "",
+	 *     "url": "",
+	 *   }, ...],
+	 *   "page_count": "",
+	 *   "total": ""
+	 * }
+	 */
 	public function background_list_info(){
 		$p = new \Mine\Page('
 			Select * 
@@ -199,9 +335,22 @@ Class Admin_basic extends Admin{
 	}
 
 	/**
-	* [修改] 
-	* @param POST  : id,url
-	*/
+	 * @api {post} /Api?con=Admin_basic&act=background_list_add 背景主题：修改
+	 * @apiName background_list_add
+	 * @apiGroup Admin_basic
+	 *
+	 * @apiParam {string} id 主键
+	 * @apiParam {string} url 图片地址
+	 *
+	 * @apiDescription  修改背景主题
+	 *
+	 * @apiVersion 2.0.0
+	 * @apiSuccessExample Success-Response:
+	 * HTTP/1.1 200 OK
+	 * {
+	 *      "status": true
+	 *  }
+	 */
 	public function background_list_edit(){
 		$p = Request::instance()->post();
 		@Filter::is_set([
@@ -213,9 +362,21 @@ Class Admin_basic extends Admin{
 	}
 
 	/**
-	* [删除]
-	* @param POST  : id
-	*/
+	 * @api {post} /Api?con=Admin_basic&act=background_list_del 背景主题：删除
+	 * @apiName background_list_del
+	 * @apiGroup Admin_basic
+	 *
+	 * @apiParam {string} id 主键
+	 *
+	 * @apiDescription  删除某个背景主题
+	 *
+	 * @apiVersion 2.0.0
+	 * @apiSuccessExample Success-Response:
+	 * HTTP/1.1 200 OK
+	 * {
+	 *      "status": true
+	 *  }
+	 */
 	public function background_list_del(){
 		$p = Request::instance()->post();
 		@Filter::is_set([

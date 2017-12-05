@@ -6,26 +6,41 @@ namespace app\api;
 use think\Request;
 use think\Db;
 use Mine\Filter;
+use HTMLPurifier\Main;
 Class Common_reply{
 
 	// 登陆检测
-	public function check_auth(){
+	private function check_auth(){
 		if(  !isset($_SESSION['user']['id'])  ){
 			$msg['Err'] = '1014';
 			trans_json($msg);
 		}
 		return $p['user_id'] = $_SESSION['user']['id'];
 	}
+	// ++++++++++++++++++++++++++++++++++++++++++++++
 
 	/**
-	* [添加] 主楼
-	* @param POST  : article_id,content
-	*/
+   * @api {post} /Api?con=Common_reply&act=comment_add 评论：添加
+   * @apiName comment_add
+   * @apiGroup Common_reply
+   *
+   * @apiParam {string} article_id 文章号 ，但 0=> 留言
+   * @apiParam {string} content 内容
+   *
+   * @apiDescription  添加主楼回复
+   *
+   * @apiVersion 2.0.0
+   * @apiSuccessExample Success-Response:
+   * HTTP/1.1 200 OK
+   * {
+   *      "status": true
+   *  }
+   */
 	public function comment_add(){
 		$p = Request::instance()->post();
 		@Filter::is_set([
-			$p['article_id'],	// 文章号 ，但 0=> 留言
-			$p['content']		// 内容
+			$p['article_id'],
+			$p['content']
 		]);
 		$article_id = intval($p['article_id']);
 		// 登陆检测
@@ -45,16 +60,38 @@ Class Common_reply{
 			}
 		}
 		// XSS过滤
-		$p['content'] = \HTMLPurifier\Main::run($p['content']);
+		$p['content'] = Main::run($p['content']);
 		// 录入
 		Db::table('blog_comment')->insert($p);
 		if_modify(1);
 	}
 
 	/**
-	* [分页查看] 主楼
-	* @param Get : to_page,article_id
-	*/
+   * @api {get} /Api?con=Common_reply&act=comment_info 评论：查看主楼
+   * @apiName comment_info
+   * @apiGroup Common_reply
+   *
+   * @apiParam {string} to_page 页码，默认值为1
+   * @apiParam {string} article_id 文章号
+   *
+   * @apiDescription  分页获取主楼评论数据
+   *
+   * @apiVersion 2.0.0
+   * @apiSuccessExample Success-Response:
+   * HTTP/1.1 200 OK
+   * {
+   *   "info": [{
+   *     "id": "",
+   *     "time": "",
+   *     "content": "",
+   *     "name": "",
+   *     "type": "",
+   *     "pic": "",
+   *   }, ...],
+   *   "page_count": "",
+   *   "total": ""
+   * }
+   */
 	public function comment_info(){
 		$g = Request::instance()->get();
 		@Filter::is_set([
@@ -74,15 +111,28 @@ Class Common_reply{
 		$d = $p->get_result();
 		trans_json($d);
 	}
-
+	
 	/**
-	* [添加] 楼中楼
-	* @param POST  : floor_id,content
-	*/
+   * @api {post} /Api?con=Common_reply&act=reply_add 楼中楼：添加
+   * @apiName reply_add
+   * @apiGroup Common_reply
+   *
+   * @apiParam {string} floor_id 文章号 ，但 0=> 留言
+   * @apiParam {string} content 内容
+   *
+   * @apiDescription  添加主楼回复
+   *
+   * @apiVersion 2.0.0
+   * @apiSuccessExample Success-Response:
+   * HTTP/1.1 200 OK
+   * {
+   *      "status": true
+   *  }
+   */
 	public function reply_add(){
 		$p = Request::instance()->post();
 		@Filter::is_set([
-			$p['floor_id'],		// 文章号 ，但 0=> 留言
+			$p['floor_id'], // 文章号 ，但 0=> 留言
 			$p['content']		// 内容
 		]);
 		$floor_id = &$p['floor_id'];
@@ -106,9 +156,31 @@ Class Common_reply{
 	}
 
 	/**
-	* [分页查看] 楼中楼
-	* @param Get : to_page,floor_id
-	*/
+   * @api {get} /Api?con=Common_reply&act=reply_info 楼中楼：查看
+   * @apiName reply_info
+   * @apiGroup Common_reply
+   *
+   * @apiParam {string} to_page 页码，默认值为1
+   * @apiParam {string} floor_id 文章号
+   *
+   * @apiDescription  分页查看楼中楼
+   *
+   * @apiVersion 2.0.0
+   * @apiSuccessExample Success-Response:
+   * HTTP/1.1 200 OK
+   * {
+   *   "info": [{
+   *     "id": "",
+   *     "time": "",
+   *     "content": "",
+   *     "name": "",
+   *     "type": "",
+   *     "pic": "",
+   *   }, ...],
+   *   "page_count": "",
+   *   "total": ""
+   * }
+   */
 	public function reply_info(){
 		$g = Request::instance()->get();
 		@Filter::is_set([
