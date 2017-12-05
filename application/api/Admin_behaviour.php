@@ -107,7 +107,7 @@ class Admin_behaviour extends Admin{
 	 * HTTP/1.1 200 OK
 	 * {
 	 *      "status": true
-	 *  }
+	 * }
 	 */
 	public function user_deny_ip_edit(){
 		$p = Request::instance()->post();
@@ -134,7 +134,7 @@ class Admin_behaviour extends Admin{
 	 * HTTP/1.1 200 OK
 	 * {
 	 *      "status": true
-	 *  }
+	 * }
 	 */
 	public function user_deny_ip_del(){
 		$p = Request::instance()->post();
@@ -160,7 +160,7 @@ class Admin_behaviour extends Admin{
 	 * HTTP/1.1 200 OK
 	 * {
 	 *      "status": true
-	 *  }
+	 * }
 	 */
 	public function user_deny_ip_add(){
 		$p = Request::instance()->post();

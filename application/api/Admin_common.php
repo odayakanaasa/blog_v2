@@ -34,7 +34,7 @@ class Admin_common {
    * {
    *      "status": true,
    *      "url": "",
-   *  }
+   * }
    */
 	public function login(){
 		// 写入文本日志

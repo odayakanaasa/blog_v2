@@ -24,7 +24,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true,\n }",
+          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true,\n}",
           "type": "json"
         }
       ]
@@ -57,7 +57,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true,\n }",
+          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true,\n}",
           "type": "json"
         }
       ]
@@ -97,7 +97,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true,\n }",
+          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true,\n}",
           "type": "json"
         }
       ]
@@ -206,7 +206,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true,\n }",
+          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true,\n}",
           "type": "json"
         }
       ]
@@ -239,7 +239,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true,\n }",
+          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true,\n}",
           "type": "json"
         }
       ]
@@ -335,7 +335,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true,\n }",
+          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true,\n}",
           "type": "json"
         }
       ]
@@ -434,7 +434,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true,\n }",
+          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true,\n}",
           "type": "json"
         }
       ]
@@ -533,7 +533,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true,\n }",
+          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true,\n}",
           "type": "json"
         }
       ]
@@ -573,7 +573,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n\t \t \"status\": true\n }",
+          "content": "HTTP/1.1 200 OK\n{\n\t \t \"status\": true\n}",
           "type": "json"
         }
       ]
@@ -606,7 +606,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n\t \t \"status\": true\n }",
+          "content": "HTTP/1.1 200 OK\n{\n\t \t \"status\": true\n}",
           "type": "json"
         }
       ]
@@ -639,7 +639,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n\t \t \"status\": true\n }",
+          "content": "HTTP/1.1 200 OK\n{\n\t \t \"status\": true\n}",
           "type": "json"
         }
       ]
@@ -732,7 +732,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n\t \t \"status\": true\n }",
+          "content": "HTTP/1.1 200 OK\n{\n\t \t \"status\": true\n}",
           "type": "json"
         }
       ]
@@ -765,7 +765,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n\t \t \"status\": true\n }",
+          "content": "HTTP/1.1 200 OK\n{\n\t \t \"status\": true\n}",
           "type": "json"
         }
       ]
@@ -812,7 +812,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n\t \t \"status\": true\n }",
+          "content": "HTTP/1.1 200 OK\n{\n\t \t \"status\": true\n}",
           "type": "json"
         }
       ]
@@ -852,7 +852,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n\t \t \"status\": true\n }",
+          "content": "HTTP/1.1 200 OK\n{\n\t \t \"status\": true\n}",
           "type": "json"
         }
       ]
@@ -899,7 +899,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n\t \t \"status\": true\n }",
+          "content": "HTTP/1.1 200 OK\n{\n\t \t \"status\": true\n}",
           "type": "json"
         }
       ]
@@ -946,7 +946,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n\t \t \"status\": true\n }",
+          "content": "HTTP/1.1 200 OK\n{\n\t \t \"status\": true\n}",
           "type": "json"
         }
       ]
@@ -1019,7 +1019,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true\n }",
+          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true\n}",
           "type": "json"
         }
       ]
@@ -1052,7 +1052,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true\n }",
+          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true\n}",
           "type": "json"
         }
       ]
@@ -1092,7 +1092,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true\n }",
+          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true\n}",
           "type": "json"
         }
       ]
@@ -1198,7 +1198,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true,\n     \"url\": \"\",\n }",
+          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true,\n     \"url\": \"\",\n}",
           "type": "json"
         }
       ]
@@ -1218,7 +1218,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"info\": [{..},...],\n }",
+          "content": "HTTP/1.1 200 OK\n{\n \"info\": [{\n     \"id\": \"\",\n     \"title\": \"\",\n     \"url\": \"\"\n  },...],\n}",
           "type": "json"
         }
       ]
@@ -1271,7 +1271,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true\n }",
+          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true\n}",
           "type": "json"
         }
       ]
@@ -1311,7 +1311,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true\n }",
+          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true\n}",
           "type": "json"
         }
       ]
@@ -1391,7 +1391,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true\n }",
+          "content": "HTTP/1.1 200 OK\n{\n     \"status\": true\n}",
           "type": "json"
         }
       ]

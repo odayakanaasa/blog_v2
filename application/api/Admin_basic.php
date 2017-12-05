@@ -27,7 +27,7 @@ Class Admin_basic extends Admin{
 	 * HTTP/1.1 200 OK
 	 * {
 	 *	 	 "status": true
-	 *  }
+	 * }
 	 */
 	public function logout(){
 		session_destroy();
@@ -84,7 +84,7 @@ Class Admin_basic extends Admin{
 	 * HTTP/1.1 200 OK
 	 * {
 	 *	 	 "status": true
-	 *  }
+	 * }
 	 */
 	public function basic_edit(){
 		$p = Request::instance()->post();
@@ -127,7 +127,7 @@ Class Admin_basic extends Admin{
 	 * HTTP/1.1 200 OK
 	 * {
 	 *	 	 "status": true
-	 *  }
+	 * }
 	 */
 	public function pwd_edit(){
 		// 验证码验证
@@ -178,7 +178,7 @@ Class Admin_basic extends Admin{
 	 * HTTP/1.1 200 OK
 	 * {
 	 *	 	 "status": true
-	 *  }
+	 * }
 	 */
 	public function friend_link_add(){
 		$p = Request::instance()->post();
@@ -229,7 +229,7 @@ Class Admin_basic extends Admin{
 	 * HTTP/1.1 200 OK
 	 * {
 	 *	 	 "status": true
-	 *  }
+	 * }
 	 */
 	public function friend_link_edit(){
 		$p = Request::instance()->post();
@@ -256,7 +256,7 @@ Class Admin_basic extends Admin{
 	 * HTTP/1.1 200 OK
 	 * {
 	 *	 	 "status": true
-	 *  }
+	 * }
 	 */
 	public function friend_link_del(){
 		$p = Request::instance()->post();
@@ -287,7 +287,7 @@ Class Admin_basic extends Admin{
 	 * HTTP/1.1 200 OK
 	 * {
 	 *	 	 "status": true
-	 *  }
+	 * }
 	 */
 	public function background_list_add(){
 		$p = Request::instance()->post();
@@ -347,7 +347,7 @@ Class Admin_basic extends Admin{
 	 * HTTP/1.1 200 OK
 	 * {
 	 *	 	 "status": true
-	 *  }
+	 * }
 	 */
 	public function background_list_edit(){
 		$p = Request::instance()->post();
@@ -373,7 +373,7 @@ Class Admin_basic extends Admin{
 	 * HTTP/1.1 200 OK
 	 * {
 	 *	 	 "status": true
-	 *  }
+	 * }
 	 */
 	public function background_list_del(){
 		$p = Request::instance()->post();

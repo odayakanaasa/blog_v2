@@ -19,12 +19,12 @@ class Common_basic{
 	 * @apiSuccessExample Success-Response:
 	 * HTTP/1.1 200 OK
 	 * {
-	 *      "info": [{
-	 *          "id": "",
-	 *          "title": "",
-	 *          "url": ""
-	 *       },...],
-	 *  }
+	 *  "info": [{
+	 *      "id": "",
+	 *      "title": "",
+	 *      "url": ""
+	 *   },...],
+	 * }
 	 */
 	public function friend_link_info(){
 		$_res['info'] = Db::table('friend_link')->select();

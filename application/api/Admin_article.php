@@ -56,7 +56,7 @@ class Admin_article extends Admin{
    * HTTP/1.1 200 OK
    * {
    *      "status": true,
-   *  }
+   * }
    */
 	public function blog_category_list_add(){
 		$p = Request::instance()->post();
@@ -104,7 +104,7 @@ class Admin_article extends Admin{
    * HTTP/1.1 200 OK
    * {
    *      "status": true,
-   *  }
+   * }
    */
 	public function blog_category_list_edit(){
 		$p = Request::instance()->post();
@@ -130,7 +130,7 @@ class Admin_article extends Admin{
    * HTTP/1.1 200 OK
    * {
    *      "status": true,
-   *  }
+   * }
    */
 	public function blog_category_list_del(){
 		$p = Request::instance()->post();
@@ -169,7 +169,7 @@ class Admin_article extends Admin{
    * HTTP/1.1 200 OK
    * {
    *      "status": true,
-   *  }
+   * }
    */
 	public function blog_text_add(){
 		$p = Request::instance()->post();
@@ -317,7 +317,7 @@ class Admin_article extends Admin{
    * HTTP/1.1 200 OK
    * {
    *      "status": true,
-   *  }
+   * }
    */
 	public function blog_text_edit(){
 		$p = Request::instance()->post();
@@ -378,7 +378,7 @@ class Admin_article extends Admin{
    * HTTP/1.1 200 OK
    * {
    *      "status": true,
-   *  }
+   * }
    */
 	public function blog_text_del(){
 		$p = Request::instance()->post();
@@ -410,7 +410,7 @@ class Admin_article extends Admin{
    * HTTP/1.1 200 OK
    * {
    *      "status": true,
-   *  }
+   * }
    */
 	public function comment_del(){
 		$p = Request::instance()->post();
@@ -435,7 +435,7 @@ class Admin_article extends Admin{
    * HTTP/1.1 200 OK
    * {
    *      "status": true,
-   *  }
+   * }
    */
 	public function reply_del(){
 		$p = Request::instance()->post();

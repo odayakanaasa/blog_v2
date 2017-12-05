@@ -35,7 +35,7 @@ class Common_behaviour{
    * HTTP/1.1 200 OK
    * {
    *      "status": true
-   *  }
+   * }
    */
 	public function user_behaviour_add(){
 		$p = Request::instance()->post();

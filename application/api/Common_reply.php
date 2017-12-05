@@ -34,7 +34,7 @@ Class Common_reply{
    * HTTP/1.1 200 OK
    * {
    *      "status": true
-   *  }
+   * }
    */
 	public function comment_add(){
 		$p = Request::instance()->post();
@@ -127,7 +127,7 @@ Class Common_reply{
    * HTTP/1.1 200 OK
    * {
    *      "status": true
-   *  }
+   * }
    */
 	public function reply_add(){
 		$p = Request::instance()->post();
