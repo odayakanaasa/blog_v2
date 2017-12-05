@@ -22,7 +22,7 @@ Class Media{
    * HTTP/1.1 200 OK
    * {
    *      "url": ""
-   *  }
+   * }
    */
   public function kugou_music(){
     // 对应音乐的fileHash

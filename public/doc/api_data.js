@@ -1464,7 +1464,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"state\"    => \"\",\n  \"url\"      => \"\",\n  \"title\"    => \"\",\n  \"original\" => \"\"\n }",
+          "content": "HTTP/1.1 200 OK\n{\n  \"state\"    => \"\",\n  \"url\"      => \"\",\n  \"title\"    => \"\",\n  \"original\" => \"\"\n}",
           "type": "json"
         }
       ]
@@ -1497,7 +1497,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n     \"url\": \"\"\n }",
+          "content": "HTTP/1.1 200 OK\n{\n     \"url\": \"\"\n}",
           "type": "json"
         }
       ]

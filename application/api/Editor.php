@@ -26,7 +26,7 @@ Class Editor{
    *   "url"      => "",
    *   "title"    => "",
    *   "original" => ""
-   *  }
+   * }
    */
   public function pic(){
     $up = new Editor();
