@@ -279,24 +279,26 @@ function yth_pageination (init){
             "data":data,
             "dataType":"json",
             "success":function(d){
-                if( true == init.loading_switch ){
-		        	layer.close(page_load_index); // 加载层 关闭
-		        }
+              if( true == init.loading_switch ){
+  		        	layer.close(page_load_index); // 加载层 关闭
+  		        }
 
-                $("#"+init.render_html).html(''); 	// 置空html
-                if(d.info && d.info.length>0 ){
-                    async_render(init.render_tpl,init.render_html,d.info,function(){
-                        // 分页条
-                        page_handle(to_page,d.page_count, d.total);
-                        if( init.callback ){
-                        	if( init.callback_data ){
-                        		init.callback(d);
-                        	}else{
-                        		init.callback();
-                        	}
-                        }
-                    });
+              $("#" + init.render_html).html(''); // 置空html
+              if (d.info && d.info.length > 0) {
+                async_render(init.render_tpl, init.render_html, d.info, function() {
+                  // 分页条
+                  page_handle(to_page, d.page_count, d.total);
+                });
+              }
+              // 回调函数
+              if (init.callback) {
+                if (init.callback_data) {
+                  init.callback(d);
+                } else {
+                  init.callback();
                 }
+              }
+
             }
         });
     }
