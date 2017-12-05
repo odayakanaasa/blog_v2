@@ -8,7 +8,7 @@ This is a project which is based on thinkphp5 framework
  * password: 123123
 
 ## About Blog
-[Click here](http://www.hlzblog.top/Article?id=20)
+[Click here](http://www.hlzblog.top/Article/20.html)
 
 ## Ask me
 [Click here](http://www.hlzblog.top/Board)
@@ -16,6 +16,6 @@ This is a project which is based on thinkphp5 framework
 ## API
 The API document of this blog is based on [apidoc](http://apidocjs.com/)  
 
-    apidoc -i application/api/ -o public/doc
+    apidoc -i application/api -o public/doc
 
 [Click here](http://www.hlzblog.top/doc)  

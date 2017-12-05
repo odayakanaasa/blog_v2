@@ -14,9 +14,9 @@ class Admin_article extends Admin{
 	* @return String 返回 HTML
 	*/
 	private static function parse_markdown($html){
-	    $html = \Michelf\Markdown::defaultTransform($html);
-	    // 图片延迟属性设为 originalSrc 
-	    return self::lazy_pic($html);
+    $html = \Michelf\Markdown::defaultTransform($html);
+    // 图片延迟属性设为 originalSrc 
+    return self::lazy_pic($html);
 	}
 
 	/**
@@ -25,15 +25,15 @@ class Admin_article extends Admin{
 	* @return String 返回 HTML
 	*/
 	private static function lazy_pic($html){
-	    // 图片延迟属性设为 originalSrc 
-	    $rule    = '/<img(.*?)src/';
-	    $replace = '<img $1 class="lazy_pic" originalSrc';
-	    $html 	 = preg_replace($rule, $replace, $html);
-	    // 防蜘蛛出站 
-	    $rule    = '/<a(.*?)href/';
-	    $replace = '<a rel="nofollow" $1 href';
-	    $html 	 = preg_replace($rule, $replace, $html);
-	    return $html;
+	  // 图片延迟属性设为 originalSrc 
+	  $rule    = '/<img(.*?)src/';
+    $replace = '<img $1 class="lazy_pic" originalSrc';
+    $html 	 = preg_replace($rule, $replace, $html);
+    // 防蜘蛛出站 
+    $rule    = '/<a(.*?)href/';
+    $replace = '<a rel="nofollow" $1 href';
+    $html 	 = preg_replace($rule, $replace, $html);
+	  return $html;
 	}
 
 	/**
@@ -388,6 +388,46 @@ class Admin_article extends Admin{
 		Db::table('blog_text')->delete($p['id']);
 		if_modify(1);
 	}
+
+
+  /**
+   * @api {get} /Api?con=Admin_article&act=blog_text_find 博文内容：查看
+   * @apiName blog_text_find
+   * @apiGroup Admin_article
+   *
+   * @apiParam {string} id 文章id
+   *
+   * @apiDescription  修改前，查看对应文章相关内容
+   *
+   * @apiVersion 2.0.0
+   * @apiSuccessExample Success-Response:
+   * HTTP/1.1 200 OK
+   * {
+   *   "info": {
+   *     "title": "",
+   *     "cate_name": "",
+   *     "url": "",
+   *     "bg_url": "",
+   *     ...
+   *   }
+   * }
+   */
+  public function blog_text_find(){
+    $g = Request::instance()->get();
+    @Filter::is_set([
+      $g['id']
+    ]);
+    $_res['info'] = Db::query('
+      Select a.*, b.`title` as `cate_name`, c.`url` as `bg_url`
+      From `blog_text` as a
+      Left Join `blog_category_list` as b
+      On b.`id` = a.`cate_id`
+      Left Join `background_list` as c 
+      On c.`id` = a.`bg_id`
+      Where a.`id` = ?
+    ',[ $g['id'] ]);
+    trans_json($_res);
+  }
 
 
 	/**

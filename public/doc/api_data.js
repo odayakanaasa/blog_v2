@@ -345,6 +345,39 @@ define({ "api": [
   },
   {
     "type": "get",
+    "url": "/Api?con=Admin_article&act=blog_text_find",
+    "title": "博文内容：查看",
+    "name": "blog_text_find",
+    "group": "Admin_article",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "id",
+            "description": "<p>文章id</p>"
+          }
+        ]
+      }
+    },
+    "description": "<p>修改前，查看对应文章相关内容</p>",
+    "version": "2.0.0",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"info\": {\n    \"title\": \"\",\n    \"cate_name\": \"\",\n    \"url\": \"\",\n    \"bg_url\": \"\",\n    ...\n  }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "application/api/Admin_article.php",
+    "groupTitle": "Admin_article"
+  },
+  {
+    "type": "get",
     "url": "/Api?con=Admin_article&act=blog_text_info",
     "title": "博文内容：分页查看",
     "name": "blog_text_info",
