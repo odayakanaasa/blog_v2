@@ -26,7 +26,7 @@ Class Admin_basic extends Admin{
 	 * @apiSuccessExample Success-Response:
 	 * HTTP/1.1 200 OK
 	 * {
-	 *	 	 "status": true
+	 *    "status": true
 	 * }
 	 */
 	public function logout(){
@@ -83,7 +83,7 @@ Class Admin_basic extends Admin{
 	 * @apiSuccessExample Success-Response:
 	 * HTTP/1.1 200 OK
 	 * {
-	 *	 	 "status": true
+	 *    "status": true
 	 * }
 	 */
 	public function basic_edit(){
@@ -126,7 +126,7 @@ Class Admin_basic extends Admin{
 	 * @apiSuccessExample Success-Response:
 	 * HTTP/1.1 200 OK
 	 * {
-	 *	 	 "status": true
+	 *    "status": true
 	 * }
 	 */
 	public function pwd_edit(){
@@ -177,7 +177,7 @@ Class Admin_basic extends Admin{
 	 * @apiSuccessExample Success-Response:
 	 * HTTP/1.1 200 OK
 	 * {
-	 *	 	 "status": true
+	 *    "status": true
 	 * }
 	 */
 	public function friend_link_add(){
@@ -228,7 +228,7 @@ Class Admin_basic extends Admin{
 	 * @apiSuccessExample Success-Response:
 	 * HTTP/1.1 200 OK
 	 * {
-	 *	 	 "status": true
+	 *    "status": true
 	 * }
 	 */
 	public function friend_link_edit(){
@@ -255,7 +255,7 @@ Class Admin_basic extends Admin{
 	 * @apiSuccessExample Success-Response:
 	 * HTTP/1.1 200 OK
 	 * {
-	 *	 	 "status": true
+	 *    "status": true
 	 * }
 	 */
 	public function friend_link_del(){
@@ -286,7 +286,7 @@ Class Admin_basic extends Admin{
 	 * @apiSuccessExample Success-Response:
 	 * HTTP/1.1 200 OK
 	 * {
-	 *	 	 "status": true
+	 *    "status": true
 	 * }
 	 */
 	public function background_list_add(){
@@ -346,7 +346,7 @@ Class Admin_basic extends Admin{
 	 * @apiSuccessExample Success-Response:
 	 * HTTP/1.1 200 OK
 	 * {
-	 *	 	 "status": true
+	 *    "status": true
 	 * }
 	 */
 	public function background_list_edit(){
@@ -372,7 +372,7 @@ Class Admin_basic extends Admin{
 	 * @apiSuccessExample Success-Response:
 	 * HTTP/1.1 200 OK
 	 * {
-	 *	 	 "status": true
+	 *    "status": true
 	 * }
 	 */
 	public function background_list_del(){
