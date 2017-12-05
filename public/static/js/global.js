@@ -325,7 +325,7 @@ function yth_pageination (init){
                 	$("#"+ this.cont +" .laypage_total").append(page_info);
                 }
                 if (!first) { // 因为一开始就响应该函数，所以用该参数判断是否第一次刷新。
-                    get_list(e.curr);
+                  get_list(e.curr);
                 }
             },
             groups: 7 // 每次显示的码数数
