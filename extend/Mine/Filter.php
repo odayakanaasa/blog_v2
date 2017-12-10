@@ -12,7 +12,7 @@ class Filter
      * @param Array   : 判断数组中的值，是否都存在
      * @return void   : 如果不存在，就结束程序
      */
-    function isset($param) {
+    function is_set($param) {
         $msg['Err'] = 1004;
         foreach ($param as $k) {
             true === isset($k) ? true : trans_json($msg);
@@ -25,7 +25,7 @@ class Filter
      * @param String : 为空的时候，自定义输出内容
      * @return Void
      */
-    public static function isEmpty($s, $out = false)
+    public static function is_empty($s, $out = false)
     {
         // 是否为空值
         if ('' == $s) {
@@ -103,7 +103,7 @@ class Filter
      * @param String : 判断帐号格式是否正确
      * @return void  : 如果不正确，就结束程序
      */
-    public static function isName($nickname)
+    public static function is_name($nickname)
     {
         if (strlen($nickname) < 3) {
             //密码长度校验
