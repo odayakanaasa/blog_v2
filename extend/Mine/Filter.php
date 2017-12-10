@@ -12,7 +12,7 @@ class Filter
      * @param Array   : 判断数组中的值，是否都存在
      * @return void   : 如果不存在，就结束程序
      */
-    function isset(array $param) {
+    function isset($param) {
         $msg['Err'] = 1004;
         foreach ($param as $k) {
             true === isset($k) ? true : trans_json($msg);
