@@ -11,7 +11,7 @@
 namespace Mine;
 class Redis{
 	/**
-	* 析构函数，单例模式
+	* 构造函数，单例模式
 	*/
 	private function __contruct(){}
 

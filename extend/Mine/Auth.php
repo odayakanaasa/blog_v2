@@ -4,23 +4,27 @@
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 // 使用案例，见文末
 namespace Mine;
+
 use think\Db;
-class Auth{
+
+class Auth
+{
 
     //默认配置
     protected $_config = array(
-        'AUTH_ON'           => true,    // 认证开关
-        'AUTH_TYPE'         => 2,       // 认证方式，1为实时认证；2为登录认证。
-        'AUTH_GROUP'        => 'hlz_auth_group',        // 用户组数据表名
+        'AUTH_ON'           => true, // 认证开关
+        'AUTH_TYPE'         => 2, // 认证方式，1为实时认证；2为登录认证。
+        'AUTH_GROUP'        => 'hlz_auth_group', // 用户组数据表名
         'AUTH_GROUP_ACCESS' => 'hlz_auth_group_access', // 用户-用户组关系表
-        'AUTH_RULE'         => 'hlz_auth_rule',         // 权限规则表
-        'AUTH_USER'         => 'hlz_user'               // 用户信息表
+        'AUTH_RULE'         => 'hlz_auth_rule', // 权限规则表
+        'AUTH_USER'         => 'hlz_user', // 用户信息表
     );
 
     /**
-    * 构造函数
-    */
-    public function __construct() {
+     * 构造函数
+     */
+    public function __construct()
+    {
         if (config('AUTH_CONFIG')) {
             //可设置配置项 AUTH_CONFIG, 此配置项为数组。
             $this->_config = array_merge($this->_config, config('AUTH_CONFIG')); // 合并配置文件
@@ -35,9 +39,12 @@ class Auth{
      * @param relation string    如果为 'or' 表示满足任一条规则即通过验证;如果为 'and'则表示需满足所有规则才能通过验证
      * @return boolean           通过验证返回true;失败返回false
      */
-    public function check($name, $uid, $type=1, $mode='url', $relation='or') {
-        if (!$this->_config['AUTH_ON'])
+    public function check($name, $uid, $type = 1, $mode = 'url', $relation = 'or')
+    {
+        if (!$this->_config['AUTH_ON']) {
             return true;
+        }
+
         //获取用户需要验证的所有有效规则列表
         $authList = $this->getAuthList($uid, $type);
         if (is_string($name)) {
@@ -49,21 +56,21 @@ class Auth{
             }
         }
         $list = array(); //保存验证通过的规则名
-        if ($mode=='url') {
-            $REQUEST = unserialize( strtolower(serialize($_REQUEST)) );
+        if ($mode == 'url') {
+            $REQUEST = unserialize(strtolower(serialize($_REQUEST)));
         }
-        foreach ( $authList as $auth ) {
-            $query = preg_replace('/^.+\?/U','',$auth);
-            if ($mode=='url' && $query!=$auth ) {
-                parse_str($query,$param); //解析规则中的param
-                $intersect = array_intersect_assoc($REQUEST,$param);
-                $auth = preg_replace('/\?.*$/U','',$auth);
+        foreach ($authList as $auth) {
+            $query = preg_replace('/^.+\?/U', '', $auth);
+            if ($mode == 'url' && $query != $auth) {
+                parse_str($query, $param); //解析规则中的param
+                $intersect = array_intersect_assoc($REQUEST, $param);
+                $auth      = preg_replace('/\?.*$/U', '', $auth);
                 //如果节点相符且url参数满足
-                if ( in_array($auth,$name) && $intersect==$param ) {
-                    $list[] = $auth ;
+                if (in_array($auth, $name) && $intersect == $param) {
+                    $list[] = $auth;
                 }
-            }else if (in_array($auth , $name)){
-                $list[] = $auth ;
+            } elseif (in_array($auth, $name)) {
+                $list[] = $auth;
             }
         }
         if ($relation == 'or' and !empty($list)) {
@@ -83,16 +90,19 @@ class Auth{
      *                                         array('uid'=>'用户id','group_id'=>'用户组id','title'=>'用户组名称','rules'=>'用户组拥有的规则id,多个,号隔开'),
      *                                         ...)
      */
-    public function getGroups($uid) {
+    public function getGroups($uid)
+    {
         static $groups = array();
-        if (isset($groups[$uid]))
+        if (isset($groups[$uid])) {
             return $groups[$uid];
+        }
+
         $user_groups = Db::name($this->_config['AUTH_GROUP_ACCESS'])
             ->alias('a')
             ->where("a.uid='$uid' and g.status='1'")
-            ->join($this->_config['AUTH_GROUP']. ' g', 'a.group_id=g.id')
+            ->join($this->_config['AUTH_GROUP'] . ' g', 'a.group_id=g.id')
             ->select();
-        $groups[$uid]=$user_groups?:array();
+        $groups[$uid] = $user_groups ?: array();
         return $groups[$uid];
     }
 
@@ -101,42 +111,44 @@ class Auth{
      * @param integer $uid  用户id
      * @param integer $type
      */
-    protected function getAuthList($uid,$type) {
+    protected function getAuthList($uid, $type)
+    {
         static $_authList = array(); //保存用户验证通过的权限列表
-        $t = implode(',',(array)$type);
-        if (isset($_authList[$uid.$t])) {
-            return $_authList[$uid.$t];
+        $t                = implode(',', (array) $type);
+        if (isset($_authList[$uid . $t])) {
+            return $_authList[$uid . $t];
         }
-        if( $this->_config['AUTH_TYPE']==2 && isset($_SESSION['_AUTH_LIST_'.$uid.$t])){
-            return $_SESSION['_AUTH_LIST_'.$uid.$t];
+        if ($this->_config['AUTH_TYPE'] == 2 && isset($_SESSION['_AUTH_LIST_' . $uid . $t])) {
+            return $_SESSION['_AUTH_LIST_' . $uid . $t];
         }
 
         //读取用户所属用户组
         $groups = $this->getGroups($uid);
-        $ids = array();//保存用户所属用户组设置的所有权限规则id
+        $ids    = array(); //保存用户所属用户组设置的所有权限规则id
         foreach ($groups as $g) {
             $ids = array_merge($ids, explode(',', trim($g['rules'], ',')));
         }
         $ids = array_unique($ids);
         if (empty($ids)) {
-            $_authList[$uid.$t] = array();
+            $_authList[$uid . $t] = array();
             return array();
         }
 
-        $map=array(
-            'id'=>array('in',$ids),
-            'type'=>$type,
-            'status'=>1,
+        $map = array(
+            'id'     => array('in', $ids),
+            'type'   => $type,
+            'status' => 1,
         );
         //读取用户组所有权限规则
         $rules = Db::name($this->_config['AUTH_RULE'])
             ->where($map)
             ->select();
         //循环规则，判断结果。
-        $authList = array();   //
+        $authList = array(); //
         foreach ($rules as $rule) {
-            if (!empty($rule['condition'])) { //根据condition进行验证
-                $user = $this->getUserInfo($uid);//获取用户信息,一维数组
+            if (!empty($rule['condition'])) {
+                //根据condition进行验证
+                $user = $this->getUserInfo($uid); //获取用户信息,一维数组
 
                 $command = preg_replace('/\{(\w*?)\}/', '$user[\'\\1\']', $rule['condition']);
                 //dump($command);//debug
@@ -149,10 +161,10 @@ class Auth{
                 $authList[] = strtolower($rule['name']);
             }
         }
-        $_authList[$uid.$t] = $authList;
-        if($this->_config['AUTH_TYPE']==2){
+        $_authList[$uid . $t] = $authList;
+        if ($this->_config['AUTH_TYPE'] == 2) {
             //规则列表结果保存到session
-            $_SESSION['_AUTH_LIST_'.$uid.$t]=$authList;
+            $_SESSION['_AUTH_LIST_' . $uid . $t] = $authList;
         }
         return array_unique($authList);
     }
@@ -160,11 +172,12 @@ class Auth{
     /**
      * 获得用户资料,根据自己的情况读取数据库
      */
-    protected function getUserInfo($uid) {
-        static $userinfo=array();
-        if(!isset($userinfo[$uid])){
-            $userinfo[$uid]=Db::name($this->_config['AUTH_USER'])
-                ->where(array('id'=>$uid))
+    protected function getUserInfo($uid)
+    {
+        static $userinfo = array();
+        if (!isset($userinfo[$uid])) {
+            $userinfo[$uid] = Db::name($this->_config['AUTH_USER'])
+                ->where(array('id' => $uid))
                 ->find();
         }
         return $userinfo[$uid];
@@ -172,51 +185,50 @@ class Auth{
 
 }
 
-
 /*
-* 权限认证类
-* 功能特性：
-* 1，是对规则进行认证，不是对节点进行认证。用户可以把节点当作规则名称实现对节点进行认证。
-*      $auth=new Auth();  $auth->check('规则名称','用户id')
-*
-* 2，可以同时对多条规则进行认证，并设置多条规则的关系（or或者and）
-*      $auth=new Auth();  $auth->check('规则1,规则2','用户id','and')
-*      第三个参数为and时表示，用户需要同时具有规则1和规则2的权限。 
-*          当第三个参数为or时，表示用户值需要具备其中一个条件即可。默认为or
-*
-* 3，一个用户可以属于多个用户组(hlz_auth_group_access表 定义了用户所属用户组)。
-*      我们需要设置每个用户组拥有哪些规则(hlz_auth_group 定义了用户组权限)
-*
-* 4，支持规则表达式。
-*      在hlz_auth_rule 表中定义一条规则时，如果type为1， condition字段就可以定义规则表达式。 
-*          如定义{score}>5  and {score}<100  表示用户的分数在5-100之间时这条规则才会通过。
+ * 权限认证类
+ * 功能特性：
+ * 1，是对规则进行认证，不是对节点进行认证。用户可以把节点当作规则名称实现对节点进行认证。
+ *      $auth=new Auth();  $auth->check('规则名称','用户id')
+ *
+ * 2，可以同时对多条规则进行认证，并设置多条规则的关系（or或者and）
+ *      $auth=new Auth();  $auth->check('规则1,规则2','用户id','and')
+ *      第三个参数为and时表示，用户需要同时具有规则1和规则2的权限。
+ *          当第三个参数为or时，表示用户值需要具备其中一个条件即可。默认为or
+ *
+ * 3，一个用户可以属于多个用户组(hlz_auth_group_access表 定义了用户所属用户组)。
+ *      我们需要设置每个用户组拥有哪些规则(hlz_auth_group 定义了用户组权限)
+ *
+ * 4，支持规则表达式。
+ *      在hlz_auth_rule 表中定义一条规则时，如果type为1， condition字段就可以定义规则表达式。
+ *          如定义{score}>5  and {score}<100  表示用户的分数在5-100之间时这条规则才会通过。
 ################数据库操作--复制开始################
 -- ----------------------------
 -- hlz_auth_rule，规则表，
 -- id:主键，name：规则唯一标识, title：规则中文名称 status 状态：为1正常，为0禁用，condition：规则表达式，为空表示存在就验证，不为空表示按照条件验证
 -- ----------------------------
- DROP TABLE IF EXISTS `hlz_auth_rule`;
+DROP TABLE IF EXISTS `hlz_auth_rule`;
 CREATE TABLE `hlz_auth_rule` (
-    `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-    `name` char(80) NOT NULL DEFAULT '',
-    `title` char(20) NOT NULL DEFAULT '',
-    `type` tinyint(1) NOT NULL DEFAULT '1',
-    `status` tinyint(1) NOT NULL DEFAULT '1',
-    `condition` char(100) NOT NULL DEFAULT '',  # 规则附件条件,满足附加条件的规则,才认为是有效的规则
-    PRIMARY KEY (`id`),
-    UNIQUE KEY `name` (`name`)
+`id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+`name` char(80) NOT NULL DEFAULT '',
+`title` char(20) NOT NULL DEFAULT '',
+`type` tinyint(1) NOT NULL DEFAULT '1',
+`status` tinyint(1) NOT NULL DEFAULT '1',
+`condition` char(100) NOT NULL DEFAULT '',  # 规则附件条件,满足附加条件的规则,才认为是有效的规则
+PRIMARY KEY (`id`),
+UNIQUE KEY `name` (`name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- hlz_auth_group 用户组表，
 -- id：主键， title:用户组中文名称， rules：用户组拥有的规则id， 多个规则","隔开，status 状态：为1正常，为0禁用
 -- ----------------------------
- DROP TABLE IF EXISTS `hlz_auth_group`;
+DROP TABLE IF EXISTS `hlz_auth_group`;
 CREATE TABLE `hlz_auth_group` (
-    `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-    `title` char(100) NOT NULL DEFAULT '',
-    `status` tinyint(1) NOT NULL DEFAULT '1',
-    `rules` char(80) NOT NULL DEFAULT '',
-    PRIMARY KEY (`id`)
+`id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+`title` char(100) NOT NULL DEFAULT '',
+`status` tinyint(1) NOT NULL DEFAULT '1',
+`rules` char(80) NOT NULL DEFAULT '',
+PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 -- ----------------------------
 -- hlz_auth_group_access 用户组明细表
@@ -224,60 +236,59 @@ CREATE TABLE `hlz_auth_group` (
 -- ----------------------------
 DROP TABLE IF EXISTS `hlz_auth_group_access`;
 CREATE TABLE `hlz_auth_group_access` (
-    `uid` mediumint(8) unsigned NOT NULL,
-    `group_id` mediumint(8) unsigned NOT NULL,
-    UNIQUE KEY `uid_group_id` (`uid`,`group_id`),
-    KEY `uid` (`uid`),
-    KEY `group_id` (`group_id`)
+`uid` mediumint(8) unsigned NOT NULL,
+`group_id` mediumint(8) unsigned NOT NULL,
+UNIQUE KEY `uid_group_id` (`uid`,`group_id`),
+KEY `uid` (`uid`),
+KEY `group_id` (`group_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 ################数据库操作--复制结束################
-*/
+ */
 
 /*
-* 满足条件,则输出相应结果
-* @param String  : rule 要验证的规则名称,一般是“模块名/控制器名/方法”
-* @param any     : true 符合规则后,执行的代码
-* @param String  : false 不符合规则的,执行代码,默认为抛出字符串‘’
-* @param String  : relation 默认值为‘or’,表示有一条规则满足条件即可,‘and’表示所有规则都得满足
-* @return String : 对应true或者false情况,输出的值
+ * 满足条件,则输出相应结果
+ * @param String  : rule 要验证的规则名称,一般是“模块名/控制器名/方法”
+ * @param any     : true 符合规则后,执行的代码
+ * @param String  : false 不符合规则的,执行代码,默认为抛出字符串‘’
+ * @param String  : relation 默认值为‘or’,表示有一条规则满足条件即可,‘and’表示所有规则都得满足
+ * @return String : 对应true或者false情况,输出的值
 function auth_check($rule, $true, $false='',  $relation='or'){
-    // 如果是超级管理员,默认通过验证
-    if( isset($_SESSION['staff']['super']) ){
-        return $true;
-    }else{
-        $uid = 0 ;   // 用户的id,来自登陆时,记录的职员的session，如果没有则默认为0
-        $auth = new \Mine\yth_Auth();
-        if(  isset($_SESSION['staff']['id'])  ){
-             $uid = $_SESSION['staff']['id'];
-        }
-        return $auth->check($rule, $uid, 1, 'url', $relation) ? $true : $false ;
-    }
+// 如果是超级管理员,默认通过验证
+if( isset($_SESSION['staff']['super']) ){
+return $true;
+}else{
+$uid = 0 ;   // 用户的id,来自登陆时,记录的职员的session，如果没有则默认为0
+$auth = new \Mine\yth_Auth();
+if(  isset($_SESSION['staff']['id'])  ){
+$uid = $_SESSION['staff']['id'];
+}
+return $auth->check($rule, $uid, 1, 'url', $relation) ? $true : $false ;
+}
 }
 
-
-* 管理员块，节点访问权限控制
-* @param String  : rule 要验证的规则名称,一般是“模块名(这里三位缩写)/控制器名/方法”[英文全小写] ，示例 con/Admin/hall
-* @return Void   没有权限,则退出程序
+ * 管理员块，节点访问权限控制
+ * @param String  : rule 要验证的规则名称,一般是“模块名(这里三位缩写)/控制器名/方法”[英文全小写] ，示例 con/Admin/hall
+ * @return Void   没有权限,则退出程序
 function node_check( $rule){
-    $msg['Err']  = 1002;
-    $rule = strtolower($rule);
-    // 如果不是管理员
-    if( !isset( $_SESSION['staff']['id'] ) ){
-        if( preg_match('/^con/i', $rule) ){  // 管理员登陆超时，用这个
-            header('Location:/Admin');  exit();
-        }
-        exit( json_encode($msg) );
-    }
-    $uid = $_SESSION['staff']['id'] ;
-    $auth= new \Mine\yth_Auth();
-    // 如果既没有普通权限，又不是超级管理员
-    if(  !$auth->check($rule, $uid)  &&  !isset($_SESSION['staff']['super'])  ){
-        // 如果是controller，则重定向
-        if( preg_match('/^con/i', $rule) ){  
-            header('Location:/Admin');  exit();
-        }else{
-            exit( json_encode($msg) );
-        }
-    }
+$msg['Err']  = 1002;
+$rule = strtolower($rule);
+// 如果不是管理员
+if( !isset( $_SESSION['staff']['id'] ) ){
+if( preg_match('/^con/i', $rule) ){  // 管理员登陆超时，用这个
+header('Location:/Admin');  exit();
 }
-*/
+exit( json_encode($msg) );
+}
+$uid = $_SESSION['staff']['id'] ;
+$auth= new \Mine\yth_Auth();
+// 如果既没有普通权限，又不是超级管理员
+if(  !$auth->check($rule, $uid)  &&  !isset($_SESSION['staff']['super'])  ){
+// 如果是controller，则重定向
+if( preg_match('/^con/i', $rule) ){
+header('Location:/Admin');  exit();
+}else{
+exit( json_encode($msg) );
+}
+}
+}
+ */

@@ -1,12 +1,16 @@
 <?php
 // 简单对称加密
 namespace Crypt;
-class yth_crypt implements \Crypt\Basic {
+
+use Crypt\Basic;
+
+class yth_crypt implements Basic
+{
     protected static $_config_crypt_1 = [
-        '+', '-', '*' , '/'
+        '+', '-', '*', '/',
     ];
     protected static $_config_crypt_2 = [
-        'tcv', 'qwrj', 'psd'
+        'tcv', 'qwrj', 'psd',
     ];
     /**
      * 加密
@@ -14,12 +18,15 @@ class yth_crypt implements \Crypt\Basic {
      * @param String : my_key 加密密钥
      * @return String 密文
      */
-    public static function encrypt($str = '', $my_key = 'http://www.hlzblog.top/') {
-        $strArr = str_split(base64_encode(  urlencode($str)  ));
+    public static function encrypt($str = '', $my_key = 'http://www.hlzblog.top/')
+    {
+        $strArr   = str_split(base64_encode(urlencode($str)));
         $strCount = count($strArr);
-        foreach (str_split($my_key) as $key => $value)
-            $key < $strCount && $strArr[$key].=$value;
-        return str_replace( self::$_config_crypt_1 , self::$_config_crypt_2, join('', $strArr));
+        foreach (str_split($my_key) as $key => $value) {
+            $key < $strCount && $strArr[$key] .= $value;
+        }
+
+        return str_replace(self::$_config_crypt_1, self::$_config_crypt_2, join('', $strArr));
     }
 
     /**
@@ -28,12 +35,15 @@ class yth_crypt implements \Crypt\Basic {
      * @param String : my_key 解密密钥
      * @return String 明文
      */
-    public static function decrypt($str = '', $my_key = 'http://www.hlzblog.top/') {
-        $strArr = str_split(str_replace(  self::$_config_crypt_2 , self::$_config_crypt_1 , $str), 2);
+    public static function decrypt($str = '', $my_key = 'http://www.hlzblog.top/')
+    {
+        $strArr   = str_split(str_replace(self::$_config_crypt_2, self::$_config_crypt_1, $str), 2);
         $strCount = count($strArr);
-        foreach (str_split($my_key) as $key => $value)
+        foreach (str_split($my_key) as $key => $value) {
             $key <= $strCount && $strArr[$key][1] === $value && $strArr[$key] = $strArr[$key][0];
-        return urldecode(   base64_decode(join('', $strArr))   );
+        }
+
+        return urldecode(base64_decode(join('', $strArr)));
     }
 
 }

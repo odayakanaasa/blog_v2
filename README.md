@@ -1,8 +1,10 @@
 [Offical Website](http://www.hlzblog.top/)
 
-This is a project which is based on thinkphp5 framework
+This is a project which is based on thinkphp5 framework  
+Follow the [PSR-2](http://www.php-fig.org/psr/psr-2/) standor  
 
 ## Initial Account
+
  * Login site /admin
  * account : admin
  * password: 123123
