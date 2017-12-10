@@ -25,7 +25,7 @@ class Location
      * @param  String : return_array 是否返回截取的ip
      * @return String|Array : 用户实际IP | [用户实际IP,截取前两段的IP]
      */
-    public static function getIp($return_array = false)
+    public static function get_ip($return_array = false)
     {
         //如果客户端 没有通过代理服务器来访问
         if (!empty($HTTP_SERVER_VARS["HTTP_X_FORWARDED_FOR"])) {

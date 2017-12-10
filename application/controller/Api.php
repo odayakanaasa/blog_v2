@@ -6,6 +6,8 @@ namespace app\controller;
 
 use Mine\Filter;
 use think\Request;
+use Mine\Location;
+use think\Db;
 
 class Api
 {
@@ -54,11 +56,11 @@ class Api
                     exit('{"Err":1000}');
             }
         } else {
-            $r = \think\Db::query('
+            $r = Db::query('
                 Select ip, time, expire
                 From `user_deny_ip`
                 Where ip = ?
-            ', [\Mine\Location::get_ip()]);
+            ', [ Location::get_ip()]);
             // 在表中？
             if (count($r)) {
                 // 超过时长？
@@ -115,10 +117,10 @@ class Api
      */
     public function register_ip()
     {
-        \think\Db::execute('
+        Db::execute('
             Insert into `user_deny_ip`
             (ip,time,expire)
             Values(?,?,?)
-        ', [\Mine\Location::get_ip(), time(), $this->deny_expire]);
+        ', [Location::get_ip(), time(), $this->deny_expire]);
     }
 }
