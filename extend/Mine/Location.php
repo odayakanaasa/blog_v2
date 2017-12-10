@@ -12,7 +12,7 @@ class Location
      * @param String  : ip 传入IP地址
      * @return String : 国家+省份+市
      */
-    public static function ipLocation($ip)
+    public static function ip_location($ip)
     {
         $ipContent = file_get_contents("http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&ip=" . $ip);
         $ip_info   = json_decode($ipContent);

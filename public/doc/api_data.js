@@ -705,7 +705,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n\t \"info\": [{\n\t   \"id\": \"\",\n\t   \"url\": \"\",\n\t }, ...],\n\t \"page_count\": \"\",\n\t \"total\": \"\"\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"info\": [{\n      \"id\": \"\",\n      \"url\": \"\",\n    }, ...],\n    \"page_count\": \"\",\n    \"total\": \"\"\n}",
           "type": "json"
         }
       ]
@@ -725,7 +725,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n\t \"info_pic\": \"\",\n\t \"reply_pic\": \"\",\n\t \"descript\": \"\",\n\t \"name\": \"\",\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"info_pic\": \"\",\n    \"reply_pic\": \"\",\n    \"descript\": \"\",\n    \"name\": \"\",\n}",
           "type": "json"
         }
       ]
@@ -865,7 +865,7 @@ define({ "api": [
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n\t \"info\": [{\n\t   \"id\": \"\",\n\t   \"title\": \"\",\n\t   \"url\": \"\",\n\t }, ...]\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"info\": [{\n      \"id\": \"\",\n      \"title\": \"\",\n      \"url\": \"\",\n    }, ...]\n}",
           "type": "json"
         }
       ]
