@@ -178,7 +178,7 @@ function chat_receive_data(d) {
 function chat_append_data(d){
     // Float right while this object has property named 'role'
     if( !d.time  ){
-        d.time = new Date().Format("yyyy-MM-dd hh:mm:ss");
+        d.time = format_time("Y-m-d h:i:s");
     }
     d.text = decodeURIComponent(d.text);
     // Filter of XSS
@@ -204,7 +204,7 @@ function chat_append_data(d){
 // Save Data 
     // Require: `d.c_id`  And `data.text` should be encodeURIComponent()
 function chat_save_data(d){
-    d.time = new Date().Format("yyyy-MM-dd hh:mm:ss");
+    d.time = format_time("Y-m-d h:i:s");
     var item_name = 'chat_with_' + d.c_id;
     // Decode String to Json
     if( sessionStorage.getItem( item_name ) ){

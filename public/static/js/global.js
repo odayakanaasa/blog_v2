@@ -1,4 +1,17 @@
 //++++++++++++++++++++++++++++++++++++++++++++++++++++
+// 异步加载js   http://www.bootcdn.cn/loadjs/readme/
+//++++++++++++++++++++++++++++++++++++++++++++++++++++
+/* 示例，注意函数库只能顺序加载，涉及节点渲染的，才用异步加载
+    loadjs(['/path/to/foo.js', '/path/to/bar.js'], 'foobar');
+    loadjs.ready('foobar', {
+      success: function() { },          // foo.js & bar.js loaded
+      error: function(depsNotFound) { } // foobar bundle load failed
+    });
+*/
+
+
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++
 //++				Ajax调试 API
 //++++++++++++++++++++++++++++++++++++++++++++++++++++
 /*
@@ -116,68 +129,37 @@ function async_render(tpl_id, container_id, full_data  , func = false){
   });
 }
 
-//++++++++++++++++++++++++++++++++++++++++++++++++++++
-// 异步加载js   http://www.bootcdn.cn/loadjs/readme/
-//++++++++++++++++++++++++++++++++++++++++++++++++++++
-/* 示例，注意函数库只能顺序加载，涉及节点渲染的，才用异步加载
-	loadjs(['/path/to/foo.js', '/path/to/bar.js'], 'foobar');
-	loadjs.ready('foobar', {
-	  success: function() { },			// foo.js & bar.js loaded
-	  error: function(depsNotFound) { } // foobar bundle load failed
-	});
-*/
-var loadjs=function(){function e(e,n){e=e.push?e:[e];var t,r,i,c,o=[],f=e.length,a=f;for(t=function(e,t){t.length&&o.push(e),--a||n(o)};f--;)r=e[f],i=s[r],i?t(r,i):(c=u[r]=u[r]||[],c.push(t))}function n(e,n){if(e){var t=u[e];if(s[e]=n,t)for(;t.length;)t[0](e,n),t.splice(0,1)}}function t(e,n,r,i){var o,s,u=document,f=r.async,a=(r.numRetries||0)+1,h=r.before||c;i=i||0,/(^css!|\.css$)/.test(e)?(o=!0,s=u.createElement("link"),s.rel="stylesheet",s.href=e.replace(/^css!/,"")):(s=u.createElement("script"),s.src=e,s.async=void 0===f||f),s.onload=s.onerror=s.onbeforeload=function(c){var u=c.type[0];if(o&&"hideFocus"in s)try{s.sheet.cssText.length||(u="e")}catch(e){u="e"}if("e"==u&&(i+=1)<a)return t(e,n,r,i);n(e,u,c.defaultPrevented)},h(e,s)!==!1&&u.head.appendChild(s)}function r(e,n,r){e=e.push?e:[e];var i,c,o=e.length,s=o,u=[];for(i=function(e,t,r){if("e"==t&&u.push(e),"b"==t){if(!r)return;u.push(e)}--o||n(u)},c=0;c<s;c++)t(e[c],i,r)}function i(e,t,i){var s,u;if(t&&t.trim&&(s=t),u=(s?i:t)||{},s){if(s in o)throw"LoadJS";o[s]=!0}r(e,function(e){e.length?(u.error||c)(e):(u.success||c)(),n(s,e)},u)}var c=function(){},o={},s={},u={};return i.ready=function(n,t){return e(n,function(e){e.length?(t.error||c)(e):(t.success||c)()}),i},i.done=function(e){n(e,[])},i.reset=function(){o={},s={},u={}},i.isDefined=function(e){return e in o},i}();
-/**
-* 时间戳的格式化
-* String timestamp 时间戳 如 1489467563
-* Return 格式化时间字符串 如 2017-03-01 00:00:00
-*/
-function yth_date(timestamp) {
-	var newDate = new Date();
-	newDate.setTime(timestamp * 1000);
-	Date.prototype.format = function(format) {
-		var date = {
-			"M+": newDate.getMonth() + 1,
-			"d+": newDate.getDate(),
-			"h+": newDate.getHours(),
-			"m+": newDate.getMinutes(),
-			"s+": newDate.getSeconds(),
-			"q+": Math.floor((newDate.getMonth() + 3) / 3),
-			"S+": newDate.getMilliseconds()
-		};
-		if (/(y+)/i.test(format)) {
-			format = format.replace(RegExp.$1, (newDate.getFullYear() + '').substr(4 - RegExp.$1.length));
-		}
-		for (var k in date) {
-			if (new RegExp("(" + k + ")").test(format)) {
-				format = format.replace(RegExp.$1, RegExp.$1.length == 1 ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
-			}
-		}
-		return format;
-	}
-	return newDate.format('yyyy-MM-dd hh:mm:ss');
-}
 
+  /**
+  * 获取格式化后的时间
+  *    如： format_time("Y-m-d h:i:s") 输出 2017-12-11 22:46:11
+  * @param string str 待格式化的时间
+  * @return string 
+  */
+  function format_time(str){
+    function add_zero( num ){
+        if( num<9 ){
+            return  "0" + num;
+        }else{
+            return "" + num + "";
+        }
+    }
+    var date = new Date();
+    var Y = date.getFullYear(),
+        m = add_zero( date.getMonth() ),
+        d = add_zero( date.getDate() ),
+        h = add_zero( date.getHours() ),
+        i = add_zero( date.getMinutes() ),
+        s = add_zero( date.getSeconds() );
+    str = str.replace("Y", Y);
+    str = str.replace("m", m);
+    str = str.replace("d", d);
+    str = str.replace("h", h);
+    str = str.replace("i", i);
+    str = str.replace("s", s);
+    return str;
+  }
 
-/*
-* 格式化日期，如 2016-11-25 15:15:53
-* 使用  new Date().Format("yyyy年MM月dd日 hh:mm:ss");
-*/
-Date.prototype.Format = function (fmt) {
-    var o = {
-        "M+": this.getMonth() + 1,
-        "d+": this.getDate(), 
-        "h+": this.getHours(), 
-        "m+": this.getMinutes(), 
-        "s+": this.getSeconds(), 
-        "q+": Math.floor((this.getMonth() + 3) / 3), 
-        "S": this.getMilliseconds() 
-    };
-    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-    for (var k in o)
-    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-    return fmt;
-}
 
 /** jq.lazy.js 
 ****** 初始化originalSrc替代src 填入资源地址 ******

@@ -121,8 +121,8 @@ var login_method_icon_src = function(this_type) {
 		// IF `original` eq 0  => it is an original pieces 
 		var if_original = parseInt(  $("#yth_original").attr("yth_original")  );
 		if( if_original ){
-			var tmp_html = $("#yth_original").html()
-				,from_others_logo = '[转载] ';
+			var tmp_html = $("#yth_original").html(),
+				from_others_logo = '[转载] ';
 			$("#yth_original").html(from_others_logo+tmp_html);
 		}
 	}
