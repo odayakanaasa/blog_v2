@@ -45,7 +45,7 @@
     <tr class="tr_{{hashCode( d[i].ip ) }}">
       <td>{{d[i].ip}}</td>
       <td>{{format_time("Y-m-d h:i:s", parseInt(d[i].time) ) }}</td>
-      <td>{{format_time("Y-m-d h:i:s", parseInt(d[i].time) + parseInt(d[i].expire)  }}</td>
+      <td>{{format_time("Y-m-d h:i:s", parseInt(d[i].time) + parseInt(d[i].expire) ）  }}</td>
       <td >
         <button class="layui-btn layui-btn-normal" yth-ip="{{d[i].ip}}" 
          onclick="user_deny_ip_edit(this)" title="修改"><i class="layui-icon"></i></button>
