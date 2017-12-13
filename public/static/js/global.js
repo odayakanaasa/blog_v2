@@ -148,7 +148,7 @@ function async_render(tpl_id, container_id, full_data  , func = false){
     timestamp = parseInt(timestamp);
     var date = timestamp === 0 ?　new Date() : new Date(timestamp);
     var Y = date.getFullYear(),
-        m = add_zero( date.getMonth() ),
+        m = add_zero( date.getMonth() + 1 ),
         d = add_zero( date.getDate() ),
         h = add_zero( date.getHours() ),
         i = add_zero( date.getMinutes() ),
