@@ -48,7 +48,7 @@ class Filter
     {
         $i = intval($v, 10);
         $i = abs($i);
-        self::isEmpty($i);
+        self::is_empty($i);
         return $i;
     }
 
