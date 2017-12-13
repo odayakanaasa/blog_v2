@@ -134,9 +134,10 @@ function async_render(tpl_id, container_id, full_data  , func = false){
   * 获取格式化后的时间
   *    如： format_time("Y-m-d h:i:s") 输出 2017-12-11 22:46:11
   * @param string str 待格式化的时间
+  * @param int timestamp 时间戳， 0为不处理
   * @return string 
   */
-  function format_time(str){
+  function format_time(str, timestamp=0){
     function add_zero( num ){
         if( num<9 ){
             return  "0" + num;
@@ -144,7 +145,8 @@ function async_render(tpl_id, container_id, full_data  , func = false){
             return "" + num + "";
         }
     }
-    var date = new Date();
+    timestamp = parseInt(timestamp);
+    var date = timestamp === 0 ?　new Date() : new Date(timestamp);
     var Y = date.getFullYear(),
         m = add_zero( date.getMonth() ),
         d = add_zero( date.getDate() ),
