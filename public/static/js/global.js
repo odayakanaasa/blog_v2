@@ -145,7 +145,7 @@ function async_render(tpl_id, container_id, full_data  , func = false){
             return "" + num + "";
         }
     }
-    timestamp = parseInt(timestamp);
+    timestamp = parseInt(timestamp) * 1000;
     var date = timestamp === 0 ?　new Date() : new Date(timestamp);
     var Y = date.getFullYear(),
         m = add_zero( date.getMonth() + 1 ),
