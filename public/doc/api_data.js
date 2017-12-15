@@ -233,7 +233,7 @@ define({ "api": [
         ]
       }
     },
-    "description": "<p>删除对应分类名</p>",
+    "description": "<p>删除对应博文内容</p>",
     "version": "2.0.0",
     "success": {
       "examples": [
@@ -428,7 +428,7 @@ define({ "api": [
         ]
       }
     },
-    "description": "<p>删除对应分类名</p>",
+    "description": "<p>依据文章标题，模糊搜索文章 --- TODO 有必要通过coreseek搜索吗？</p>",
     "version": "2.0.0",
     "success": {
       "examples": [

@@ -269,7 +269,7 @@ class Admin_article extends Admin
      *
      * @apiParam {string} title 文章名
      *
-     * @apiDescription  删除对应分类名
+     * @apiDescription  依据文章标题，模糊搜索文章 --- TODO 有必要通过coreseek搜索吗？ 
      *
      * @apiVersion 2.0.0
      * @apiSuccessExample Success-Response:
@@ -384,7 +384,7 @@ class Admin_article extends Admin
      *
      * @apiParam {string} id 主键
      *
-     * @apiDescription  删除对应分类名
+     * @apiDescription  删除对应博文内容
      *
      * @apiVersion 2.0.0
      * @apiSuccessExample Success-Response:
