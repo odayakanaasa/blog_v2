@@ -49,7 +49,7 @@ loadjs(["{:link_plugins('referrer_killer','referrer-killer.js')}",
       temp_src = arr[i].getAttribute("originalsrc");
       // Filters 
       var filter_1 = temp_src.match(/^http:\/\/oqx3r2n98\.bkt\.clouddn\.com/i),
-          filter_2 = temp_src.match(/^http:\/\/hlzblog/i) ;
+          filter_2 = temp_src.match(/^http(.*?)hlzblog/i);
       // If this pic is not from my cdn
       if( !filter_1  && !filter_2 ){
         arr[i].innerHTML = ReferrerKiller.imageHtml(temp_src);
