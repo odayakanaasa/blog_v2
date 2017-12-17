@@ -19,14 +19,14 @@ var yth_memorabilia_init = {
 		* content_color 文字颜色
 		*/
 		{
-			// [冬] 源：http://oqx3r2n98.bkt.clouddn.com/17-6-2/4658560.jpg
+			// [冬] 源：http://img.cdn.hlzblog.top/17-6-2/4658560.jpg
 			"bg": "https://ooo.0o0.ooo/2017/06/02/59315dad4ffaa.jpg",
 			"header_bg":"rgba(255,255,255,0.2)",
 			"title_color":"#0D0D0D",
 			"content_color":"#213e44"
 		},
 		{
-			// [春] 源：http://oqx3r2n98.bkt.clouddn.com/17-6-2/69738894.jpg
+			// [春] 源：http://img.cdn.hlzblog.top/17-6-2/69738894.jpg
 			"bg":"https://ooo.0o0.ooo/2017/06/02/59315eb43f594.jpg",
 			"header_bg":"rgba(255,106,106, 0.2)",
 			"title_color":"#CAC7C7",
@@ -34,13 +34,13 @@ var yth_memorabilia_init = {
 		},
 		{
 			// [夏] 源：  https://ooo.0o0.ooo/2017/06/02/59315d60b8b66.jpg
-			"bg": "http://oqx3r2n98.bkt.clouddn.com/17-6-2/56649681.jpg",
+			"bg": "http://img.cdn.hlzblog.top/17-6-2/56649681.jpg",
 			"header_bg":"rgba(17,178,255,0.2)",
 			"title_color":"#11b2e2",
 			"content_color":""
 		},
 		{
-			// [秋] 源：http://oqx3r2n98.bkt.clouddn.com/17-6-2/31164195.jpg
+			// [秋] 源：http://img.cdn.hlzblog.top/17-6-2/31164195.jpg
 			"bg": "https://ooo.0o0.ooo/2017/06/02/59315df945f26.jpg",
 			"header_bg":"rgba(239, 104, 104, 0.2)",
 			"title_color":"#efd264",
