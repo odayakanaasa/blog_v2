@@ -1,5 +1,4 @@
-<?php
-/**
+<?php /**
  * 测试相关
  */
 namespace app\controller;
