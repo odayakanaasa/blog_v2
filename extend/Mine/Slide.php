@@ -502,6 +502,17 @@ class Slide{
     * @return String 中文或者英文包
     */
     private static function get_lan_pack(){
+        if (!function_exists('getallheaders')) {
+            function getallheaders(){
+                $headers = [];
+                foreach ($_SERVER as $name => $value) {
+                    if (substr($name, 0, 5) == 'HTTP_') {
+                        $headers[str_replace(' ', '-', ucwords(strtolower(str_replace('_', ' ', substr($name, 5)))))] = $value;
+                    }
+                }
+                return $headers;
+            }
+        }
         $language = getallheaders()['Accept-Language'];
         if( preg_match('/zh/i', $language) ){
             return self::$inner_info['zh'];
