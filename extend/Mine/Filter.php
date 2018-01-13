@@ -12,10 +12,10 @@ class Filter
      * @param Array   : 判断数组中的值，是否都存在
      * @return void   : 如果不存在，就结束程序
      */
-    function is_set($param) {
-        $msg['Err'] = 1004;
+    public function is_set($param)
+    {
         foreach ($param as $k) {
-            true === isset($k) ? true : trans_json($msg);
+            true === isset($k) ? true : exit(Response::error(1003));
         }
     }
 
@@ -31,11 +31,10 @@ class Filter
         if ('' == $s) {
             // 是否自定义输出错误信息
             if ($out) {
-                $msg['out'] = $out;
+                exit(Response::error(1004, $out));
             } else {
-                $msg['Err'] = 1012;
+                exit(Response::error(1004));
             }
-            trans_json($msg);
         }
     }
 
@@ -66,8 +65,7 @@ class Filter
             return $match_result;
         } else {
             if (!$match_result) {
-                $msg['out'] = '您的邮箱格式不正确';
-                trans_json($msg);
+                exit(Response::error(1001));
             }
         }
     }
@@ -79,9 +77,8 @@ class Filter
      */
     public static function account($account)
     {
-        $RegExp     = '/^[A-Za-z0-9]{6,16}$/';
-        $msg['out'] = '请使用，6~16位的英文或数字，用于注册帐号';
-        preg_match($RegExp, $account) ? true : trans_json($msg);
+        $RegExp = '/^[A-Za-z0-9]{5,16}$/';
+        preg_match($RegExp, $account) ? true : exit(Response::error(1002));
     }
 
     /**
@@ -93,8 +90,7 @@ class Filter
     {
         if (strlen($pwd) < 6 || strlen($pwd) > 25) {
             //密码长度校验
-            $msg['out'] = '只允许 6~25位 长度的密码' . $pwd;
-            trans_json($msg);
+            exit(Response::error(1005));
         }
     }
 
@@ -105,14 +101,14 @@ class Filter
      */
     public static function is_name($nickname)
     {
-        if (strlen($nickname) < 3) {
-            //密码长度校验
-            $msg['out'] = '你的昵称太短，请输入3到30个字符';
-            trans_json($msg);
-        } elseif (strlen($nickname) > 30) {
-            $msg['out'] = '你的昵称太长，请输入3到30个字符';
-            trans_json($msg);
+        if (strlen($nickname) < 1) {
+            $info = '你的昵称太短，请输入1到20个字符';
+            exit(Response::error(1006, $info));
+        } elseif (strlen($nickname) > 20) {
+            $info = '你的昵称太长，请输入2到20个字符';
+            exit(Response::error(1006, $info));
         }
+
     }
 
     /**

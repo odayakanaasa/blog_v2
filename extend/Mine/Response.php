@@ -8,11 +8,9 @@ namespace Mine;
 //    JSON_UNESCAPED_UNICODE 这个参数可以json不转译unicode值
 //    如果不加默认是输出如 {"hello":"\u4e16\u754c"}
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-use Mine\Consts;
 
 class Response
 {
-
     /**
      * 错误信息
      * @param int    code 项目中的状态码
@@ -23,7 +21,7 @@ class Response
         if (!empty($message)) {
             $msg = $message;
         } else {
-            $msg = self::has_code();
+            $msg = Consts::get($code);
         }
         $result = [
             "code"   => $code,
@@ -33,31 +31,20 @@ class Response
         return json_encode($result, JSON_UNESCAPED_UNICODE);
     }
 
+    /**
+     * 正确返回时的标准返回
+     * @param array   data 要返回的数据
+     * @param int     code 对应Consts类中的代码号
+     */
     public static function success(array $data = [], $code = 200)
     {
-        $msg    = self::has_code();
+        $msg    = Consts::get($code);
         $result = [
             "code"   => 200,
             "detail" => $msg,
             "data"   => $data,
         ];
         return json_encode($result, JSON_UNESCAPED_UNICODE);
-    }
-
-    /**
-     * 如果对于code存在，则返回对应字符串，否则返回错误提示信息
-     * @param string code 项目中的状态码
-     * @return string 对应提示信息
-     */
-    private static function has_code($code)
-    {
-        $code_name = 'code_' . $code;
-        if (!isset(Consts::$code_name)) {
-            $msg = 'code: ' . $code . ' 未设置';
-        } else {
-            $msg = Consts::$code_name;
-        }
-        return $msg;
     }
 
 }
