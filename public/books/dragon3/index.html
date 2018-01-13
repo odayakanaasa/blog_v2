@@ -18,23 +18,24 @@
 	  pic_src_suffix = '.jpg-mht.middle'; 
 	  // ~~~~~~~~~~~~~~~~~~~~~~~~~~每一段区域的解析规则如下~~~~~~~~~~~~~~~~~~~~~~~~~
 
-	    if (page>52){
-	        pic_src_prefix = 'http://mhpic.zymkcdn.com/comic/L/龙族Ⅲ/' + page + '话SM/'
-	    }
-	    else if (page>50){
-	        pic_src_prefix = 'http://mhpic.zymkcdn.com/comic/L/龙族Ⅲ/' + page + '话/'
-	    }
-	    //  47~  Now
-	    else if (page>46){
-	        pic_src_prefix = 'http://mhpic.zymkcdn.com/comic/L/龙族Ⅲ/' + page + '话SM/'
-	    }
-	    // 46
-	    else if( page>45 ){
+      switch(true){
+      	// 连载中...
+      	case page>52:
+	        pic_src_prefix = 'http://mhpic.zymkcdn.com/comic/L/龙族Ⅲ/' + page + '话SM/';
+      		break;
+      	case page>50:
+	        pic_src_prefix = 'http://mhpic.zymkcdn.com/comic/L/龙族Ⅲ/' + page + '话/';
+      		break;
+      	case page>46:
+	        pic_src_prefix = 'http://mhpic.zymkcdn.com/comic/L/龙族Ⅲ/' + page + '话SM/';
+      		break;
+      	case page>45:
 	        pic_src_prefix = 'http://mhpic.zymkcdn.com/comic/L/龙族Ⅲ/' + page + '话GQ/';
-	    }else{
+      		break;
+        default:
 	    // 1~ 45
 	        pic_src_prefix = 'http://mhpic.zymkcdn.com/comic/L/龙族Ⅲ/' + give_zero(page) + '话/';
-	    }
+      }
 
 	  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	  page_common(pic_src_prefix, pic_src_suffix);
