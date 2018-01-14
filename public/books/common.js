@@ -143,6 +143,8 @@ function pic_status_handle() {
     // $("img.lazy").on('error',function(e){
     //   console.log('错了');
     // });
+    // 重置计数器
+    pictures_fetch_counter = 0;
 
     // 不存在就移除DOM
     $(".lazy").on("error", function() {
