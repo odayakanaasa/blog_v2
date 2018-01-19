@@ -1,0 +1,10 @@
+.idea
+*.log
+runtime
+public/sitemap.xml
+public/robots.txt
+tmp/*
+node_modules
+sensitive_config.ini
+__materials/sql_baks/*
+log_colored/*.log
