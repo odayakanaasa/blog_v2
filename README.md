@@ -61,13 +61,17 @@ Follow the [PSR-2](http://www.php-fig.org/psr/psr-2/) standor
 [Click here](http://www.hlzblog.top/Board)
 
 ## API
-The API document of this blog is based on [apidoc](http://apidocjs.com/)  
+The API document of this blog powerd by [apidoc](http://apidocjs.com/)  
 
     apidoc -i application/api -o public/doc
 
 [Click here](http://www.hlzblog.top/doc)  
 
-## npm
+## Dependency
 When you want to run this project under the VirtualBox 
 
     npm install --no-bin-links
+
+When you want to run this project under the VirtualBox 
+
+    composer install
