@@ -34,6 +34,7 @@ Follow the [PSR-2](http://www.php-fig.org/psr/psr-2/) standor
         ├── sql_baks        --- 日常备份的文件
         └── yth_blog.sql    当前项目的数据库样本
     ├── node_modules
+    ├── gulpfile.js         前端自动化脚本
     ├── package.json        前端开发所需依赖
     ├── package-lock.json
     ├── phpunit.xml
