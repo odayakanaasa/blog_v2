@@ -57,7 +57,7 @@ loadjs(["{:link_plugins('referrer_killer','referrer-killer.js')}",
 
       // Filters --- Lastest : Unified CNAME
       // If this pic is not from my cdn
-      if( temp_src.match(/^http(.*?)hlzblog\.top/i) ){
+      if( !temp_src.match(/^http(.*?)hlzblog\.top/i) ){
         arr[i].innerHTML = ReferrerKiller.imageHtml(temp_src);
       }
     }
