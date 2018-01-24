@@ -3,7 +3,7 @@
 runtime
 public/sitemap.xml
 public/robots.txt
-tmp/*
+public/static/plugins/verify/img/tmp/*
 node_modules
 sensitive_config.ini
 __materials/sql_baks/*
