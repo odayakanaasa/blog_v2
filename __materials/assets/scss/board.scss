@@ -1,35 +1,37 @@
-.message_board{
-    cursor: pointer;
+.message_board {
+  cursor: pointer;
+  width: 80px;
+  height: 80px;
+  float: right;
+  img {
     width: 80px;
     height: 80px;
-    float: right;
-    img{
-      width: 80px;
-      height: 80px;
-    }
+  }
 }
 
 
 
-/*leaveMessage.php      time_roller_Area时间轴部分*/
 
-.board_container{
-    margin-top: 30px;
-    min-height: 700px;
-    padding-left: 120px;
+// leaveMessage.php      time_roller_Area时间轴部分
+
+.board_container {
+  margin-top: 30px;
+  min-height: 700px;
+  padding-left: 120px;
 }
 
 
 .message_list {
   width: 666px;
   float: left;
-  > li {
+  >li {
     padding: 20px 0;
     margin-bottom: 20px;
   }
 }
 
-/*时间轴的颜色控制*/
+
+// 时间轴的颜色控制
 
 .arrow_box {
   background: #d7fcef;
@@ -39,19 +41,20 @@
   position: relative;
   margin-top: -59px;
 }
-.right_box{
+
+.right_box {
+  border-radius: 50px;
+  position: relative;
+  display: inline;
+  left: 668px;
+  margin-top: -30px;
+  width: 0;
+  height: 0;
+  img {
+    width: 100px;
+    height: 100px;
     border-radius: 50px;
-    position: relative;
-    display: inline;
-    left: 668px;
-    margin-top: -30px;
-    width: 0;
-    height: 0;
-    img{
-      width: 100px;
-      height: 100px;
-      border-radius: 50px;
-    }
+  }
 }
 
 .ti {
@@ -66,7 +69,8 @@
 }
 
 
-/* 圆形定义边框色与背景一致 */
+
+// 圆形定义边框色与背景一致
 
 .arrow_box h2.title {
   padding: 0 0 0 20px;
@@ -74,7 +78,8 @@
   text-shadow: 0.5px 0.5px 0.5px #000;
 }
 
-/* leave message */
+
+// 留言部分
 
 .textinfo {
   color: #2b2b2b;
@@ -111,20 +116,22 @@
 
 .icon-time {
   padding: 0 0 0 10px;
-  .fa-qq{
+  .fa-qq {
     color: #8acef7;
     font-size: 17px;
   }
-  .fa-weibo{
+  .fa-weibo {
     color: #b95a5a;
     font-size: 17px;
   }
-  .login_method_icon{
+  .login_method_icon {
     width: 17px;
     height: 17px;
     margin-bottom: -4px;
   }
-  .fa-qq, .fa-weibo, .login_method_icon{
+  .fa-qq,
+  .fa-weibo,
+  .login_method_icon {
     margin-right: 10px;
   }
 }
@@ -155,17 +162,18 @@
   text-shadow: 0.5px 0.5px 0.5px #000;
 }
 
-/*leaveMessage.php     comment_Area留言部分——*/
 
+
+// 这是留言板内部回复 透明回复版面框
 .replay_content {
-  /*这是留言板内部回复 透明回复版面框*/
   width: 460px;
   color: rgb(89, 101, 125);
   border-radius: 5px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 1px 0 rgba(255, 255, 255, 0.95) inset;
 }
 
-/*图标都在这里*/
+
+// 图标都在这里
 
 .icon {
   height: 59px;

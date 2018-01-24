@@ -9,6 +9,6 @@ add code like the following list
 
 ## when you are working on this project
 
-watching scss change
+Watching scss files change when nodeJS is not installed
 
     sh scss.sh

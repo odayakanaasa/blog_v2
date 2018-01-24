@@ -32,6 +32,11 @@ Follow the [PSR-2](http://www.php-fig.org/psr/psr-2/) standor
         ├── CURD.php
         ├── shell           --- 开发所需脚本（Linux）
         ├── sql_baks        --- 日常备份的文件
+        ├── assets          --- 前端自动化
+            ├── scss          --- 编译成css前的样式
+            ├── js            --- 模块化打包与压缩前的js
+                ├── es5            --- es6目录转化过来的es5临时代码，部分文件会被打包成模块文件到js目录去
+                ├── es6            --- es6规范书写的代码
         └── yth_blog.sql    当前项目的数据库样本
     ├── node_modules
     ├── gulpfile.js         前端自动化脚本
@@ -72,6 +77,7 @@ The API document of this blog powerd by [apidoc](http://apidocjs.com/)
 When you want to run this project under the VirtualBox 
 
     npm install --no-bin-links
+    gulp  
 
 When you want to run this project under the VirtualBox 
 
