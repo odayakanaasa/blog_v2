@@ -12,6 +12,9 @@ var sequence = require('run-sequence');
 var watchify = require('watchify');
 // 合并文件
 var concat = require('gulp-concat');
+// 浏览器同步热更新
+var browserSync = require('browser-sync').create();
+
 
 // ----------------------------------------------------
 // SCSS
@@ -70,7 +73,6 @@ gulp.task('compile_js', function () {
     // .pipe(jshint())
     // .pipe(jshint.reporter('default'))
     .pipe(babel())
-    .pipe(uglify())
     .pipe(gulp.dest(js_es5_dir));
 });
 
@@ -83,6 +85,7 @@ gulp.task("browserify", function () {
   // 需要打包的文件目录
   var entiryFiles = [
     js_es5_dir + '/mobile/mobile.js',
+    js_es5_dir + '/test.js',
     // 早期的未使用es6标准书写，目前忽略
     // js_es5_dir + '/global.js',
     // js_es5_dir + '/hlz_rsa.js',
@@ -97,6 +100,7 @@ gulp.task("browserify", function () {
       .bundle()
       .pipe(source(file_name)) // 存储时的对应层级与文件名
       .pipe(buffer())
+      .pipe(uglify())
       .pipe(gulp.dest(js_path));
   });
 
