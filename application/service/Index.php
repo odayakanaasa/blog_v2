@@ -37,17 +37,23 @@ class Index
         $field = '';
         // 搜索功能
         if (isset($g['search'])) {
-            $field    = '%' . $g['search'] . '%';
-            $find_sql = ' Where a.`title` like ? ';
+            $search = '%' . $g['search'] . '%';
+            $field  = [
+                $search,
+                $search,
+            ];
+            $find_sql = ' Where a.`title` like ? or a.raw_content like ? ';
         } else {
             // 分类查询
-            $cate_id = @intval($g['cate_id']);
+            $cate_id = isset($g['cate_id']) ? intval($g['cate_id']) : 0;
             if ($cate_id == 0) {
                 $find_sql = ' Where a.`cate_id`>? ';
             } else {
                 $find_sql = ' Where a.`cate_id`=? ';
             }
-            $field = $cate_id;
+            $field = [
+                $cate_id,
+            ];
         }
         // 参数
         // 计算文章，统计评论
@@ -65,7 +71,7 @@ class Index
 				' . $find_sql . '
 				Order By a.`id` Desc
 				Limit ?,?
-			', [$field]);
+			', $field);
         $pagenation->page_size = 10;
         $_r4                   = $pagenation->get_result();
 

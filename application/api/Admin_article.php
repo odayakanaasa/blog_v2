@@ -269,7 +269,7 @@ class Admin_article extends Admin
      *
      * @apiParam {string} title 文章名
      *
-     * @apiDescription  依据文章标题，模糊搜索文章 --- TODO 有必要通过coreseek搜索吗？ 
+     * @apiDescription  依据文章标题、文章内容，模糊搜索文章 --- TODO 有必要通过coreseek搜索吗？ 
      *
      * @apiVersion 2.0.0
      * @apiSuccessExample Success-Response:
@@ -299,10 +299,10 @@ class Admin_article extends Admin
 			From `blog_text` as a
 			Left Join `blog_category_list` as b
 			On b.`id` = a.`cate_id`
-			Where a.`title` like ?
+			Where a.`title` like ? or a.raw_content like ?
 			Order By a.`id` Desc
 			Limit 5
-		', [$title]);
+		', [$title , $title]);
         trans_json($_res);
     }
 

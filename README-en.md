@@ -1,9 +1,11 @@
-[官方站点](http://www.hlzblog.top/)
+> This readme file has not yet completed the complete translation
 
-这个项目是基于thinkphp5框架开发的  
-遵循 [PSR-2](http://www.php-fig.org/psr/psr-2/) 标准  
+[Offical Website](http://www.hlzblog.top/)
 
-## 目录结构
+This is a project which is based on thinkphp5 framework  
+Follow the [PSR-2](http://www.php-fig.org/psr/psr-2/) standor  
+
+## Directory
 
     .
     ├── apidoc.json         生成api文档的配置
@@ -54,36 +56,36 @@
 
 
 
-## 初始帐号
+## Initial Account
 
- * 登录入口 /admin
- * 初始帐号 : admin
- * 初始密码: 123123
+ * Login site /admin
+ * account : admin
+ * password: 123123
 
-## 关于博客的开发
-[点此进入](http://www.hlzblog.top/Article/20.html)
+## About Blog
+[Click here](http://www.hlzblog.top/Article/20.html)
 
-## 留言给我
-[点此进入](http://www.hlzblog.top/Board)
+## Ask me
+[Click here](http://www.hlzblog.top/Board)
 
-## 接口说明
-本博客文档，基于[apidoc](http://apidocjs.com/)标准与生成  
+## API
+The API document of this blog powerd by [apidoc](http://apidocjs.com/)  
 
     apidoc -i application/api -o public/doc
 
-[点此查看接口文档](http://www.hlzblog.top/doc)  
+[Click here](http://www.hlzblog.top/doc)  
 
-## 依赖相关
-当你想在 VirtualBox 下开发时  
+## Dependency
+When you want to run this project under the VirtualBox 
 
     composer install
     npm install --no-bin-links
-    gulp start
+    gulp  
 
-此外你可能还需要一些服务
+Therefore, you need some server , such as 
 
-    redis --- 后续部分功能即将用上
-    nginx 
-    mysql --- 可能你需要一份免费的数据库服务器，目前你可以用 MaraiaDB 去替代它
-    php   --- 目前语法 在版本5.6+ 通过测试
-    node  --- 如果你会用 Gulp 自动化开发的话，会需要它
+    redis
+    nginx
+    mysql --- Maybe you need a server for free . To use MaraiaDB instead it.
+    php
+    node ---If you know how to run this project by gulp
