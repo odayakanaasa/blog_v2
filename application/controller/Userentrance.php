@@ -74,9 +74,9 @@ class Userentrance
                 Where `id`=?
             ', [$valide_info['id']]);
             if (count($_res)) {
-                Db::table('user')->update($valide_info['user']);
+                Db::table('user')->update($valide_info);
             } else {
-                Db::table('user')->insert($valide_info['user']);
+                Db::table('user')->insert($valide_info);
             }
             // 记录登录状态
             $_SESSION['user'] = $valide_info;
