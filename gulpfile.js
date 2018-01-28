@@ -77,7 +77,6 @@ gulp.task('compile_js', function () {
 });
 
 
-
 //++++++++++++++++++++++++++++++++++++++++++++++++++++
 //      Browserify es5模块编译到正式环境
 //++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -100,7 +99,7 @@ gulp.task("browserify", function () {
       .bundle()
       .pipe(source(file_name)) // 存储时的对应层级与文件名
       .pipe(buffer())
-      // .pipe(uglify())
+      .pipe(uglify())
       .pipe(gulp.dest(js_path));
   });
 
@@ -119,7 +118,9 @@ gulp.task('watch', function () {
 
 // ----------------------------------------------------
 gulp.task('start', function () {
-  // sequence('compile_scss', 'compile_js', 'browserify', 'watch');
+  sequence('compile_scss', 'compile_js', 'browserify', 'watch');
 
-  sequence( 'compile_js', 'browserify', 'watch');
+  // sequence( 'compile_js', 'browserify', 'watch');
 });
+
+

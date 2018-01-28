@@ -65,8 +65,12 @@ function request_api(url,json_data,fadeOut_Selector=false,func=false) {
 		"dataType": "json",
 		"success": function(d) {
 			layer.close(shadow_index);
-			if (d.out) {
-				layer.alert(d.out);
+			if (d.out || d.detail) {
+                if( d.detail ){
+                    layer.alert(d.detail);
+                }else{
+                    layer.alert(d.out);
+                }
 			} 
 			else if (d.status) {
 				layer.msg('操作成功', {

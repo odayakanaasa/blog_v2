@@ -193,18 +193,18 @@
 <script src="http://cdn.bootcss.com/layer/3.0.1/layer.min.js"></script>
 
 <script type="text/javascript">
-	// If it is a markdown source ,load those
-	if (0 == $("#markdown_container").attr("yth-article_type")) {
-		loadjs(["{:link_plugins('hlz_components','markdown.js')}"], {
-			success: function() {
-				console.log('Render Markdown success');
-			}
-		});
-	}
-	loadjs([
+	var loadjs_src_arr = [
 		"{:link_src('modules.js')}",
 		"{:link_plugins('hlz_components','alert.js')}"
-	], {
+	];
+
+	// If it is a markdown source ,load those
+	if (0 == $("#markdown_container").attr("yth-article_type")) {
+		loadjs_src_arr.push("{:link_plugins('hlz_components','markdown.js')}");
+		console.log('Render Markdown success');
+	}
+
+	loadjs(loadjs_src_arr, {
 		success: function() {
 			var bg_url = $("#markdown_container").attr("yth-bg_url");
 			article.change_bg(  bg_url  );
