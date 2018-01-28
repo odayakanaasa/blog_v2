@@ -32,7 +32,7 @@ class Admin_article extends Admin
     {
         // 图片延迟属性设为 originalSrc
         $rule    = '/<img(.*?)src/';
-        $replace = '<img $1 class="lazy_pic" originalSrc';
+        $replace = '<img $1 class="lazy_pic" data-original';
         $html    = preg_replace($rule, $replace, $html);
         // 防蜘蛛出站
         $rule    = '/<a(.*?)href/';

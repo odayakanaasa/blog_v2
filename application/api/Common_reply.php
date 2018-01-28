@@ -12,8 +12,21 @@ use think\Request;
 class Common_reply
 {
 
-    // 登陆检测
-    private function check_auth()
+    /**
+     * @api {post} /Api?con=Common_reply&act=check_auth 评论权限检测
+     * @apiName check_auth
+     * @apiGroup Common_reply
+     *
+     * @apiDescription  作为接口，失败时才有输出，内部调用时，返回用户id相关数组
+     *
+     * @apiVersion 2.0.0
+     * @apiErrorExample {json} Error-Response:
+     * HTTP/1.1 404 Not Found
+     * {
+     *   "Err": "1014"
+     * }
+     */
+    public function check_auth()
     {
         if (!isset($_SESSION['user']['id'])) {
             $msg['Err'] = '1014';
@@ -21,6 +34,7 @@ class Common_reply
         }
         return $p['user_id'] = $_SESSION['user']['id'];
     }
+
     // ++++++++++++++++++++++++++++++++++++++++++++++
 
     /**

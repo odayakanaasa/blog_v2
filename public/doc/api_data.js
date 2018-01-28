@@ -1314,6 +1314,26 @@ define({ "api": [
   },
   {
     "type": "post",
+    "url": "/Api?con=Common_reply&act=check_auth",
+    "title": "评论权限检测",
+    "name": "check_auth",
+    "group": "Common_reply",
+    "description": "<p>作为接口，失败时才有输出，内部调用时，返回用户id相关数组</p>",
+    "version": "2.0.0",
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "HTTP/1.1 404 Not Found\n{\n  \"Err\": \"1014\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "application/api/Common_reply.php",
+    "groupTitle": "Common_reply"
+  },
+  {
+    "type": "post",
     "url": "/Api?con=Common_reply&act=comment_add",
     "title": "评论：添加",
     "name": "comment_add",
