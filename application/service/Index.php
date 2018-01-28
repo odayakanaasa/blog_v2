@@ -34,15 +34,15 @@ class Index
 		');
 
         // 对应查询字段的数据
-        $field = '';
+        $field = [];
         // 搜索功能
         if (isset($g['search'])) {
-            $search = '%' . $g['search'] . '%';
+            $search = $g['search'] . '%';
             $field  = [
                 $search,
                 $search,
             ];
-            $find_sql = ' Where a.`title` like ? or a.raw_content like ? ';
+            $find_sql = ' Where a.`title` like ? or a.`descript` like ? ';
         } else {
             // 分类查询
             $cate_id = isset($g['cate_id']) ? intval($g['cate_id']) : 0;

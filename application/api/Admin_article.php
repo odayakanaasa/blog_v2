@@ -269,7 +269,7 @@ class Admin_article extends Admin
      *
      * @apiParam {string} title 文章名
      *
-     * @apiDescription  依据文章标题、文章内容，模糊搜索文章 --- TODO 有必要通过coreseek搜索吗？ 
+     * @apiDescription  依据文章标题、文章描述，模糊搜索文章 --- Q：有必要通过coreseek搜索吗？A：数据量目前2000条都没达到，连普通索引都可以不建
      *
      * @apiVersion 2.0.0
      * @apiSuccessExample Success-Response:
@@ -293,16 +293,16 @@ class Admin_article extends Admin
         @Filter::is_set([
             $g['title'],
         ]);
-        $title        = '%' . $g['title'] . '%';
+        $title        = $g['title'] . '%';
         $_res['info'] = Db::query('
 			Select cover_url, descript, type, sticky, original, a.title, a.id , b.title as cate_name
 			From `blog_text` as a
 			Left Join `blog_category_list` as b
 			On b.`id` = a.`cate_id`
-			Where a.`title` like ? or a.raw_content like ?
+			Where a.`title` like ? or a.`descript` like ?
 			Order By a.`id` Desc
 			Limit 5
-		', [$title , $title]);
+		', [$title, $title]);
         trans_json($_res);
     }
 
