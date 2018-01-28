@@ -15,7 +15,7 @@ return [
     // Seo默认配置
     'seo_keywords'            => '云天河,云天河博客,云天河Blog,个人博客,hlz,hlzblog',
     'seo_description'         => '云天河制作的第二版博客',
-    'seo_title_suffix'        => ' | 云天河Blog', // 博客名
+    'seo_title_suffix'        => '_云天河Blog', // 博客名
 
     // +----------------------------------------------------------------------
     // | 应用设置
