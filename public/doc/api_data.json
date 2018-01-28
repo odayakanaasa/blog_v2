@@ -428,7 +428,7 @@
         ]
       }
     },
-    "description": "<p>依据文章标题，模糊搜索文章 --- TODO 有必要通过coreseek搜索吗？</p>",
+    "description": "<p>依据文章标题、文章描述，模糊搜索文章 --- Q：有必要通过coreseek搜索吗？A：数据量目前2000条都没达到，连普通索引都可以不建</p>",
     "version": "2.0.0",
     "success": {
       "examples": [
