@@ -47,7 +47,7 @@ function modify_link(){
       title:false,
       closeBtn: 0, //不显示关闭按钮
       anim: 0,
-      area: ['500px', '155px'],
+      area: ['500px', 'auto'],
       shadeClose: true, //开启遮罩关闭
       content: tpl
     });
