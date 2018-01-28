@@ -1,3 +1,6 @@
+<!-- 俩编辑器样式 -->
+<link rel="stylesheet" href="/static/plugins/editor_md/css/editormd.min.css">
+<link rel="stylesheet" href="/Umeditor/themes/default/css/umeditor.min.css">
 <style>
   .yth_img{
     width:200px;
@@ -53,15 +56,15 @@
 
     <div class="layui-form-item layui-form-text" id="Editor_0">
       <label class="layui-form-label">Markdown</label>
-      <div class="layui-input-block" >
-        <textarea placeholder="这里写文章..." class="layui-textarea"  id="markdown" style="width:800px;height:500px;"></textarea>
+      <div class="layui-input-inline" id="markdown">
+         <textarea class="editormd-markdown-textarea" name="test-editormd-markdown-doc" id="markdown_content"></textarea>
       </div>
     </div>
 
     <div class="layui-form-item" id="Editor_1" style="display:none">
       <label class="layui-form-label">Editor</label>
       <div class="layui-input-block" style="width:800px;">
-        <div id="yth_editor" yth-name="descript" style="height:400px;width:800px;"></div>
+        <div id="yth_editor" yth-name="descript" style="height:600px;width:800px;"></div>
       </div>
     </div>
 
@@ -200,8 +203,10 @@
 <!-- JS运行脚本 -->
 <script>
 loadjs([
-  "/Umeditor/themes/default/css/umeditor.min.css",
-  "/Umeditor/umeditor.min.js"
+  // 富文本 Editor
+  "/Umeditor/umeditor.min.js",
+  // Markdown Editor
+  "/static/plugins/editor_md/editormd.min.js",
 ], { success: function() {
     layui.use(['layer', 'form'], function() {
       // 选中当前所在模块

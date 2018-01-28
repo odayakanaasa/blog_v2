@@ -32,6 +32,11 @@ class Editor
     {
         $up      = new EditorUploadPic();
         $up->ser = ROOT_PATH . '/public';
+        // 如果有传入 editor_type 则，默认它为markdown的处理器
+        if( isset($_GET['editor_type']) ){
+            $up->editor_type = 0;
+            $up->file_name = 'editormd-image-file';
+        }
         $up->run();
     }
 }

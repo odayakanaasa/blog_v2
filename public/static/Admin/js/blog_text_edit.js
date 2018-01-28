@@ -46,7 +46,8 @@ function blog_text_div(){
     if(type){
         text = $("#yth_editor").html();
     }else{
-        text = $("#markdown").val();
+        // text = $("#markdown").val();
+        text = $("#markdown .editormd-markdown-textarea").text();
     }
     if( parseInt($("#yth_editor").html().length)>65535 ){
         layer.msg('当前文章字数已超过最大限制65535！');
@@ -77,7 +78,8 @@ function blog_text_init_auto(){
         $("#blog_text_type").parent().click();
         $("#yth_editor").html(article_data.raw_content);
     }else{
-        $("#markdown").val(article_data.raw_content);
+        // $("#markdown").val(article_data.raw_content);
+        $("#markdown_content").val(article_data.raw_content);
     }
     // 置顶操作
     if( "1"==article_data.sticky ){
@@ -138,6 +140,7 @@ function blog_text_category(){
                         $("#blog_text_category_html div[yth-id="+article_data.cate_id+"]").click();
                     }
                     editor();
+                    markdown_editor();
                  }
             );
         }

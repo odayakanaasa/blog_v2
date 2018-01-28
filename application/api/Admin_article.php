@@ -18,8 +18,8 @@ class Admin_article extends Admin
      */
     private static function parse_markdown($html)
     {
-        $html = \Michelf\Markdown::defaultTransform($html);
-        // 图片延迟属性设为 originalSrc
+        $html = \Michelf\MarkdownExtra::defaultTransform($html);
+        // 图片延迟属性设为 data-original
         return self::lazy_pic($html);
     }
 
@@ -30,7 +30,7 @@ class Admin_article extends Admin
      */
     private static function lazy_pic($html)
     {
-        // 图片延迟属性设为 originalSrc
+        // 图片延迟属性设为 data-original
         $rule    = '/<img(.*?)src/';
         $replace = '<img $1 class="lazy_pic" data-original';
         $html    = preg_replace($rule, $replace, $html);
@@ -293,7 +293,7 @@ class Admin_article extends Admin
         @Filter::is_set([
             $g['title'],
         ]);
-        $title        = '%'. $g['title'] . '%';
+        $title        = '%' . $g['title'] . '%';
         $_res['info'] = Db::query('
 			Select cover_url, descript, type, sticky, original, a.title, a.id , b.title as cate_name
 			From `blog_text` as a
@@ -443,14 +443,14 @@ class Admin_article extends Admin
             $g['id'],
         ]);
         $_res['info'] = Db::query('
-      Select a.*, b.`title` as `cate_name`, c.`url` as `bg_url`
-      From `blog_text` as a
-      Left Join `blog_category_list` as b
-      On b.`id` = a.`cate_id`
-      Left Join `background_list` as c
-      On c.`id` = a.`bg_id`
-      Where a.`id` = ?
-    ', [$g['id']]);
+          Select a.*, b.`title` as `cate_name`, c.`url` as `bg_url`
+          From `blog_text` as a
+          Left Join `blog_category_list` as b
+          On b.`id` = a.`cate_id`
+          Left Join `background_list` as c
+          On c.`id` = a.`bg_id`
+          Where a.`id` = ?
+        ', [$g['id']]);
         trans_json($_res);
     }
 

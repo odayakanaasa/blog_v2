@@ -8,6 +8,7 @@ function blog_text_add_init(){
     // 初始化editor
     async_render("blog_text_add_tpl","blog_text_add",{},function(){
         editor();
+        markdown_editor();
         // 监听是否切换编辑器
         blog_text_editor();
     });
@@ -20,7 +21,8 @@ function blog_text_add(){
     if(type){
         text = $("#yth_editor").html();
     }else{
-        text = $("#markdown").val();
+        // text = $("#markdown").val();
+        text = $("#markdown .editormd-markdown-textarea").text();
     }
     if( parseInt($("#yth_editor").html().length)>65535 ){
         layer.msg('当前文章字数已超过最大限制65535！');
