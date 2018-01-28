@@ -31,9 +31,11 @@ class Article
             exit();
         }
         $article_info = Db::query('
-			Select a.id,a.title, a.cate_id, a.original, a.content, a.statistic, a.time, a.type,
-					b.title as cate_name,
-					c.`url` as `bg_url`
+			Select 
+                a.id,a.title, a.cate_id, a.original, a.content,
+                a.statistic, a.time, a.type, a.descript,
+				b.title as cate_name,
+				c.`url` as `bg_url`
 			From `blog_text` as a
 			Inner Join `blog_category_list` as b
 			On b.`id` = a.`cate_id`

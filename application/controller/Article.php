@@ -36,6 +36,7 @@ class Article
         $this->v->info         = $info;
         $this->v->seo_title    = $info['article_info'][0]['title'];
         $this->v->seo_keywords = $info['article_info'][0]['title'] . ',云天河,云天河博客,云天河Blog,全栈';
+        $this->v->seo_description = '云天河在这篇文章主要阐述了' .$info['article_info'][0]['descript']. '的相关内容';
         echo $this->v->fetch('Index/header');
         echo $this->v->fetch('Article/' . $func_name);
         echo $this->v->fetch('Index/header_right_sidebar');
