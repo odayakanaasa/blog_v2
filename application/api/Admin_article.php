@@ -293,7 +293,7 @@ class Admin_article extends Admin
         @Filter::is_set([
             $g['title'],
         ]);
-        $title        = $g['title'] . '%';
+        $title        = '%'. $g['title'] . '%';
         $_res['info'] = Db::query('
 			Select cover_url, descript, type, sticky, original, a.title, a.id , b.title as cate_name
 			From `blog_text` as a

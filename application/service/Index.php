@@ -37,7 +37,7 @@ class Index
         $field = [];
         // 搜索功能
         if (isset($g['search'])) {
-            $search = $g['search'] . '%';
+            $search = '%'. $g['search'] . '%';
             $field  = [
                 $search,
                 $search,
