@@ -42,6 +42,12 @@
     line-height: 30px;
     color: #5e5e5e;
     box-shadow: 2px 2px 2px 2px #ecece6;
+    > code {
+      border: 1px solid #ddd;
+      background: #f6f6f6;
+      padding: 3px;
+      border-radius: 3px;
+    }
   }
   h1 {
     font-size: 48px;
@@ -323,8 +329,7 @@
   ul ol,
   ol ul,
   ol ol {
-    margin: 0;
-    // padding-left: 1em;
+    margin: 0; // padding-left: 1em;
   }
   /* Use letters for unordered-lists. (Like Github.) */
   ul ul,

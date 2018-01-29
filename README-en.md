@@ -1,6 +1,6 @@
 > This readme file has not yet completed the complete translation
-
-[Offical Website](http://www.hlzblog.top/)
+[中文文档](README.md) | [English Document](README-en.md)  
+[Offical Website](http://www.hlzblog.top/)  
 
 This is a project which is based on thinkphp5 framework  
 Follow the [PSR-2](http://www.php-fig.org/psr/psr-2/) standor  

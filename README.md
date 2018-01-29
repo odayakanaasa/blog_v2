@@ -1,4 +1,5 @@
-[官方站点](http://www.hlzblog.top/)
+[中文文档](README.md) | [English Document](README-en.md)  
+[官方站点](http://www.hlzblog.top/)  
 
 这个项目是基于thinkphp5框架开发的  
 遵循 [PSR-2](http://www.php-fig.org/psr/psr-2/) 标准  
