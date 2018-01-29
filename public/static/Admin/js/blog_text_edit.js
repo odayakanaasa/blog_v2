@@ -49,8 +49,8 @@ function blog_text_div(){
         // text = $("#markdown").val();
         text = $("#markdown .editormd-markdown-textarea").text();
     }
-    if( parseInt($("#yth_editor").html().length)>65535 ){
-        layer.msg('当前文章字数已超过最大限制65535！');
+    if( parseInt($("#yth_editor").html().length)>16777215 ){
+        layer.msg('当前文章字数已超过最大限制16777215！');
     }else{
         request_api(
             api("Admin_article","blog_text_edit"),
