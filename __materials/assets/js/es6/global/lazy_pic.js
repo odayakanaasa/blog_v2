@@ -5,7 +5,7 @@
 //   effect: "fadeIn",
 //   threshold: 200,
 //   failurelimit: 10,
-//   placeholder: "//oss-img.cdn.hlzblog.top/static/img/default/pre_pic.png",
+//   placeholder: "//tencent.cdn.hlzblog.top/static/img/default/pre_pic.png",
 //   data_attribute: "originalSrc",
 // });
 // ---------------------------------------------------------------------------
