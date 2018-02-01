@@ -1,4 +1,3 @@
-> This readme file has not yet completed the complete translation
 [中文文档](README.md) | [English Document](README-en.md)  
 [Offical Website](http://www.hlzblog.top/)  
 
