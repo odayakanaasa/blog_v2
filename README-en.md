@@ -5,51 +5,56 @@
 This is a project which is based on thinkphp5 framework  
 Follow the [PSR-2](http://www.php-fig.org/psr/psr-2/) standor  
 
+> The command line operations involved are executed in the project root directory
+
 ## Directory
 
     .
-    ├── apidoc.json         生成api文档的配置
+    ├── apidoc.json         Configuring the configuration of API documents
     ├── application         
-        ├── api             --- 接口层，逻辑
+        ├── api             --- Interface layer, logic
         ├── command.php     
-        ├── common.php      全局函数
-        ├── config.php      系统配置文件
-        ├── controller      --- 控制器层
-        ├── database.php    数据库配置
-        ├── logic           --- 逻辑层
-        ├── route.php       定义的部分路由
-        ├── service         --- 视图层，逻辑
+        ├── common.php      Global function
+        ├── config.php      Configuration system file
+        ├── controller      --- Controller layer
+        ├── database.php    Database configuration
+        ├── logic           --- Logic layer
+        ├── route.php       Defined partial routing
+        ├── service         --- View layer, logic
         ├── tags.php
-        └── view            --- 视图层
+        └── view            --- View layer
     ├── build.php
-    ├── composer.json       composer依赖配置
+    ├── composer.json       Composer dependency configuration
     ├── composer.lock
     ├── download_source
-    ├── extend              --- 手动引入的第三方包，引用要求PSR-4标准
-    ├── gulpfile.js         前端自动化脚本
-    ├── log_colored         --- 日志
+    ├── extend              --- Manual introduction of third party packages, reference requirements for PSR-4 standards
+    ├── gulpfile.js         Front-end automation script
+    ├── log_colored         --- Color log
     ├── __materials         
-        ├── banner          --- 首页画布的PSD文件
-        ├── bat             --- 开发所需脚本（windows）
+        ├── banner          --- The PSD file of the front page canvas
+        ├── bat             --- Developing the required script (Windows)
         ├── CURD.php
-        ├── shell           --- 开发所需脚本（Linux）
-        ├── sql_baks        --- 日常备份的文件
-        ├── assets          --- 前端自动化
-            ├── scss          --- 编译成css前的样式
-            ├── js            --- 模块化打包与压缩前的js
-                ├── es5            --- es6目录转化过来的es5临时代码，部分文件会被打包成模块文件到js目录去
-                ├── es6            --- es6规范书写的代码
-        └── yth_blog.sql    当前项目的数据库样本
+        ├── shell           --- Developing the required script （Linux）
+        ├── sql_baks        --- Daily backup files
+        ├── assets          --- Front-end automation
+            ├── scss          --- Style compiled into CSS
+            ├── js            --- JS before modular packaging and compression
+                ├── es5            --- The ES6 directory is converted to the Es5 temporary code, 
+                                     and some of the files will be packaged into module files to the JS directory
+                ├── es6            --- The code written by the ES6 specification
+        └── yth_blog.sql    Database samples for current projects
     ├── node_modules
-    ├── gulpfile.js         前端自动化脚本
-    ├── package.json        前端开发所需依赖
+    ├── gulpfile.js         Front-end automation script
+    ├── package.json        Dependence on front-end development
     ├── package-lock.json
     ├── phpunit.xml
-    ├── public              --- 静态文件目录
+    ├── public              --- Static file directory
     ├── README.md
-    ├── runtime             --- php缓存文件目录
-    ├── sensitive_config.ini            敏感的配置信息，不会上传到第三方托管，但是线上环境需要
-    ├── sensitive_config.ini.example    敏感的配置信息配置文件的格式
+    ├── runtime             --- PHP cache file directory
+    ├── tests               --- Unit test file directory
+    ├── sensitive_config.ini            Sensitive configuration information that will not be uploaded 
+                                    to third party trusteeship, but the online environment needs
+    ├── sensitive_config.ini.example    The format of the sensitive configuration information configuration file
     ├── think
     ├── thinkphp
     └── vendor
@@ -84,8 +89,12 @@ When you want to run this project under the VirtualBox
 
 Therefore, you need some server , such as 
 
-    redis
-    nginx
-    mysql --- Maybe you need a server for free . To use MaraiaDB instead it.
-    php
-    node ---If you know how to run this project by gulp
+ * redis
+ * nginx
+ * mysql --- Maybe you need a server for free . To use MaraiaDB instead it.
+ * php
+ * node ---If you know how to run this project by gulp
+
+## Unit Test
+
+    php think unit

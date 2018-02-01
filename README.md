@@ -4,6 +4,8 @@
 这个项目是基于thinkphp5框架开发的  
 遵循 [PSR-2](http://www.php-fig.org/psr/psr-2/) 标准  
 
+> 本次涉及的命令行操作，都在项目根目录下执行
+
 ## 目录结构
 
     .
@@ -26,7 +28,7 @@
     ├── download_source
     ├── extend              --- 手动引入的第三方包，引用要求PSR-4标准
     ├── gulpfile.js         前端自动化脚本
-    ├── log_colored         --- 日志
+    ├── log_colored         --- 彩色日志
     ├── __materials         
         ├── banner          --- 首页画布的PSD文件
         ├── bat             --- 开发所需脚本（windows）
@@ -84,11 +86,11 @@
 
 此外你可能还需要一些服务
 
-    redis --- 后续部分功能即将用上
-    nginx 
-    mysql --- 可能你需要一份免费的数据库服务器，目前你可以用 MaraiaDB 去替代它
-    php   --- 目前语法 在版本5.6+ 通过测试
-    node  --- 如果你会用 Gulp 自动化开发的话，会需要它
+ * redis --- 后续部分功能即将用上
+ * nginx 
+ * mysql --- 可能你需要一份免费的数据库服务器，目前你可以用 MaraiaDB 去替代它
+ * php   --- 目前语法 在版本5.6+ 通过测试
+ * node  --- 如果你会用 Gulp 自动化开发的话，会需要它
 
 ## 单元测试
 

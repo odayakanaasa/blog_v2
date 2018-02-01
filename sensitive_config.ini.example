@@ -1,10 +1,12 @@
 [Your domain]
 host=
-unit_host=
 
 [Debug]
 app_debug=
 app_trace=
+; You should set `unit switch` 's value equal `false` online
+unit_switch=
+unit_host=
 
 [log_colored]
 log_colored_switch=
@@ -22,6 +24,7 @@ smtp_Password=
 [Tencent_COS]
 cos_setRegion=
 cos_bucketName=
+;CDN's default url:  http://hlzblog-1252048472.file.myqcloud.com 
 cos_source_url=
 cos_APPID=
 cos_SECRET_ID=
