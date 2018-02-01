@@ -91,9 +91,9 @@ Therefore, you need some server , such as
 
  * redis
  * nginx
- * mysql --- Maybe you need a server for free . To use MaraiaDB instead it.
+ * mysql --- Maybe you need a free database server, and now you can replace it with MaraiaDB
  * php
- * node ---If you know how to run this project by gulp
+ * node --- If you know how to run this project by gulp
 
 ## Unit Test
 

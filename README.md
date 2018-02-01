@@ -90,7 +90,7 @@
  * nginx 
  * mysql --- 可能你需要一份免费的数据库服务器，目前你可以用 MaraiaDB 去替代它
  * php   --- 目前语法 在版本5.6+ 通过测试
- * node  --- 如果你会用 Gulp 自动化开发的话，会需要它
+ * node  --- If you will develop it with Gulp automation, you will need it
 
 ## 单元测试
 
