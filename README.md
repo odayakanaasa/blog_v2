@@ -47,6 +47,7 @@
     ├── public              --- 静态文件目录
     ├── README.md
     ├── runtime             --- php缓存文件目录
+    ├── tests               --- 单元测试文件目录
     ├── sensitive_config.ini            敏感的配置信息，不会上传到第三方托管，但是线上环境需要
     ├── sensitive_config.ini.example    敏感的配置信息配置文件的格式
     ├── think
@@ -88,3 +89,7 @@
     mysql --- 可能你需要一份免费的数据库服务器，目前你可以用 MaraiaDB 去替代它
     php   --- 目前语法 在版本5.6+ 通过测试
     node  --- 如果你会用 Gulp 自动化开发的话，会需要它
+
+## 单元测试
+
+    php think unit

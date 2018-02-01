@@ -1,5 +1,6 @@
 [Your domain]
 host=
+unit_host=
 
 [Debug]
 app_debug=

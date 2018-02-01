@@ -12,6 +12,9 @@ $env = parse_ini_file(ROOT_PATH . 'sensitive_config.ini');
 return [
     // 当前站点域名
     'now_host'                => $env['host'],
+    // 单元测试时，本地域名
+    'unit_host'               => $env['unit_host'],
+    'unit_switch'             => $env['unit_switch'],
     // Seo默认配置
     'seo_keywords'            => '云天河,云天河博客,云天河Blog,个人博客,hlz,hlzblog',
     'seo_description'         => '云天河制作的第二版博客',
