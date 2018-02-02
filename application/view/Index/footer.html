@@ -27,19 +27,18 @@
 </div>
 <!-- 页脚结束 -->
 <!-- Run js-->
-<script src="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js"></script>
 <script>
-loadjs([
+var arr_src = [
   "{:link_plugins('referrer_killer','referrer-killer.js')}",
   // Baidu Statistic
   "https://hm.baidu.com/hm.js?a3e8bb5c7eef342491aa58e9a8539127",
   // jq lazy load
-  "https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js", 
-], {
+  "https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js",
+];
+loadjs(arr_src, {
   success: function () {
-    // noferrer Load  referrer-killer.js ,first;
-    // It is to load images without http_referrer that using this lib
-    // In this way, you will preload all of images in this page
+    // It is to load images without http_referrer that by use this lib
+    // In this way, you will preload all of those images from other sites in this page
     var arr = $(".lazy_pic"),
       arr_len = arr.length;
     temp_src = '';

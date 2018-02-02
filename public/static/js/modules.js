@@ -150,7 +150,7 @@ var login_method_icon_src = function(this_type) {
                 temp_data[2]
                 +'</h'+temp_data[1]+'>');
             // Tag ++ 
-            eval("h"+temp_data[1]+"_count++");
+            eval("h"+temp_data[1]+"_count++;");
         }
         // Push Array into html
         if( new_arr.length ){

@@ -49,4 +49,8 @@ class Index
         $this->v->seo_keywords    = '云天河,云天河博客,云天河Blog,hlzblog,hlz';
         $this->render_html(__FUNCTION__, '云天河', $g);
     }
+
+    public function mobile(){
+        return $this->v->fetch('Index/mobile');
+    }
 }
