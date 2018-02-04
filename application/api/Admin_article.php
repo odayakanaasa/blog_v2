@@ -69,6 +69,13 @@ class Admin_article extends Admin
         @Filter::is_set([
             $p['title'], // 分类名
         ]);
+        $r = Db::table('blog_category_list')->where('title',$p['title'])->select();
+        if( count($r) ){
+            $msg = [];
+            $msg['out'] = '该分类已存在';
+            $msg['status'] = false;
+            trans_json($msg);
+        }
         Db::table('blog_category_list')->insert($p);
         if_modify(1);
     }
@@ -120,7 +127,9 @@ class Admin_article extends Admin
             $p['id'], // 主键
             $p['title'], // 分类名
         ]);
-        Db::table('blog_category_list')->update($p);
+        $d['id'] = &$p['id'];
+        $d['title'] = &$p['title'];
+        Db::table('blog_category_list')->update($d);
         if_modify(1);
     }
 
@@ -146,7 +155,8 @@ class Admin_article extends Admin
         @Filter::is_set([
             $p['id'], // 主键
         ]);
-        Db::table('blog_category_list')->delete($p['id']);
+        $id = &$p['id'];
+        Db::table('blog_category_list')->delete($id);
         if_modify(1);
     }
 
@@ -416,23 +426,24 @@ class Admin_article extends Admin
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-     *   "info": [{
-     *     "bg_id": "",
-     *     "bg_url": "",
-     *     "cate_id": "",
-     *     "cate_name": "",
-     *     "content": "",
-     *     "cover_url": "",
-     *     "descript": "",
-     *     "id": "",
-     *     "last_time": "",
-     *     "original": "",
-     *     "raw_content": "",
-     *     "statistic": "",
-     *     "sticky": "",
-     *     "time": "",
-     *     "title": "",
-     *     "type": ""
+     *   "info":  "",
+     *   {
+     *     "id":  "",
+     *     "cate_id":  "",
+     *     "cover_url":  "",
+     *     "title":  "",
+     *     "descript":  "",
+     *     "type":  "",
+     *     "raw_content":  "",
+     *     "content":  "",
+     *     "statistic":  "",
+     *     "last_time":  "",
+     *     "time":  "",
+     *     "sticky":  "",
+     *     "original":  "",
+     *     "bg_id":  "",
+     *     "cate_name":  "",
+     *     "bg_url":  "",
      *   }]
      * }
      */
@@ -458,7 +469,7 @@ class Admin_article extends Admin
     ++++++++++++++++++++++++++++++++++++++++++++++++++++
     +        评论、留言[其他在Common_reply里]
     ++++++++++++++++++++++++++++++++++++++++++++++++++++
-     */
+    */
 
     /**
      * @api {post} /Api?con=Admin_article&act=comment_del 评论：删除
@@ -482,7 +493,8 @@ class Admin_article extends Admin
         @Filter::is_set([
             $p['id'],
         ]);
-        Db::table('blog_comment')->delete($p['id']);
+        $id = Filter::int($p['id']);
+        Db::table('blog_comment')->delete($id);
         if_modify(1);
     }
 

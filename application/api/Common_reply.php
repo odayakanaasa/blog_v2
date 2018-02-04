@@ -27,12 +27,19 @@ class Common_reply
      * }
      */
     public function check_auth()
-    {
-        if (!isset($_SESSION['user']['id'])) {
-            $msg['Err'] = '1014';
-            trans_json($msg);
+    {        // 如果开启了单元测试
+        if ( true == config('unit_switch') ) {
+            $data['pic']      = 'http://img.cdn.hlzblog.top/17-6-25/39571626.jpg';
+            $data['name']     = '云天河 - 单元测试';
+            $data['id']       = -1;
+            $_SESSION = $data; // 写入权限
+            return $p['user_id'] = $_SESSION['user']['id'];
+        }else{
+            if (!isset($_SESSION['user']['id'])) {
+                $msg['Err'] = '1014';
+                trans_json($msg);
+            }
         }
-        return $p['user_id'] = $_SESSION['user']['id'];
     }
 
     // ++++++++++++++++++++++++++++++++++++++++++++++
