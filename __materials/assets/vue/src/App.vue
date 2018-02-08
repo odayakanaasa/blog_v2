@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <!-- 这里是全局视图 -->
+    <!-- 这里是 router里面的视图 -->
     <router-view/>
   </div>
 </template>

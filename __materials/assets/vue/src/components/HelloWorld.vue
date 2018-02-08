@@ -79,6 +79,9 @@
           awesome-vue
         </a>
       </li>
+      <li>
+        <router-link to="/">回到正常页面</router-link>
+      </li>
     </ul>
   </div>
 </template>
