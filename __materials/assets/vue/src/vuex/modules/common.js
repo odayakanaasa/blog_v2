@@ -31,6 +31,11 @@ const actions = {
 // -----------------------------------------------------------:
 //     通过 getters 实现 向外暴露状态参数
 // -----------------------------------------------------------:
+/**
+    外部通过类似
+    this.$store.state.模块名.collapse
+    来实现访问 getters 参数 
+*/
 const getters = {
   loading: state => state.loading,
   collapse: state => state.collapse,

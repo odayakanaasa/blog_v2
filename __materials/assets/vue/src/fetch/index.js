@@ -4,7 +4,7 @@ import qs from 'qs'
 // axios 配置
 axios.defaults.timeout = 5000;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-axios.defaults.baseURL = 'http://localhost:4000/';
+axios.defaults.baseURL = 'http://web.blog.com/';
 
 
 /**
@@ -40,3 +40,14 @@ axios.interceptors.response.use((res) => {
   console.log('网络异常');
   return Promise.reject(error);
 });
+
+
+export default {
+    /**
+     * 用户登录
+     */
+    Login(params) {
+        return fetch('/users/api/userLogin', params)
+    },
+
+}
