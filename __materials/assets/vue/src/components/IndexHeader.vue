@@ -1,17 +1,21 @@
 <template>
-    <div class="cell">
-        <ul class="detail-cell">
-            <li><i class="icon">&#xe615;</i><span>活动时间：</span>{{beginTime}} ~ {{endTime}}</li>
-            <li><i class="icon">&#xe615;</i><span>报名截止：</span>{{cantJoinTime}}</li>
-            <li><i class="icon">&#xe600;</i><span>活动地址：</span>{{destination}}</li>
-            <li><i class="icon">&#xe694;</i><span>是否收费：</span>否</li>
-            <li><i class="icon">&#xe601;</i><span>发布人：</span>{{releaseUsername | minize}}</li>
-        </ul>
-        <el-input v-focus placeholder="请输入内容"></el-input>
-        <router-link to="/test">去看 `Hello World`</router-link>
+  <div>
+    <div class="cell" v-if="getCollapse">
+      <ul class="detail-cell">
+        <li><i class="icon">&#xe615;</i><span>活动时间：</span>{{beginTime}} ~ {{endTime}}</li>
+        <li><i class="icon">&#xe615;</i><span>报名截止：</span>{{cantJoinTime}}</li>
+        <li><i class="icon">&#xe600;</i><span>活动地址：</span>{{destination}}</li>
+        <li><i class="icon">&#xe694;</i><span>是否收费：</span>否</li>
+        <li><i class="icon">&#xe601;</i><span>发布人：</span>{{releaseUsername | minize}}</li>
+      </ul>
+      <el-input v-focus placeholder="请输入内容"></el-input>
+      <router-link to="/test">去看 `Hello World`</router-link>
     </div>
+    <div>
+      <el-button v-on:click="toggleButton" type="info">{{ getToggleButton }}</el-button>
+    </div>
+  </div>
 </template>
-
 <script>
 import tools from '@/tools';
 export default {
@@ -30,10 +34,23 @@ export default {
     // }
   },
   data() {
-    return {
+    return {}
+  },
+  computed: {
+    getToggleButton() {
+      return !this.$store.state.common.collapse ? '点击展开' : '点击收起';
+    },
+    getCollapse() {
+      return this.$store.state.common.collapse;
     }
   },
-  methods: {},
+  methods: {
+    // 切换
+    toggleButton() {
+      let status = this.$store.state.common.collapse;
+      this.$store.dispatch('setCollapseState', status);
+    }
+  },
   filters: {
     minize: function (value) {
       return value.toLowerCase()
@@ -51,32 +68,28 @@ export default {
     },
   },
 }
+
 </script>
-
 <style lang="scss" scoped>
-
-
 .cell {
-    background: #fff;
-    .detail-cell {
-        color: #999;
-        border-bottom: 1px solid #EAEAEA;
-        border-top: 10px solid #f1f1f1;
-        font-size: 15px;
-        li {
-            border-top: 1px solid #f1f1f1;
-            padding: px2rem(25px) px2rem(20px);
-            &:nth-of-type(4) {
-                color: red;
-            }
-        }
-        .icon {
-            color: #999;
-            font-size: 17px;
-            // margin-right: px2rem(15px);
-        }
+  background: #fff;
+  .detail-cell {
+    color: #999;
+    border-bottom: 1px solid #EAEAEA;
+    border-top: 10px solid #f1f1f1;
+    font-size: 15px;
+    li {
+      border-top: 1px solid #f1f1f1;
+      padding: px2rem(25px) px2rem(20px);
+      &:nth-of-type(4) {
+        color: red;
+      }
     }
-    
-
+    .icon {
+      color: #999;
+      font-size: 17px; // margin-right: px2rem(15px);
+    }
+  }
 }
+
 </style>

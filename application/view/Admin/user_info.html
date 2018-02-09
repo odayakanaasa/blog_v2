@@ -1,94 +1,89 @@
 <style>
-  .user_pic{
+.user_pic {
     width: 50px;
     height: 50px;
     border-radius: 25px;
     cursor: pointer;
-  }
+}
 </style>
 <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-  <ul class="layui-tab-title">
-    <li class="layui-this" id="remove_search_content">用户列表</li>
-  </ul>
-  <div class="layui-tab-content" style="width:680px;">
-    <!--显示商品列表1-->
-    <div class="layui-tab-item layui-show" style="opacity:0.6">
-      <div class="layui-form">
-        <table class="layui-table" lay-even="" lay-skin="nob">
-          <colgroup>
-            <col width="150">
-            <col width="200">
-            <col >
-          </colgroup>
-          <thead>
-            <tr>
-              <th style="padding-left:25px;">平台</th>
-              <th style="padding-left:25px;">头像</th>
-              <th>昵称</th>
-            </tr> 
-          </thead>
-          <tbody id="yth_logs">
-          </tbody>
-        </table>
-      </div>
-        <!-- 翻页开始 -->
-      <div id="yth_page"></div>
-      <div class='clr'></div>
+    <ul class="layui-tab-title">
+        <li class="layui-this" id="remove_search_content">用户列表</li>
+    </ul>
+    <div class="layui-tab-content" style="width:680px;">
+        <!--显示商品列表1-->
+        <div class="layui-tab-item layui-show" style="opacity:0.6">
+            <div class="layui-form">
+                <table class="layui-table" lay-even="" lay-skin="nob">
+                    <colgroup>
+                        <col width="150">
+                        <col width="200">
+                        <col>
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th style="padding-left:25px;">平台</th>
+                            <th style="padding-left:25px;">头像</th>
+                            <th>昵称</th>
+                        </tr>
+                    </thead>
+                    <tbody id="yth_logs">
+                    </tbody>
+                </table>
+            </div>
+            <!-- 翻页开始 -->
+            <div id="yth_page"></div>
+            <div class='clr'></div>
+        </div>
     </div>
-
-  </div>
-
 </div>
-
 <!-- 分页数据模板 -->
 <script type="text/yth_tpl" id="yth_logs_tpl">
-  {{#  for(var i in d ) {  }}
+    {{# for(var i in d ) { }}
     <tr>
-      <td>{{ type_pic(d[i].type) }}</td>
-      <td><img src="{{d[i].pic}}" class="user_pic"></td>
-      <td style="color:#787878;font-weight:bold;">{{d[i].name}}</td>
+        <td>{{ type_pic(d[i].type) }}</td>
+        <td><img src="{{d[i].pic}}" class="user_pic"></td>
+        <td style="color:#787878;font-weight:bold;">{{d[i].name}}</td>
     </tr>
-  {{#  }  }}
+    {{# } }}
 </script>
-
-
 <!-- JS运行脚本 -->
 <script>
-  layui.use(['layer'], function() {
-      // 选中当前所在模块
-      $("#user_info").addClass("layui-this");
-      // 初始化页面
-      yth_pageination({
+layui.use(['layer'], function () {
+    // 选中当前所在模块
+    $("#user_info").addClass("layui-this");
+    // 初始化页面
+    yth_pageination({
         "api": api("Admin_behaviour", "user_info"),
         "render_tpl": "yth_logs_tpl",
         "render_html": "yth_logs",
         "pageination_id": "yth_page"
-      });
-
     });
+
+});
 
 
 // 显示类型标志
-function type_pic(type){
-  type = parseInt(type);
-  var pic_src='';
-  switch(type){
+function type_pic(type) {
+    type = parseInt(type);
+    var pic_src = '';
+    switch(type) {
     case 0:
-      pic_src = '/static/img/default/icon.jpg';
-      break;
+        pic_src = '/static/img/default/icon.jpg';
+        break;
     case 1:
-      pic_src = '/static/img/third/sina.png';
-      break;
+        pic_src = '/static/img/third/sina.png';
+        break;
     case 2:
-      pic_src = '/static/img/third/qq.png';
-      break;
-  }
-  return '<img src="'+pic_src+'"  class="user_pic" alt="">';
+        pic_src = '/static/img/third/qq.png';
+        break;
+    }
+    return '<img src="' + pic_src + '"  class="user_pic" alt="">';
 }
 
 // 背景
 $("body").css({
-  "background":"url(http://img.cdn.hlzblog.top/17-6-4/76801516.jpg)",
-  "background-attachment":"fixed",
+    "background": "url(http://img.cdn.hlzblog.top/17-6-4/76801516.jpg)",
+    "background-attachment": "fixed",
 });
 </script>

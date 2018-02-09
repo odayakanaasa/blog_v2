@@ -1,98 +1,88 @@
 <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-  <ul class="layui-tab-title">
-    <li class="layui-this" id="remove_search_content">封杀IP</li>
-  </ul>
-  <div class="layui-tab-content">
-    <!--显示商品列表1-->
-    <div class="layui-tab-item layui-show" >
-      <div class="layui-form" >
-        <button class="layui-btn layui-btn-normal " 
-        onclick="add_layer()"
-        title="添加一级分类"><i class="layui-icon"></i>&nbsp;<i class="layui-icon">&#xe613;</i></button>
-        <table class="layui-table" lay-even="" lay-skin="nob">
-          <colgroup>
-            <col width="150">
-            <col width="250">
-            <col width="250">
-            <col width="100">
-            <col >
-          </colgroup>
-          <thead>
-            <tr>
-              <th>IP</th>
-              <th>初始</th>
-              <th>到期</th>
-              <th style="padding-left:25px">修改</th>
-              <th style="padding-left:25px">删除</th>
-            </tr> 
-          </thead>
-          <tbody id="yth_logs">
-          </tbody>
-        </table>
-      </div>
-        <!-- 翻页开始 -->
-      <div id="yth_page"></div>
-      <div class='clr'></div>
+    <ul class="layui-tab-title">
+        <li class="layui-this" id="remove_search_content">封杀IP</li>
+    </ul>
+    <div class="layui-tab-content">
+        <!--显示商品列表1-->
+        <div class="layui-tab-item layui-show">
+            <div class="layui-form">
+                <button class="layui-btn layui-btn-normal " onclick="add_layer()" title="添加一级分类"><i class="layui-icon"></i>&nbsp;<i class="layui-icon">&#xe613;</i></button>
+                <table class="layui-table" lay-even="" lay-skin="nob">
+                    <colgroup>
+                        <col width="150">
+                        <col width="250">
+                        <col width="250">
+                        <col width="100">
+                        <col>
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>IP</th>
+                            <th>初始</th>
+                            <th>到期</th>
+                            <th style="padding-left:25px">修改</th>
+                            <th style="padding-left:25px">删除</th>
+                        </tr>
+                    </thead>
+                    <tbody id="yth_logs">
+                    </tbody>
+                </table>
+            </div>
+            <!-- 翻页开始 -->
+            <div id="yth_page"></div>
+            <div class='clr'></div>
+        </div>
     </div>
-
-  </div>
-
 </div>
-
 <!-- 分页数据模板 -->
 <script type="text/yth_tpl" id="yth_logs_tpl">
-  {{#  for(var i in d ) {  }}
+    {{# for(var i in d ) { }}
     <tr class="tr_{{hashCode( d[i].ip ) }}">
-      <td>{{d[i].ip}}</td>
-      <td>{{format_time("Y-m-d h:i:s", parseInt(d[i].time) ) }}</td>
-      <td>{{format_time("Y-m-d h:i:s", parseInt(d[i].time)+parseInt(d[i].expire) ) }}</td>
-      <td >
-        <button class="layui-btn layui-btn-normal" yth-ip="{{d[i].ip}}" 
-         onclick="user_deny_ip_edit(this)" title="修改"><i class="layui-icon"></i></button>
-      </td>
-      <td >
-        <button class="layui-btn layui-btn-warm" yth-id="{{d[i].ip}}"
-         onclick="user_deny_ip_del(this)" title="删除"><i class="layui-icon"></i></button>
-      </td>
+        <td>{{d[i].ip}}</td>
+        <td>{{format_time("Y-m-d h:i:s", parseInt(d[i].time) ) }}</td>
+        <td>{{format_time("Y-m-d h:i:s", parseInt(d[i].time)+parseInt(d[i].expire) ) }}</td>
+        <td>
+            <button class="layui-btn layui-btn-normal" yth-ip="{{d[i].ip}}" onclick="user_deny_ip_edit(this)" title="修改"><i class="layui-icon"></i></button>
+        </td>
+        <td>
+            <button class="layui-btn layui-btn-warm" yth-id="{{d[i].ip}}" onclick="user_deny_ip_del(this)" title="删除"><i class="layui-icon"></i></button>
+        </td>
     </tr>
-  {{#  }  }}
+    {{# } }}
 </script>
-
-
 <!-- JS运行脚本 -->
 <script>
 loadjs(["/static/Admin/js/user_deny_ip.js"
 ], {
-  success: function() {
-  layui.use(['layer'], function() {
-      // 选中当前所在模块
-      $("#user_deny_ip").addClass("layui-this");
-      // 初始化页面
-      get_list();
-    });
-  }
+    success: function () {
+        layui.use(['layer'], function () {
+            // 选中当前所在模块
+            $("#user_deny_ip").addClass("layui-this");
+            // 初始化页面
+            get_list();
+        });
+    }
 });
 
 
 
 /**
-* 返回 格式化后的时间
-* Int  初始时间的时间戳
-* Int  持续时间 
-*/
-function time_format(time_start,time_len=0){
-  time_start = parseInt(time_start);
-  time_len = parseInt(time_len);
-  if( 0 !=time_len ){
-    time_start += time_len;
-  }
-  return ( 
-    new Date( time_start * 1000)
-  ).Format("yyyy-MM-dd hh:mm:ss");
+ * 返回 格式化后的时间
+ * Int  初始时间的时间戳
+ * Int  持续时间 
+ */
+function time_format(time_start, time_len = 0) {
+    time_start = parseInt(time_start);
+    time_len = parseInt(time_len);
+    if(0 != time_len) {
+        time_start += time_len;
+    }
+    return(
+        new Date(time_start * 1000)
+    ).Format("yyyy-MM-dd hh:mm:ss");
 }
 
 
 
 // 获取分页列表
-
 </script>

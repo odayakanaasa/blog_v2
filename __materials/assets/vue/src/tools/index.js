@@ -125,7 +125,7 @@ export default class tools {
    * @param string 一个时间字符串  如，`2018-10-25 18:25:30` 或 `2018-10-25`
    * @return string
    */
-  static timeCompute(str){
+  static timeCompute(str) {
     if(!str) return '';
     let date = new Date(str);
     let time = new Date().getTime() - date.getTime(); //现在的时间-传入的时间 = 相差的时间（单位 = 毫秒）
