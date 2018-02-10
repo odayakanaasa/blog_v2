@@ -38,6 +38,8 @@ class Common_reply
             if (!isset($_SESSION['user']['id'])) {
                 $msg['Err'] = '1014';
                 trans_json($msg);
+            }else{
+                return $_SESSION['user']['id'];
             }
         }
     }

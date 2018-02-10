@@ -39,7 +39,7 @@ class CurlRequest
         }
         // 模拟重定向
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-        // Gzip 解压
+        // gzip 解压
         curl_setopt($ch, CURLOPT_ENCODING, 'gzip');
         $content = curl_exec($ch); // 开始访问指定URL
         curl_close($ch); // 关闭 cURL 释放资源
