@@ -16,9 +16,9 @@ return [
     'unit_host'               => $env['unit_host'], // 本地域名
     'unit_switch'             => $env['unit_switch'], // 开关 true 开启，false关闭。 线上请设置为 false
     // Seo默认配置
-    'seo_keywords'            => '云天河,云天河博客,云天河Blog,个人博客,hlz,hlzblog',
+    'seo_keywords'            => '云天河博客,云天河Blog,hlzblog',
     'seo_description'         => '云天河制作的第二版博客',
-    'seo_title_suffix'        => '_云天河Blog_云天河博客', // 博客名
+    'seo_title_suffix'        => '_云天河Blog_云天河博客', // 标题后缀
 
     // +----------------------------------------------------------------------
     // | 应用设置
