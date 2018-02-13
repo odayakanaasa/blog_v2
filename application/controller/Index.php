@@ -46,7 +46,7 @@ class Index
     {
         $g                        = Request::instance()->get();
         $this->v->seo_description = '云天河Blog(www.hlzblog.top)，致力于全栈开发技术的交流与资源共享。欢迎加入QQ群399073936，一起更进一步。';
-        $this->v->seo_keywords    = '云天河,云天河博客,云天河Blog,hlzblog,hlz';
+        $this->v->seo_keywords    = '云天河博客,云天河Blog,hlzblog';
         $this->render_html(__FUNCTION__, '云天河', $g);
     }
 
