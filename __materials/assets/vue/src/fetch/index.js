@@ -4,7 +4,8 @@ import qs from 'qs'
 // axios 配置
 axios.defaults.timeout = 5000;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
-axios.defaults.baseURL = 'http://web.blog.com/';
+// axios.defaults.baseURL = 'http://web.blog.com/';
+axios.defaults.baseURL = 'http://www.hlzblog.top/';
 
 
 /**
@@ -41,13 +42,45 @@ axios.interceptors.response.use((res) => {
   return Promise.reject(error);
 });
 
+// 封装 post 请求
+export function fetch(url, params) {
+  return new Promise((resolve, reject) => {
+    axios.post(url, params)
+      .then(response => {
+        resolve(response.data);
+      }, err => {
+        reject(err);
+      })
+      .catch(error => {
+        reject(error)
+      })
+  })
+}
+// 封装 get 请求
+export function get(url){
+  return new Promise((resolve, reject) => {
+    axios.get(url)
+      .then(response => {
+        resolve(response.data);
+      }, err => {
+        reject(err);
+      })
+      .catch(error => {
+        reject(error)
+      })
+  })
+}
+
 
 export default {
-    /**
-     * 用户登录
-     */
-    Login(params) {
-        return fetch('/users/api/userLogin', params)
-    },
+  /**
+   * 用户登录
+   */
+  CategoryList() {
+    return get('/Api?con=Admin_article&act=blog_category_list_info')
+  },
+  /**
+   * 分类列表
+   */
 
 }

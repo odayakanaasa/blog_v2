@@ -6,8 +6,9 @@ import * as types from '../types';
 //     设置初始状态
 // -----------------------------------------------------------:
 const state = {
-  loading: false, // false -> 关 true -> 开
-  collapse: true, // false -> 隐藏 true -> 显示
+  sidebar: false, // false -> 隐藏 true -> 显示
+  token: '', // 空字符 -> 未登录  非空字符串 -> 有登录信息
+
 };
 
 // -----------------------------------------------------------:
@@ -20,11 +21,11 @@ const state = {
 */
 const actions = {
   // loading 层  显示状态
-  setLoadingState({ commit }, status) {
-    commit(types.common_loading, status);
+  setToken({ commit }, payload) {
+    commit(types.COMMON_TOKEN, payload);
   },
-  setCollapseState({ commit }, status) {
-    commit(types.common_collapse, status);
+  setSidebarState({ commit }, payload) {
+    commit(types.COMMON_SIDEBAR, payload);
   }
 }
 
@@ -38,20 +39,20 @@ const actions = {
 */
 const getters = {
   loading: state => state.loading,
-  collapse: state => state.collapse,
+  sidebar: state => state.sidebar,
 }
 
 // -----------------------------------------------------------:
 //     状态变更[同步执行] - 可接收 actions 中调用，来实现更新状态
 // -----------------------------------------------------------:
 const mutations = {
-  // loading层 切换
-  [types.common_loading](state, status) {
-    state.loading = !status;
+  // 修改token
+  [types.COMMON_TOKEN](state, val) {
+    state.token = val;
   },
-  // 手风琴 切换
-  [types.common_collapse](state, status) {
-    state.collapse = !status;
+  // 侧边栏
+  [types.COMMON_SIDEBAR](state, status) {
+    state.sidebar = !status;
   }
 }
 

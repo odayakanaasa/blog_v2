@@ -7,5 +7,5 @@
 // -----------------------------------------------------------:
 //     公共
 // -----------------------------------------------------------:
-export const common_loading = 'common_loading'; // 显示 loading 层
-export const common_collapse = 'common_collapse'; // 显示/收起 
+export const COMMON_TOKEN = ''; // 用于权限鉴别的token值，多端使用的时候，这项有用
+export const COMMON_SIDEBAR = 'COMMON_SIDEBAR'; // 收起/显示 

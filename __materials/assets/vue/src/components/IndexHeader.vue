@@ -9,7 +9,7 @@
         <li><i class="icon">&#xe601;</i><span>发布人：</span>{{releaseUsername | minize}}</li>
       </ul>
       <el-input v-focus placeholder="请输入内容"></el-input>
-      <router-link to="/test">去看 `Hello World`</router-link>
+      <router-link to="/404">去看 `Hello World`</router-link>
     </div>
     <div>
       <el-button v-on:click="toggleButton" type="info">{{ getToggleButton }}</el-button>
@@ -18,6 +18,7 @@
 </template>
 <script>
 import tools from '@/tools';
+import { mapGetters } from 'vuex';
 export default {
   // 基础类型检测 String Number Boolean Function Object Array
   props: {
@@ -38,7 +39,7 @@ export default {
   },
   computed: {
     getToggleButton() {
-      return !this.$store.state.common.collapse ? '点击展开' : '点击收起';
+      return !this.collapse ? '点击展开' : '点击收起';
     },
     getCollapse() {
       return this.$store.state.common.collapse;
@@ -71,6 +72,7 @@ export default {
 
 </script>
 <style lang="scss" scoped>
+@import '../assets/css/function';
 .cell {
   background: #fff;
   .detail-cell {

@@ -1,6 +1,10 @@
 <template>
   <div id="app">
     <!-- 这里是全局视图 -->
+    <!-- z-index: 4-->
+    <v-topnav></v-topnav>
+    <!-- z-index: 5-->
+    <v-sidebar></v-sidebar>
     <!-- 给予视图过渡效果 -->
     <transition name="slide-fade">
       <!-- 这里是 router里面的视图 -->
@@ -9,26 +13,35 @@
   </div>
 </template>
 <script>
+
+import TopNav from '@/components/TopNav'
+import Sidebar from '@/components/Sidebar'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    'v-topnav': TopNav,
+    'v-sidebar': Sidebar,
+  },
 }
 
 </script>
+
+
 <style lang="scss" scoped>
+// @import './assets/css/global.scss';
+
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  height: 100%;
-  background: #F5F5F5;
+  // background: #f5f5f5;
   .slide-fade-enter-active {
     animation: fadeInDown .4s
   }
   .slide-fade-leave-active {
-    animation: fadeOutDown .1s
+    animation: fadeOutDown .2s
   }
 }
 
 
-
+// 过渡动画
 @keyframes fadeInDown {
   0% {
     opacity: 0;

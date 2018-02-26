@@ -44,10 +44,10 @@ class Userentrance
             if (isset($_SERVER['HTTP_REFERER']) && '' != $_SERVER['HTTP_REFERER']) {
                 $_SESSION['to_url'] = $_SERVER['HTTP_REFERER'];
             }
+            // 执行跳转
+            header('Location:' . $this->url);
+            exit();
         }
-        // 执行跳转
-        header('Location:' . $this->url);
-        exit();
     }
 
     // 处理回调
@@ -83,6 +83,9 @@ class Userentrance
         }
         // 跳转到登陆前的页面
         $this->url = $_SESSION['to_url'];
+        // 处理回调 --- SPA
+        echo '<script>localStorage.getItem("spa")? window.close(): window.location.href = "{$this->url}";</script>';
+        exit();
     }
 
     /**
