@@ -1,6 +1,5 @@
 <template>
   <transition name="slide-left">
-    <p v-if="show">hello</p>
     <div v-show="sidebar" class="bar">
       <div class="left">
         <h5 class="title"><i class="el-icon-goods"></i></h5>
@@ -45,7 +44,6 @@ export default {
   },
   methods: {
     change_action() {
-      console.log('点击成功');
       this.$store.dispatch('setSidebarState', this.sidebar)
     },
   },

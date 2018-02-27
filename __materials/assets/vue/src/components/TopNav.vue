@@ -17,7 +17,6 @@ export default {
   methods: {
 
     change_action() {
-      console.log('点击成功');
       this.$store.dispatch('setSidebarState', this.sidebar )
     },
   },
@@ -37,20 +36,21 @@ export default {
   top: 0;
   left: 0;
   z-index: 4;
-  height: px2rem(200px);
-  line-height: px2rem(200px);
+  height: px2rem(300px);
+  line-height: px2rem(300px);
   width: 100%;
   background: #262826;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   .logo {
-    margin-left: px2rem(0px);
-    height: px2rem(200px);
+    margin-left: px2rem(300px)*0.2;
+    margin-top: px2rem(300px) *0.1;
+    height: px2rem(300px) * 0.8;
   }
   .nav_logo {
     color: #f5f5f5;
-    padding-right: px2rem(200px) * 0.3;
+    padding-right: px2rem(300px) * 0.3;
   }
 }
 

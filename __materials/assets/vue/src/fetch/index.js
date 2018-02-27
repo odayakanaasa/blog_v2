@@ -21,23 +21,23 @@ axios.defaults.baseURL = 'http://www.hlzblog.top/';
 
 
 // POST传参序列化
-axios.interceptors.request.use((config) => {
+axios.interceptors.request.use(config => {
   if(config.method === 'post') {
     config.data = qs.stringify(config.data);
   }
   return config;
-}, (error) => {
+}, error => {
   console.log('错误的传参');
   return Promise.reject(error);
 });
 
 // 返回状态判断
-axios.interceptors.response.use((res) => {
+axios.interceptors.response.use(res => {
   if(200 !== parseInt(res.code)) {
     return Promise.reject(res);
   }
   return res;
-}, (error) => {
+}, error => {
   console.log('网络异常');
   return Promise.reject(error);
 });
@@ -57,7 +57,7 @@ export function fetch(url, params) {
   })
 }
 // 封装 get 请求
-export function get(url){
+export function get(url) {
   return new Promise((resolve, reject) => {
     axios.get(url)
       .then(response => {
@@ -77,7 +77,7 @@ export default {
    * 用户登录
    */
   CategoryList() {
-    return get('/Api?con=Admin_article&act=blog_category_list_info')
+    return get('Api?con=Admin_article&act=blog_category_list_info')
   },
   /**
    * 分类列表

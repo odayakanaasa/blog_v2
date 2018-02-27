@@ -11,10 +11,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
+      // proxy all requests starting with /Api to jsonplaceholder
       '/Api': {
         target: 'http://www.hlzblog.top/Api',
-      },
-      changeOrigin: true,
+        changeOrigin: true
+      }
     },
 
     // Various Dev Server settings
