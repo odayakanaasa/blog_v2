@@ -12,10 +12,10 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       // proxy all requests starting with /Api to jsonplaceholder
-      '/Api': {
-        target: 'http://www.hlzblog.top/Api',
-        changeOrigin: true
-      }
+      // '/Api': {
+      //   target: 'http://www.hlzblog.top/Api',
+      //   changeOrigin: true
+      // }
     },
 
     // Various Dev Server settings

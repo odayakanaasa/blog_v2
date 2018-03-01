@@ -23,6 +23,10 @@ class Api
      */
     public function index()
     {
+        // 本地跨域调试，CORS配置
+        if( config('app_debug') ){
+            header('Access-Control-Allow-Origin: *');
+        }
         $this->if_denied()->limit();
         $g = Request::instance()->get();
         @Filter::is_set([

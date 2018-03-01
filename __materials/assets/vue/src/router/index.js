@@ -15,7 +15,7 @@ const rout_list = [{
     },
   },
   {
-    path: '/404',
+    path: '*',
     name: 'NotFound',
     component: NotFound,
     meta: {

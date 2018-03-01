@@ -8,7 +8,7 @@ import * as types from '../types';
 const state = {
   sidebar: false, // false -> 隐藏 true -> 显示
   token: '', // 空字符 -> 未登录  非空字符串 -> 有登录信息
-
+  bottombarName:'', // 底部选中的bar名称
 };
 
 // -----------------------------------------------------------:
@@ -26,6 +26,9 @@ const actions = {
   },
   setSidebarState({ commit }, payload) {
     commit(types.COMMON_SIDEBAR, payload);
+  },
+  setBottombarState({commit},payload){
+    commit(types.COMMON_BOTTOMBAR_NAME, payload);
   }
 }
 
@@ -40,6 +43,7 @@ const actions = {
 const getters = {
   loading: state => state.loading,
   sidebar: state => state.sidebar,
+  bottombarName: state => state.bottombarName,
 }
 
 // -----------------------------------------------------------:
@@ -53,6 +57,10 @@ const mutations = {
   // 侧边栏
   [types.COMMON_SIDEBAR](state, status) {
     state.sidebar = !status;
+  },
+  // 底部选中
+  [types.COMMON_BOTTOMBAR_NAME](state, barName) {
+    state.bottombarName = barName;
   }
 }
 
