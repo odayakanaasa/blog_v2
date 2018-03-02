@@ -1318,7 +1318,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"info\": [{\n    \"id\": \"\",\n    \"title\": \"\"\n    \"total\":\"\"\n  },...]\n}",
+          "content": "HTTP/1.1 200 OK\n{\n    \"code\": 200,\n    \"detail\": \"success\",\n    \"data\":\n    {\n        \"info\": [\n        {\n            \"cover_url\": \"http:\\/\\/pic.90sjimg.com\\/back_pic\\/u\\/00\\/05\\/60\\/99\\/55eea32d51e90.jpg\",\n            \"descript\": \"3月2日止\",\n            \"type\": 0,\n            \"sticky\": 0,\n            \"original\": 0,\n            \"title\": \"短期复习计划\",\n            \"id\": 26,\n            \"statistic\": 0,\n            \"cate_id\": 15,\n            \"time\": \"2018-02-23\",\n            \"cate_name\": \"书单\"\n        },...],\n        \"page_count\": 1,\n        \"total\": 5\n    }\n}",
           "type": "json"
         }
       ]
