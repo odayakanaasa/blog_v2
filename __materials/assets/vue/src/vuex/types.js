@@ -7,6 +7,7 @@
 // -----------------------------------------------------------:
 //     公共
 // -----------------------------------------------------------:
-export const COMMON_TOKEN = ''; // 用于权限鉴别的token值，多端使用的时候，这项有用
+export const COMMON_TOKEN = 'COMMON_TOKEN'; // 用于权限鉴别的token值，多端使用的时候，这项有用
 export const COMMON_SIDEBAR = 'COMMON_SIDEBAR'; // 收起/显示
 export const COMMON_BOTTOMBAR_NAME = 'COMMON_BOTTOMBAR_NAME'; // 底部选中的导航名称
+export const COMMON_SCROLL_LOADING = 'COMMON_SCROLL_LOADING'; // 收起/显示loading状态
