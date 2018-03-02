@@ -62,7 +62,7 @@ class Slide{
     */
     private function init_core(){
         //  背景图片存放目录 （Resources）
-        $this->ResourcesPath = './static/plugins/verify/img/'  ;
+        $this->ResourcesPath = './static_pc/plugins/verify/img/'  ;
         //  被处理图片 存放目录，相对于入口文件（裁剪小图，错位背景图）
         $this->dir = $this->ResourcesPath. 'tmp/' .time(); 
     }
@@ -204,6 +204,7 @@ class Slide{
     private function get_rand_png(){
         $this->srcPic  = $this->ResourcesPath.$this->bigPicName.mt_rand(1,$this->source_pic_count).'.png';
         if( !file_exists($this->srcPic ) ) {
+            exit($this->srcPic );
             exit('{"Err":2006}');
         }else{
             return  $this->srcPic;
