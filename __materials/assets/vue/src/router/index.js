@@ -12,14 +12,14 @@ const rout_list = [{
     name: 'Home',
     component: Home,
     meta: {
-      "title": "首页",
+      "title": "首页 | 云天河博客",
     },
   },{
     path: '/category/:id',
     name: 'Category',
     component: Category,
     meta: {
-      "title": "分类信息",
+      "title": "分类信息 | 云天河博客",
     },
   },
   {
@@ -27,7 +27,7 @@ const rout_list = [{
     name: 'NotFound',
     component: NotFound,
     meta: {
-      "title": "页面不存在",
+      "title": "页面不存在 | 云天河博客",
     },
   },
 ];
