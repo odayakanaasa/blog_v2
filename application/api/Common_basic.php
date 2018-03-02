@@ -154,7 +154,8 @@ class Common_basic
                 Limit ?,?
             ', $field);
         $pagenation->page_size = 10;
-        $_r4                   = $pagenation->get_result();
+        $_r                    = $pagenation->get_result();
+        echo Response::success($_r);
     }
 
 }
