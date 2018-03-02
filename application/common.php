@@ -87,7 +87,7 @@ function link_plugins($bucket_name, $name)
     preg_match('/(.*?)\.(js|css)$/i', $name, $matches);
     unset($matches[0]);
     unset($matches[1]);
-    return '/static/plugins/' . $bucket_name . '/' . $matches[2] . '/' . $name;
+    return '/static_pc/plugins/' . $bucket_name . '/' . $matches[2] . '/' . $name;
 }
 // Link_source [css、js、jpg、png]
 function link_src($name)
@@ -95,9 +95,9 @@ function link_src($name)
     if (preg_match('/(.*?)\.(js|css)$/i', $name, $matches)) {
         $dir = '/' . $matches[2];
         unset($matches);
-        return '/static' . $dir . '/' . $name;
+        return '/static_pc' . $dir . '/' . $name;
     } elseif (preg_match('/(.*?)\.(jpg|png|gif|jpeg)$/i', $name)) {
-        return '/static/img/' . $name;
+        return '/static_pc/img/' . $name;
     }
 }
 
