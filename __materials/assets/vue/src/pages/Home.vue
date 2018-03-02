@@ -37,12 +37,14 @@ export default {
       // console.log(navigator_h);
       // console.log(scroll_need);
       if(scroll_need <= 0 && false === this.pageEnd) {
+        this.$store.dispatch('setScrollLoadingState', false)
         this.pageNow++;
         let params = {
           "to_page": this.pageNow,
         };
         api.ArticleList(params)
           .then(d => {
+            this.$store.dispatch('setScrollLoadingState', true)
             if(d.data.page_count >= this.pageNow) {
               if(d.data.page_count === this.pageNow) {
                 this.pageEnd = true;
@@ -61,7 +63,8 @@ export default {
     // 销毁定时器
     clearInterval(this.timerIndex);
   },
-  computed: {},
+  computed: {
+  },
   methods: {
 
   }
