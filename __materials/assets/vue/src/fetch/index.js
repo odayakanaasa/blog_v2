@@ -6,7 +6,7 @@ export default {
    * 分类列表
    */
   CategoryList() {
-    return get('Api?con=Common_basic&act=blog_category_list_info')
+    return get('/Api?con=Common_basic&act=blog_category_list_info')
   },
   /**
    * 分类列表
@@ -22,7 +22,7 @@ export default {
     if(payload) {
       params = qs.stringify(payload);
     }
-    return get('Api?con=Common_basic&act=get_index_article_list&' + params)
+    return get('/Api?con=Common_basic&act=get_index_article_list&' + params)
   },
 
 }
