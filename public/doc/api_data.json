@@ -1241,6 +1241,26 @@
   },
   {
     "type": "get",
+    "url": "/Api?con=Common_basic&act=blog_category_list_info",
+    "title": "博文分类信息",
+    "name": "blog_category_list_info",
+    "group": "Common_basic",
+    "description": "<p>查看所有分类</p>",
+    "version": "2.0.0",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"info\": [{\n    \"id\": \"\",\n    \"title\": \"\"\n    \"total\":\"\"\n  },...]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "application/api/Common_basic.php",
+    "groupTitle": "Common_basic"
+  },
+  {
+    "type": "get",
     "url": "/Api?con=Common_basic&act=friend_link_info",
     "title": "友情链接列表",
     "name": "friend_link_info",
@@ -1252,6 +1272,53 @@
         {
           "title": "Success-Response:",
           "content": "HTTP/1.1 200 OK\n{\n \"info\": [{\n     \"id\": \"\",\n     \"title\": \"\",\n     \"url\": \"\"\n  },...],\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "application/api/Common_basic.php",
+    "groupTitle": "Common_basic"
+  },
+  {
+    "type": "get",
+    "url": "/Api?con=Common_basic&act=get_index_article_list",
+    "title": "依据类别号或者关键词，进行文章分页",
+    "name": "get_index_article_list",
+    "group": "Common_basic",
+    "description": "<p>首页分页，或者搜索</p>",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "to_page",
+            "description": "<p>页码，默认值为1</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "search",
+            "description": "<p>依据关键词，可选</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "cate_id",
+            "description": "<p>依据分类号，可选</p>"
+          }
+        ]
+      }
+    },
+    "version": "2.0.0",
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n  \"info\": [{\n    \"id\": \"\",\n    \"title\": \"\"\n    \"total\":\"\"\n  },...]\n}",
           "type": "json"
         }
       ]

@@ -1,5 +1,4 @@
 import axios from 'axios'
-import qs from 'qs' // 类似 php 中的 http_build_query
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++
 // axios 配置

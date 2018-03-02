@@ -97,7 +97,8 @@ class Common_basic
      *
      * @apiDescription  首页分页，或者搜索
      * @apiParam {string} to_page 页码，默认值为1
-     * @apiParam {string} to_page 页码，默认值为1
+     * @apiParam {string} search  依据关键词，可选
+     * @apiParam {string} cate_id 依据分类号，可选
      *
      * @apiVersion 2.0.0
      * @apiSuccessExample Success-Response:

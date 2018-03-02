@@ -5,7 +5,7 @@
       <router-link v-for="item in button_info_arr" :to="item.router">
         <div class="bot_li" @click="chooseButton(item.icon_name)">
           <div class="bot_li_icon">
-            <i :class="' fa fa-'+item.icon_name + ' '+ bottomBarButtonStatus(item.icon_name)"></i>
+            <i :class="' fa fa-'+item.icon_name + ' '+ bottomBarButtonAnimateStatus(item.icon_name)"></i>
           </div>
           <div :class="'bot_li_title '+bottomBarButtonStatus(item.icon_name)">
             {{item.title}}
@@ -30,19 +30,30 @@ export default {
     }
   },
   methods: {
+    // 显示/隐藏 侧边栏
     changeAction() {
       this.$store.dispatch('setSidebarState', this.sidebar)
     },
+    // 选中底部按钮
     chooseButton(name) {
       this.$store.dispatch('setBottombarState', name)
     },
+    // 底部按钮 --- 文字变化
     bottomBarButtonStatus(bar_name) {
       if(bar_name === this.bottombarName) {
         return "bot_choosen";
       } else {
         return "_icon";
       }
-    }
+    },
+    // 底部按钮 --- icon 动画
+    bottomBarButtonAnimateStatus(bar_name) {
+      if(bar_name === this.bottombarName) {
+        return " _icon_animate bot_choosen";
+      } else {
+        return "_icon";
+      }
+    },
   },
   computed: {
     ...mapGetters([
@@ -59,6 +70,7 @@ $bottom_nav_h: px2rem(300px);
 
 $bottom_button_count: 4; // 设置按钮数量
 .bottom_nav {
+  opacity: 0.7;
   height: $bottom_nav_h;
   position: fixed;
   transform: translateZ(0);
@@ -95,7 +107,9 @@ $bottom_button_count: 4; // 设置按钮数量
       }
       .bot_choosen {
         color: #0cc3ff;
-        animation-name: fadeIn 0.4s;
+      }
+      ._icon_animate{
+        animation: fadeIn 0.5s;
       }
       ._icon {
         color: #c7d3dc;
@@ -108,10 +122,12 @@ $bottom_button_count: 4; // 设置按钮数量
 // 点击图标特效
 @keyframes fadeIn {
   0% {
-    opacity: 0
+    opacity: 0;
+    font-size: px2rem(300px) * 0.5;
   }
   100% {
-    opacity: 1
+    opacity: 1;
+    font-size: px2rem(300px) * 0.4;
   }
 }
 
