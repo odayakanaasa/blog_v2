@@ -104,11 +104,27 @@ class Common_basic
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 200 OK
      * {
-     *   "info": [{
-     *     "id": "",
-     *     "title": ""
-     *     "total":""
-     *   },...]
+     *     "code": 200,
+     *     "detail": "success",
+     *     "data":
+     *     {
+     *         "info": [
+     *         {
+     *             "cover_url": "http:\/\/pic.90sjimg.com\/back_pic\/u\/00\/05\/60\/99\/55eea32d51e90.jpg",
+     *             "descript": "3月2日止",
+     *             "type": 0,
+     *             "sticky": 0,
+     *             "original": 0,
+     *             "title": "短期复习计划",
+     *             "id": 26,
+     *             "statistic": 0,
+     *             "cate_id": 15,
+     *             "time": "2018-02-23",
+     *             "cate_name": "书单"
+     *         },...],
+     *         "page_count": 1,
+     *         "total": 5
+     *     }
      * }
      */
     public function get_index_article_list()
@@ -138,7 +154,7 @@ class Common_basic
             ];
         }
         // 计算文章，统计评论
-        $pagenation = new \Mine\Page('
+        $p = new \Mine\Page('
                 Select
                     a.cover_url, a.descript, a.type, a.sticky, a.original,
                     a.title, a.id , a.statistic, a.cate_id, Left(a.time,10) as time,
@@ -153,8 +169,9 @@ class Common_basic
                 Order By a.`id` Desc
                 Limit ?,?
             ', $field);
-        $pagenation->page_size = 10;
-        $_r                    = $pagenation->get_result();
+        $p->page_size = 10;
+        $p->is_render = false;
+        $_r           = $p->get_result();
         echo Response::success($_r);
     }
 
