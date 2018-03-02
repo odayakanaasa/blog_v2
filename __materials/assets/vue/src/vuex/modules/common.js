@@ -9,7 +9,6 @@ const state = {
   sidebar: false, // false -> 隐藏 true -> 显示
   token: '', // 空字符 -> 未登录  非空字符串 -> 有登录信息
   bottombarName: '', // 底部选中的bar名称
-  scrollLoading: false, // 列表加载loading
 };
 
 // -----------------------------------------------------------:
@@ -31,9 +30,6 @@ const actions = {
   setBottombarState({ commit }, payload) {
     commit(types.COMMON_BOTTOMBAR_NAME, payload);
   },
-  setScrollLoadingState({ commit }, payload) {
-    commit(types.COMMON_SCROLL_LOADING, payload);
-  }
 }
 
 // -----------------------------------------------------------:
@@ -48,7 +44,6 @@ const getters = {
   loading: state => state.loading,
   sidebar: state => state.sidebar,
   bottombarName: state => state.bottombarName,
-  scrollLoading: state => state.scrollLoading,
 }
 
 // -----------------------------------------------------------:
@@ -67,10 +62,6 @@ const mutations = {
   [types.COMMON_BOTTOMBAR_NAME](state, barName) {
     state.bottombarName = barName;
   },
-  // 加载列表的 loading
-  [types.COMMON_SCROLL_LOADING](state, loadingStatus) {
-    state.scrollLoading = !loadingStatus;
-  }
 }
 
 export default {

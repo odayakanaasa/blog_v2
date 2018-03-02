@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // 导入页面渲染的各个组件
 import Home from '@/pages/Home'
+import Category from '@/pages/Category'
 import NotFound from '@/pages/NotFound'
 
 Vue.use(Router)
@@ -13,13 +14,20 @@ const rout_list = [{
     meta: {
       "title": "首页",
     },
+  },{
+    path: '/category/:id',
+    name: 'Category',
+    component: Category,
+    meta: {
+      "title": "分类信息",
+    },
   },
   {
     path: '*',
     name: 'NotFound',
     component: NotFound,
     meta: {
-      "title": "404页面不存在",
+      "title": "页面不存在",
     },
   },
 ];

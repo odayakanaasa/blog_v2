@@ -2,7 +2,7 @@
   <div class="top_nav">
     <!-- <img src="//tencent.cdn.hlzblog.top/static/img/default/logo_detail.png" class="logo" alt="logo"> -->
     <router-link to="/">
-      <img src="../assets/img/logo.png" class="logo" alt="logo" @click="chooseCategory">
+      <img src="../assets/img/logo_detail_hq.png" class="logo" alt="logo" @click="chooseCategory">
     </router-link>
     <div class="nav_logo">
       <i class="fa fa-windows" @click="changeAction"></i>

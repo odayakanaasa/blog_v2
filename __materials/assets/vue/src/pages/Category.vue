@@ -40,11 +40,21 @@ export default {
         this.pageNow++;
         let params = {
           "to_page": this.pageNow,
+          "cate_id": this.$route.params.id,
         };
         api.ArticleList(params)
           .then(d => {
             this.is_loading = false; // 关闭加载层
+            // 关闭底部按钮的选中
+            this.$store.dispatch('setBottombarState','');
+            // 如果数据为空
+            if( 0===d.data.page_count ){
+              //
+            }
             if(d.data.page_count >= this.pageNow) {
+              // 分类名
+              window.document.title = d.data.info[0].cate_name +' | 文章分类 | 云天河博客';
+              // 加载数据
               if(d.data.page_count === this.pageNow) {
                 this.pageEnd = true;
               }
