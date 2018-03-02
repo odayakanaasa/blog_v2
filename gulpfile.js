@@ -52,7 +52,7 @@ gulp.task('compile_scss', function () {
   return gulp.src(scss_src)
     .pipe(sass())
     .pipe(autoprefixer({
-      browsers: ['last 5 versions', 'Android >= 4.0'],
+      browsers: ['last 2 versions'],
       cascade: false
     }))
     .pipe(cssmin())

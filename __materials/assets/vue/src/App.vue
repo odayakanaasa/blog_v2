@@ -36,8 +36,8 @@ export default {
 
 // WebAPP式 布局
 .app_box{
-  margin-top: px2rem(300px);
-  margin-bottom: px2rem(300px);
+  margin-top: px2rem(400px);
+  margin-bottom: px2rem(400px);
 }
 
 // 动画过渡配置
