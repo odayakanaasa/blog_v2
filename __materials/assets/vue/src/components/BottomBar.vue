@@ -37,6 +37,8 @@ export default {
     // 选中底部按钮
     chooseButton(name) {
       this.$store.dispatch('setBottombarState', name)
+      // 隐藏侧边栏
+      this.$store.dispatch('setSidebarState', true)
     },
     // 底部按钮 --- 文字变化
     bottomBarButtonStatus(bar_name) {

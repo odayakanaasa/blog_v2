@@ -2,7 +2,7 @@
   <div class="top_nav">
     <!-- <img src="//tencent.cdn.hlzblog.top/static/img/default/logo_detail.png" class="logo" alt="logo"> -->
     <router-link to="/">
-      <img src="../assets/img/logo.png" class="logo" alt="logo">
+      <img src="../assets/img/logo.png" class="logo" alt="logo" @click="chooseCategory">
     </router-link>
     <div class="nav_logo">
       <i class="fa fa-windows" @click="changeAction"></i>
@@ -21,6 +21,10 @@ export default {
 
     changeAction() {
       this.$store.dispatch('setSidebarState', this.sidebar)
+    },
+    // 选中后，收起侧边栏
+    chooseCategory(){
+      this.$store.dispatch('setSidebarState', true);
     }
   },
   computed: {

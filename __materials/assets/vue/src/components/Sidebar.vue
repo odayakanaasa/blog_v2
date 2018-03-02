@@ -8,7 +8,7 @@
           <!-- ---- -->
           <h5 class="title"><i class="el-icon-goods _icon"></i></h5>
           <ul class="cate_ul">
-            <li v-for="item in category_list">
+            <li v-for="item in category_list" @click="chooseCategory">
               <router-link :to="'/category/'+item.id">
                 <span class="_left">{{item.title}}</span>
                 <span class="_right">（{{item.total}}）</span>
@@ -21,7 +21,7 @@
           <!-- ---- -->
         </div>
       </div>
-      <div class="right" @click="change_action"></div>
+      <div class="right" @click="changeAction"></div>
     </div>
   </transition>
 </template>
@@ -45,8 +45,12 @@ export default {
     }
   },
   methods: {
-    change_action() {
+    changeAction() {
       this.$store.dispatch('setSidebarState', this.sidebar);
+    },
+    // 选中后，收起侧边栏
+    chooseCategory(){
+      this.$store.dispatch('setSidebarState', true);
     }
   },
   computed: {
