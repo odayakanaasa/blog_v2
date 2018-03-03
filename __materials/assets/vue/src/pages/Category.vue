@@ -44,7 +44,7 @@ export default {
       this.timerIndex= 0;
       this.pageNow = 0;
       this.pageEnd = false;
-      
+
       // 文章分类信息 --- 每秒检测屏幕滚动到的高度
       this.timerIndex = setInterval(() => {
         let scroll_body = document.body.scrollHeight;
@@ -68,9 +68,9 @@ export default {
               this.is_loading = false; // 关闭加载层
               // 关闭底部按钮的选中
               this.$store.dispatch('setBottombarState', '');
-              // 如果数据为空
+              // 如果数据为空，404
               if(0 === d.data.page_count) {
-                //
+                this.$router.go('/*');
               }
               if(d.data.page_count >= this.pageNow) {
                 // 分类名
@@ -91,7 +91,7 @@ export default {
   },
   beforeRouteUpdate(to, from, next) {
     // 路由更新的时候
-    console.log('beforeRouteUpdate')
+    // console.log('beforeRouteUpdate')
     // 销毁定时器
       this.cate_id = to.params.id;
       this._init();
