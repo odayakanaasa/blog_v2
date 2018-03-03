@@ -41,6 +41,7 @@ export default {
         let params = {
           "to_page": this.pageNow,
         };
+        this.is_loading = true; // 开启加载层
         api.ArticleList(params)
           .then(d => {
             this.is_loading = false; // 关闭加载层

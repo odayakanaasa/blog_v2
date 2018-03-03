@@ -14,7 +14,7 @@
           </span>
         <span class="others_block _cate" title="所属分类">
             <i class="fa fa-folder-open-o"></i>
-            <router-link :to="`/cate_id/`+item.cate_id">
+            <router-link :to="`/category/`+item.cate_id">
               {{item.cate_name}}
             </router-link>
             <font></font>
