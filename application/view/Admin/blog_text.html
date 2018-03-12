@@ -235,12 +235,12 @@
     </div>
 </script>
 <script type="text/javascript" src="/Umeditor/umeditor.config.js"></script>
-<script type="text/javascript" src="/static_pc/plugins/editor_md/editormd.js"></script>
 <!-- JS运行脚本 -->
 <script>
 loadjs([
     // 富文本 Editor
     "/Umeditor/umeditor.min.js",
+    "/static_pc/plugins/editor_md/editormd.min.js"
     // Markdown Editor
 ], {
     success: function () {
@@ -260,7 +260,6 @@ loadjs([
                 "render_html": "blog_text_bg_html",
                 "pageination_id": "blog_text_bg_html_pagenation"
             });
-            // 搜索商品
 
         });
     }
