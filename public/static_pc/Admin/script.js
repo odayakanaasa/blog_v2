@@ -164,7 +164,7 @@ function markdown_editor() {
     width: 1100,
     height: 650,
     id: "markdown",
-    path: "/static/plugins/editor_md/lib/",
+    path: "/static_pc/plugins/editor_md/lib/",
     toolbarIcons: function () {
       // Or return editormd.toolbarModes[name]; // full, simple, mini
       // Using "||" set icons align right.

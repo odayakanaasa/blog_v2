@@ -1,58 +1,58 @@
 [Your domain]
-host=
+host=http://www.hlzblog.top
 
 [Debug]
-app_debug=
-app_trace=
+app_debug=true
+app_trace=false
 ; You should set `unit switch` 's value equal `false` online
-unit_switch=
-unit_host=
+unit_switch=false
+unit_host=http://web.blog.com
 
 [log_colored]
-log_colored_switch=
-log_colored_level=
-log_colored_time_zone=
+log_colored_switch=true
+log_colored_level=1
+log_colored_time_zone=Asia/Chongqing
 
 [Smtp]
-smtp_Host=
-smtp_FromName=
-smtp_From=
-smtp_Username=
-smtp_Password=
+smtp_Host=smtp.qq.com
+smtp_FromName=云天河Blog
+smtp_From=hlzblog@vip.qq.com
+smtp_Username=    ;Your QQ id
+smtp_Password=    ;Your POP3 password
 
 
 [Tencent_COS]
-cos_setRegion=
-cos_bucketName=
+cos_setRegion=sh
+cos_bucketName=hlzblog
 ;CDN's default url:  http://hlzblog-1252048472.file.myqcloud.com 
-cos_source_url=
-cos_APPID=
-cos_SECRET_ID=
-cos_SECRET_KEY=
+cos_source_url=http://tencent.cdn.hlzblog.top
+cos_APPID=1252048472
+cos_SECRET_ID=    ;Your APP Id
+cos_SECRET_KEY=    ;Your APP Secret
 
 [OAuth2.0]
 ; qq
-qq_config_appid=
-qq_config_appkey=
-qq_config_callback=
-qq_config_scope=
+qq_config_appid=    ;Your APP Id
+qq_config_appkey=    ;Your APP Secret
+qq_config_callback=    ;Your callback url
+qq_config_scope=get_user_info
 ; sina
-sina_config_WB_AKEY=
-sina_config_WB_SKEY=
-sina_config_WB_CALLBACK_URL=
+sina_config_WB_AKEY=    ;Your APP Id
+sina_config_WB_SKEY=    ;Your APP Secret
+sina_config_WB_CALLBACK_URL=    ;Your callback url
 
 [Redis]
 ; master
-redis_m_host_1=
-redis_m_prot_1=
-redis_m_auth_1=
+redis_m_host_1=127.0.0.1
+redis_m_prot_1=6379
+redis_m_auth_1=    ;Your password Or empty
 ; slave
-redis_s_host_1=
-redis_s_prot_1=
-redis_s_auth_1=
+redis_s_host_1=127.0.0.1
+redis_s_prot_1=6379
+redis_s_auth_1=    ;Your password Or empty
 
 [Mysql]
-mysql_hostname=
-mysql_database=
-mysql_username=
-mysql_password=
+mysql_hostname=localhost
+mysql_database=    ;Your database name
+mysql_username=    ;Your account name
+mysql_password=    ;Your password 
